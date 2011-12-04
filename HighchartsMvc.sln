@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highcharts.Mvc", "src\Highc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highcharts.Mvc.Test", "test\Highcharts.Mvc.Test\Highcharts.Mvc.Test.csproj", "{1D82CA3F-F39C-4B02-A2A8-6ABBB4536E25}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A62C71A-466B-4771-A539-AB7ED2E09F25}"
+	ProjectSection(SolutionItems) = preProject
+		README = README
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
