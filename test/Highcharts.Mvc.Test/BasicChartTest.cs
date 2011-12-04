@@ -108,6 +108,28 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void BasicSetup_Type()
+        {
+            HighchartsChart chart = new HighchartsChart("myChart").WithSerieType(ChartSerieType.Bar);
+
+            var actual = chart.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
+                                                  <script type=""text/javascript"">
+                                                  var myChart;
+                                                  $(document).ready(function () {
+                                                      myChart = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart',
+                                                            type: 'bar'
+                                                          }
+                                                      });
+                                                  });
+                                                  </script>");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void BasicSetup_WithSeries()
         {
             HighchartsChart chart = new HighchartsChart("myChart")

@@ -103,7 +103,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Highcharts.Mvc\Highcharts.Mvc.csproj">
+    <ProjectReference Include="..\..\src\Highcharts.Mvc\Highcharts.Mvc.csproj">
       <Project>{80ED5CBD-73B5-4DBD-B63F-BF5FE0297774}</Project>
       <Name>Highcharts.Mvc</Name>
     </ProjectReference>

@@ -1,11 +1,13 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-<h2>
-    Index</h2>
+
+<h2>Index</h2>
+
 @(
     Html.Highchart("myChart")
         .Title("Tickets per month")
+        .WithSerieType(ChartSerieType.AreaSpline)
         .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Products")
         .Series(

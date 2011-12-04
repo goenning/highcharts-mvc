@@ -16,10 +16,12 @@ namespace Highcharts.Mvc
         private string[] xAxisCategories;
         private string yAxisTitle;
         private Serie[] series;
+        private ChartSerieType serieType;
 
         public HighchartsChart(string id)
         {
             this.id = id;
+            this.serieType = ChartSerieType.Default;
         }
 
         public IHtmlString ToHtmlString()
@@ -27,9 +29,21 @@ namespace Highcharts.Mvc
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 
             StringBuilder chartOptions = new StringBuilder();
-            chartOptions.AppendFormat(@"chart: {{
+            string serieTypeName = this.serieType.ToString().ToLower();
+
+            if (this.serieType == ChartSerieType.Default)
+            {
+                chartOptions.AppendFormat(@"chart: {{
                                             renderTo: '{0}'
                                         }}", this.id);
+            }
+            else
+            {
+                chartOptions.AppendFormat(@"chart: {{
+                                            renderTo: '{0}',
+                                            type: '{1}'
+                                        }}", this.id, serieTypeName);  
+            }
 
             if (this.title != null)
             {
@@ -107,6 +121,12 @@ namespace Highcharts.Mvc
         public HighchartsChart Series(params Serie[] series)
         {
             this.series = series;
+            return this;
+        }
+
+        public HighchartsChart WithSerieType(ChartSerieType serieType)
+        {
+            this.serieType = serieType;
             return this;
         }
     }
