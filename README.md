@@ -52,6 +52,7 @@ Instead of:
 
 Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, check this out:
 
+```
 @(
     Html.Highchart("myAjaxChart")
         .Title("Tickets per month")
@@ -63,3 +64,4 @@ Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, ch
         )
         .ToHtmlString()
 )
+```
