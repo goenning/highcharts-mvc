@@ -1,5 +1,7 @@
 # ASP.NET MVC Helpers for [Highcharts](http://www.highcharts.com/)
 
+This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a better, easier and cleaner API.
+
 **NOTE:** This project is still a draft, it's only about `5%` of the whole Highcharts API.
 
 Write:
@@ -12,9 +14,9 @@ Write:
         .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Products")
         .Series(
-            new Serie("iPad", new int?[] { 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 120 }),
-            new Serie("MacBook", new int?[] { 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120 }),
-            new Serie("iPhone", new int?[] { 10, 45, 75, 100, null, 546, 753, 785, 967, 135, 765, 245 })
+            new Serie("iPad", 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 120),
+            new Serie("MacBook", 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120),
+            new Serie("iPhone", 10, 45, 75, 100, null, 546, 753, 785, 967, 135, 765, 245)
         ).ToHtmlString()
 )
 ```
@@ -47,3 +49,17 @@ Instead of:
     });
 </script>
 ```
+
+Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, check this out:
+
+@(
+    Html.Highchart("myAjaxChart")
+        .Title("Tickets per month")
+        .WithSerieType(ChartSerieType.Column)
+        .AxisX("Jan", "Feb", "Mar")
+        .AxisY("Quantity")
+        .Series(
+            AjaxConfig.LoadFrom(Url.Action("LoadData", "Ajax")).Reload(5000)
+        )
+        .ToHtmlString()
+)
