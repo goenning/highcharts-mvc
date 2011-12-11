@@ -39,11 +39,16 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxConfig.cs" />
+    <Compile Include="AjaxDataSource.cs" />
+    <Compile Include="ArrayDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
+    <Compile Include="EmptyDataSource.cs" />
     <Compile Include="HighchartsChart.cs" />
     <Compile Include="HighchartsHtmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serie.cs" />
+    <Compile Include="DataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

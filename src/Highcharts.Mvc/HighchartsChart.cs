@@ -15,13 +15,14 @@ namespace Highcharts.Mvc
         private string title;
         private string[] xAxisCategories;
         private string yAxisTitle;
-        private Serie[] series;
         private ChartSerieType serieType;
+        private DataSource dataSource;
 
         public HighchartsChart(string id)
         {
             this.id = id;
             this.serieType = ChartSerieType.Default;
+            this.dataSource = new EmptyDataSource();
         }
 
         public IHtmlString ToHtmlString()
@@ -69,21 +70,7 @@ namespace Highcharts.Mvc
                                             }}", this.yAxisTitle);
             }
 
-            if (this.series != null)
-            {
-                StringBuilder seriesOptions = new StringBuilder();
-                seriesOptions.Append("[");
-                for (int i = 0; i < this.series.Length; i++)
-                {
-                    Serie serie = this.series[i];
-                    if (i > 0)
-                        seriesOptions.Append(",");
-
-                    seriesOptions.AppendFormat("{{ name:'{0}', data: {1} }}", serie.Name, serializer.Serialize(serie.Values));
-                }
-                seriesOptions.Append("]");
-                chartOptions.AppendFormat(@", series: {0}", seriesOptions.ToString());
-            }
+            string additionalJavaScript = dataSource.ToHtmlString(this.id);
 
             StringBuilder html = new StringBuilder();
             html.AppendFormat("<div id=\"{0}\"></div>", this.id);
@@ -94,8 +81,10 @@ namespace Highcharts.Mvc
                                         {0} = new Highcharts.Chart({{
                                             {1}
                                         }});
+
+                                        {2}
                                     }});
-                                </script>", this.id, chartOptions.ToString());
+                                </script>", this.id, chartOptions.ToString(), additionalJavaScript);
 
             return MvcHtmlString.Create(html.ToString());
         }
@@ -118,10 +107,15 @@ namespace Highcharts.Mvc
             return this;
         }
 
+        public HighchartsChart Series(DataSource datasource)
+        {
+            this.dataSource = datasource;
+            return this;
+        }
+
         public HighchartsChart Series(params Serie[] series)
         {
-            this.series = series;
-            return this;
+            return Series(new ArrayDataSource(series));
         }
 
         public HighchartsChart WithSerieType(ChartSerieType serieType)
