@@ -7,9 +7,11 @@
 @(
     Html.Highchart("myChart")
         .Title("Tickets per month")
+        .Subtitle("From Jan to Dec")
         .WithSerieType(ChartSerieType.Line)
         .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Quantity")
+        .Options(PlotOptions.Line.ShowDataLabels().DisableMouseTracking())
         .Series(
             new Serie("iPad", 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 800),
             new Serie("MacBook", 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120),

@@ -55,6 +55,36 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void BasicSetup_WithTitle_AndSubtitle()
+        {
+            HighchartsChart chart = new HighchartsChart("myChart")
+                                        .Title("This is my chart with a title!")
+                                        .Subtitle("And this is my subtitle!");
+
+
+            var actual = chart.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
+                                                  <script type=""text/javascript"">
+                                                  var myChart;
+                                                  $(document).ready(function () {
+                                                      myChart = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          title: {
+                                                            text: 'This is my chart with a title!'
+                                                          },
+                                                          subtitle: {
+                                                             text: 'And this is my subtitle!'
+                                                          }
+                                                      });
+                                                  });
+                                                  </script>");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void BasicSetup_WithXAxisCategories()
         {
             HighchartsChart chart = new HighchartsChart("myChart")

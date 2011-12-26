@@ -6,7 +6,7 @@ This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a
 
 Write:
 
-```console
+```
 @(
     Html.Highchart("myChart")
         .Title("Tickets per month")
@@ -23,7 +23,7 @@ Write:
 
 Instead of:
 
-```console
+```
 <div id="myChart"></div>
 <script type="text/javascript">
     var myChart;
@@ -65,3 +65,34 @@ Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, ch
         .ToHtmlString()
 )
 ```
+
+
+var myAjaxChart;
+$(document).ready(function () {
+    myAjaxChart = new Highcharts.Chart({
+        chart: {
+        renderTo: 'myAjaxChart',
+        type: 'column'
+    }, title: {
+            text: 'Tickets per month'
+        }, xAxis: {
+            categories: ['Jan','Feb','Mar']
+        }, yAxis: {
+            title: { 
+                text: 'Quantity'
+            }
+        }
+    });
+
+    setIntervalAndExecute(function(){ 
+        $.getJSON('/Ajax/LoadData', function(data) {
+            myAjaxChart.clearSeries();
+            $.each(data, function (key, value) {
+                myAjaxChart.addSeries({
+                    name: value.Name,
+                    data: value.Values
+                }); ;
+            });
+        });
+    }, 5000);
+});

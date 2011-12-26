@@ -26,22 +26,14 @@ namespace Highcharts.Mvc.Test
                                                                 renderTo: 'myChart'
                                                             }
                                                         });
-
-                                                        $.getJSON('/Ajax/LoadData', function(data) {
-                                                            myChart.clearSeries();
-
-                                                            $.each(data, function (key, value) {
-                                                                myChart.addSeries({
-                                                                    name: value.Name,
-                                                                    data: value.Values
-                                                                }); ;
-                                                            });
-                                                        });
+                                                        
+                                                        postChartAjax(myChart, '/Ajax/LoadData');
                                                   });
                                                   </script>");
 
             HtmlAssert.AreEqual(expected, actual);
         }
+
         [Test]
         public void BasicSetup_WithAjaxSource_AndInternal()
         {
@@ -59,18 +51,31 @@ namespace Highcharts.Mvc.Test
                                                             }
                                                         });
                                                         
-                                                        setIntervalAndExecute(function() {
-                                                            $.getJSON('/Ajax/LoadData', function(data) {
-                                                                myChart.clearSeries();
+                                                        postChartAjax(myChart, '/Ajax/LoadData', 1000);
+                                                  });
+                                                  </script>");
 
-                                                                $.each(data, function (key, value) {
-                                                                    myChart.addSeries({
-                                                                        name: value.Name,
-                                                                        data: value.Values
-                                                                    }); ;
-                                                                });
-                                                            });
-                                                        }, 1000);
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void BasicSetup_WithAjaxSource_AndGetMethod()
+        {
+            HighchartsChart chart = new HighchartsChart("myChart")
+                                    .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").AsGet());
+
+            var actual = chart.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
+                                                  <script type=""text/javascript"">
+                                                  var myChart;
+                                                  $(document).ready(function () {
+                                                        myChart = new Highcharts.Chart({
+                                                            chart: {
+                                                                renderTo: 'myChart'
+                                                            }
+                                                        });
+                                                        
+                                                        getChartAjax(myChart, '/Ajax/LoadData');
                                                   });
                                                   </script>");
 

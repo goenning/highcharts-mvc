@@ -12,11 +12,13 @@ namespace Highcharts.Mvc
     public class HighchartsChart
     {
         private string id;
-        private string title;
+        private string title = null;
+        private string subtitle = null;
         private string[] xAxisCategories;
         private string yAxisTitle;
         private ChartSerieType serieType;
         private DataSource dataSource;
+        private PlotOptions options;
 
         public HighchartsChart(string id)
         {
@@ -53,6 +55,13 @@ namespace Highcharts.Mvc
                                             }}", this.title);
             }
 
+            if (this.subtitle != null)
+            {
+                chartOptions.AppendFormat(@", subtitle: {{
+                                                text: '{0}'
+                                            }}", this.subtitle);
+            }
+
             if (this.xAxisCategories != null)
             {
                 string categories = serializer.Serialize(this.xAxisCategories).Replace("\"", "'");
@@ -68,6 +77,13 @@ namespace Highcharts.Mvc
                                                     text: '{0}'
                                                 }}
                                             }}", this.yAxisTitle);
+            }
+
+            if (this.options != null)
+            {
+                chartOptions.AppendFormat(@", plotOptions: {{
+                                                {0}
+                                            }}", this.options.ToJsonString());
             }
 
             string additionalJavaScript = dataSource.ToHtmlString(this.id);
@@ -121,6 +137,18 @@ namespace Highcharts.Mvc
         public HighchartsChart WithSerieType(ChartSerieType serieType)
         {
             this.serieType = serieType;
+            return this;
+        }
+
+        public HighchartsChart Subtitle(string subtitle)
+        {
+            this.subtitle = subtitle;
+            return this;
+        }
+
+        public HighchartsChart Options(PlotOptions options)
+        {
+            this.options = options;
             return this;
         }
     }

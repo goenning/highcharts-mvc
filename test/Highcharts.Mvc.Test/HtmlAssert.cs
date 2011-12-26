@@ -16,5 +16,12 @@ namespace Highcharts.Mvc.Test
             string actualString = actual.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
             Assert.AreEqual(expectedString, actualString);
         }
+
+        public static void AreEqual(string expected, string actual)
+        {
+            string expectedString = expected.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
+            string actualString = actual.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
+            Assert.AreEqual(expectedString, actualString);
+        }
     }
 }
