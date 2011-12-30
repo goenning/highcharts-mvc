@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,81 +12,25 @@ namespace Highcharts.Mvc
     public class HighchartsChart
     {
         private string id;
-        private string title = null;
-        private string subtitle = null;
-        private string[] xAxisCategories;
-        private string yAxisTitle;
-        private ChartSerieType serieType;
-        private DataSource dataSource;
-        private PlotOptions options;
+        private ChartDataSource dataSource;
+        private JsonObject chartConfig;
 
         public HighchartsChart(string id)
         {
             this.id = id;
-            this.serieType = ChartSerieType.Default;
             this.dataSource = new EmptyDataSource();
+            this.chartConfig = new JsonObject();
+
+            this.chartConfig.Set(
+                new JsonObject("chart", 
+                    new JsonObject("renderTo", this.id)
+                )
+            );
         }
 
         public IHtmlString ToHtmlString()
         {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-            StringBuilder chartOptions = new StringBuilder();
-            string serieTypeName = this.serieType.ToString().ToLower();
-
-            if (this.serieType == ChartSerieType.Default)
-            {
-                chartOptions.AppendFormat(@"chart: {{
-                                            renderTo: '{0}'
-                                        }}", this.id);
-            }
-            else
-            {
-                chartOptions.AppendFormat(@"chart: {{
-                                            renderTo: '{0}',
-                                            type: '{1}'
-                                        }}", this.id, serieTypeName);  
-            }
-
-            if (this.title != null)
-            {
-                chartOptions.AppendFormat(@", title: {{
-                                                text: '{0}'
-                                            }}", this.title);
-            }
-
-            if (this.subtitle != null)
-            {
-                chartOptions.AppendFormat(@", subtitle: {{
-                                                text: '{0}'
-                                            }}", this.subtitle);
-            }
-
-            if (this.xAxisCategories != null)
-            {
-                string categories = serializer.Serialize(this.xAxisCategories).Replace("\"", "'");
-                chartOptions.AppendFormat(@", xAxis: {{
-                                                categories: {0}
-                                            }}", categories);
-            }
-
-            if (this.yAxisTitle != null)
-            {
-                chartOptions.AppendFormat(@", yAxis: {{
-                                                title: {{ 
-                                                    text: '{0}'
-                                                }}
-                                            }}", this.yAxisTitle);
-            }
-
-            if (this.options != null)
-            {
-                chartOptions.AppendFormat(@", plotOptions: {{
-                                                {0}
-                                            }}", this.options.ToJsonString());
-            }
-
-            string additionalJavaScript = dataSource.ToHtmlString(this.id);
+            string chartSource = dataSource.ToHtmlString(this.id);
 
             StringBuilder html = new StringBuilder();
             html.AppendFormat("<div id=\"{0}\"></div>", this.id);
@@ -100,30 +44,47 @@ namespace Highcharts.Mvc
 
                                         {2}
                                     }});
-                                </script>", this.id, chartOptions.ToString(), additionalJavaScript);
+                                </script>", this.id, this.chartConfig.ToString(), chartSource);
 
             return MvcHtmlString.Create(html.ToString());
         }
 
         public HighchartsChart Title(string title)
         {
-            this.title = title;
+            this.chartConfig.Set(
+                new JsonObject("title",
+                    new JsonObject("text", title)
+                )
+            );
+
             return this;
         }
 
         public HighchartsChart AxisX(params string[] categories)
         {
-            this.xAxisCategories = categories;
+            this.chartConfig.Set(
+                new JsonObject("xAxis",
+                    new JsonObject("categories", categories)
+                )
+            );
+
             return this;
         }
 
         public HighchartsChart AxisY(string title)
         {
-            this.yAxisTitle = title;
+            this.chartConfig.Set(
+                new JsonObject("yAxis",
+                    new JsonObject("title", 
+                        new JsonObject("text", title)
+                    )
+                )
+            );
+
             return this;
         }
 
-        public HighchartsChart Series(DataSource datasource)
+        public HighchartsChart Series(ChartDataSource datasource)
         {
             this.dataSource = datasource;
             return this;
@@ -131,24 +92,40 @@ namespace Highcharts.Mvc
 
         public HighchartsChart Series(params Serie[] series)
         {
-            return Series(new ArrayDataSource(series));
+            return Series(new ArrayChartDataSource(series));
         }
 
         public HighchartsChart WithSerieType(ChartSerieType serieType)
         {
-            this.serieType = serieType;
+            string serieTypeName = serieType.ToString().ToLower();
+
+            this.chartConfig.Set(
+                new JsonObject("chart",
+                    new JsonObject("renderTo", this.id),
+                    new JsonObject("type", serieTypeName)
+                )
+            );
+
             return this;
         }
 
         public HighchartsChart Subtitle(string subtitle)
         {
-            this.subtitle = subtitle;
+            this.chartConfig.Set(
+                new JsonObject("subtitle",
+                    new JsonObject("text", subtitle)
+                )
+            );
+
             return this;
         }
 
         public HighchartsChart Options(PlotOptions options)
         {
-            this.options = options;
+            this.chartConfig.Set(
+                new JsonObject("plotOptions", options)
+            );
+
             return this;
         }
     }

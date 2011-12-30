@@ -6,13 +6,13 @@ using System.Web.Mvc;
 
 namespace Highcharts.Mvc
 {
-    public class AjaxDataSource : DataSource
+    public class AjaxChartDataSource : ChartDataSource
     {
         public string Url { get; private set; }
         public FormMethod Method { get; private set; }
         private int? milisecondsInterval = null;
 
-        public AjaxDataSource(string url)
+        public AjaxChartDataSource(string url)
         {
             this.Url = url;
             this.Method = FormMethod.Post;
@@ -28,13 +28,13 @@ namespace Highcharts.Mvc
             return string.Format("{0}({1}, '{2}');", jsFunctionName, chartId, this.Url);
         }
 
-        public AjaxDataSource Reload(int miliseconds)
+        public AjaxChartDataSource Reload(int miliseconds)
         {
             this.milisecondsInterval = miliseconds;
             return this;
         }
 
-        public AjaxDataSource AsGet()
+        public AjaxChartDataSource AsGet()
         {
             this.Method = FormMethod.Get;
             return this;

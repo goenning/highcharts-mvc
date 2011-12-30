@@ -13,5 +13,10 @@ namespace Highcharts.Mvc
         {
             return new HighchartsChart(id);
         }
+
+        public static HighchartsChart<T> Highchart<T>(this HtmlHelper htmlHelper, string id, IEnumerable<T> items)
+        {
+            return new HighchartsChart<T>(id, items);
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TicketsPerMonth>
+@{
+    ViewBag.Title = "Advanced";
+}
+
+<h2>Advanced Chart</h2>
+
+@(
+    Html.Highchart<TicketsPerMonth>("myChart", this.Model)
+        .Series(x => x.Product, x => x.Tickets)
+        .Title("Tickets per month")
+        .Subtitle("From Jan to Dec")
+        .WithSerieType(ChartSerieType.Line)
+        .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+        .AxisY("Quantity")
+        .Options(
+            PlotOptions.Line.ShowDataLabels().HideInLegend()
+        )
+        .ToHtmlString()
+)

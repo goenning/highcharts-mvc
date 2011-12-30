@@ -12,15 +12,15 @@ namespace Highcharts.Mvc.Test
     {
         public static void AreEqual(IHtmlString expected, IHtmlString actual)
         {
-            string expectedString = expected.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
-            string actualString = actual.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
+            string expectedString = expected.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "");
+            string actualString = actual.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "");
             Assert.AreEqual(expectedString, actualString);
         }
 
         public static void AreEqual(string expected, string actual)
         {
-            string expectedString = expected.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
-            string actualString = actual.ToString().Replace(" ", "").Replace(Environment.NewLine, "");
+            string expectedString = expected.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "");
+            string actualString = actual.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "");
             Assert.AreEqual(expectedString, actualString);
         }
     }

@@ -8,9 +8,9 @@ namespace Highcharts.Mvc
 {
     public class AjaxConfig
     {
-        public static AjaxDataSource LoadFrom(string url)
+        public static AjaxChartDataSource LoadFrom(string url)
         {
-            return new AjaxDataSource(url);
+            return new AjaxChartDataSource(url);
         }
     }
 }

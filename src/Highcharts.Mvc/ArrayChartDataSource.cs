@@ -6,10 +6,10 @@ using System.Web.Script.Serialization;
 
 namespace Highcharts.Mvc
 {
-    public class ArrayDataSource : DataSource
+    public class ArrayChartDataSource : ChartDataSource
     {
         public Serie[] Series { get; private set; }
-        public ArrayDataSource(Serie[] series)
+        public ArrayChartDataSource(Serie[] series)
         {
             this.Series = series;
         }
@@ -19,9 +19,8 @@ namespace Highcharts.Mvc
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             StringBuilder script = new StringBuilder();
             foreach (var serie in this.Series)
-            {
                 script.AppendFormat("{0}.addSeries({{ name: '{1}', data: {2} }}); {3}", chartId, serie.Name, serializer.Serialize(serie.Values), Environment.NewLine);
-            }
+
             return script.ToString();
         }
     }

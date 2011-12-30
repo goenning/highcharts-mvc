@@ -14,7 +14,7 @@ namespace Highcharts.Mvc.Test
         public void EmptyOptions()
         {
             var options = PlotOptions.Line;
-            var actual = options.ToJsonString();
+            var actual = options.ToString();
             var expected = @"line: { }";
 
             HtmlAssert.AreEqual(expected, actual);
@@ -24,7 +24,7 @@ namespace Highcharts.Mvc.Test
         public void OptionsWithDataLabels() 
         {
             var options = PlotOptions.Line.ShowDataLabels();
-            var actual = options.ToJsonString();
+            var actual = options.ToString();
             var expected = @"line: {
                                 dataLabels: {
                                     enabled: true
@@ -38,7 +38,7 @@ namespace Highcharts.Mvc.Test
         public void OptionsWithDataLabels_AndMouseTrackingOff()
         {
             var options = PlotOptions.Line.ShowDataLabels().DisableMouseTracking();
-            var actual = options.ToJsonString();
+            var actual = options.ToString();
             var expected = @"line: {
                                 dataLabels: {
                                     enabled: true
@@ -53,7 +53,7 @@ namespace Highcharts.Mvc.Test
         public void OptionsWithDataLabels_AndMouseTrackingOff_AndHideInLegend()
         {
             var options = PlotOptions.Line.ShowDataLabels().DisableMouseTracking().HideInLegend();
-            var actual = options.ToJsonString();
+            var actual = options.ToString();
             var expected = @"line: {
                                 dataLabels: {
                                     enabled: true

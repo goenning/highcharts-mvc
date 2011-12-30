@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public class EmptyDataSource : DataSource
+    public class EmptyDataSource : ChartDataSource
     {
         public override string ToHtmlString(string chartId)
         {
