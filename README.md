@@ -67,6 +67,7 @@ Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, ch
 ```
 
 
+```
 var myAjaxChart;
 $(document).ready(function () {
     myAjaxChart = new Highcharts.Chart({
@@ -96,3 +97,4 @@ $(document).ready(function () {
         });
     }, 5000);
 });
+```
