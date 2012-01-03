@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Dynamic;
+using System.Linq.Expressions;
 
 namespace Highcharts.Mvc
 {
@@ -90,9 +91,14 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public HighchartsChart Series(params Serie[] series)
+        public HighchartsChart Series(IEnumerable<Serie> series)
         {
             return Series(new ArrayChartDataSource(series));
+        }
+
+        public HighchartsChart Series(params Serie[] series)
+        {
+            return Series(series.AsEnumerable());
         }
 
         public HighchartsChart WithSerieType(ChartSerieType serieType)
@@ -120,12 +126,31 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public HighchartsChart Options(PlotOptions options)
+        public HighchartsChart Options(params PlotOptions[] options)
         {
+            var jsons = options.Select(x => x.ToJson()).ToArray();
             this.chartConfig.Set(
-                new JsonObject("plotOptions", options)
-            );
+                new JsonObject("plotOptions", jsons)
+            ); 
 
+            return this;
+        }
+
+        public HighchartsChart Tooltip(Expression<Func<TooltipConfigurator, IJsonConfigurator>> expression)
+        {
+            return this.Configure<TooltipConfigurator>(expression);
+        }
+
+        public HighchartsChart Legend(Expression<Func<LegendConfigurator, IJsonConfigurator>> expression)
+        {
+            return this.Configure<LegendConfigurator>(expression);
+        }
+
+        private HighchartsChart Configure<T>(Expression<Func<T, IJsonConfigurator>> expression) where T : new()
+        {
+            T configurator = new T();
+            var config = expression.Compile().Invoke(configurator);
+            this.chartConfig.Set(config.ToJson());
             return this;
         }
     }

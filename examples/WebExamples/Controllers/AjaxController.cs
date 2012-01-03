@@ -11,15 +11,10 @@ namespace WebExamples.Controllers
     {
         public JsonResult LoadData()
         {
-            int[] values = new int[9];
-            Random rnd = new Random();
-            for (int i = 0; i < values.Length; i++)
-                values[i] = rnd.Next(0, 100);
-
             Serie[] series = new Serie[] {
-                new Serie("iPhone", values[0], values[1], values[2]),
-                new Serie("iPad", values[3], values[4], values[5]),
-                new Serie("MacBook", values[6], values[7], values[8])
+                new Serie("iPhone", DataGenerator.GetRandomData(12)),
+                new Serie("iPad", DataGenerator.GetRandomData(12)),
+                new Serie("MacBook", DataGenerator.GetRandomData(12))
             };
 
             return Json(series, JsonRequestBehavior.AllowGet);

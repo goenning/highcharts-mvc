@@ -8,52 +8,20 @@ using System.Web.Mvc;
 namespace Highcharts.Mvc.Test
 {
     [TestFixture]
-    public class LinePlotOptionsTest
+    public class LinePlotOptionsTest : ConfiguratorTest<LinePlotOptions>
     {
         [Test]
-        public void EmptyOptions()
+        public void EmptyLinePlotOptions()
         {
-            var options = PlotOptions.Line;
-            var actual = options.ToString();
+            var actual = this.Configure(x => x);
             var expected = @"line: { }";
 
             HtmlAssert.AreEqual(expected, actual);
         }
-
         [Test]
-        public void OptionsWithDataLabels() 
+        public void BasicLinePlotOptionsSetup()
         {
-            var options = PlotOptions.Line.ShowDataLabels();
-            var actual = options.ToString();
-            var expected = @"line: {
-                                dataLabels: {
-                                    enabled: true
-                                }
-                             }";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void OptionsWithDataLabels_AndMouseTrackingOff()
-        {
-            var options = PlotOptions.Line.ShowDataLabels().DisableMouseTracking();
-            var actual = options.ToString();
-            var expected = @"line: {
-                                dataLabels: {
-                                    enabled: true
-                                },
-                                enableMouseTracking: false
-                             }";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void OptionsWithDataLabels_AndMouseTrackingOff_AndHideInLegend()
-        {
-            var options = PlotOptions.Line.ShowDataLabels().DisableMouseTracking().HideInLegend();
-            var actual = options.ToString();
+            var actual = this.Configure(x => x.ShowDataLabels().DisableMouseTracking().HideInLegend());
             var expected = @"line: {
                                 dataLabels: {
                                     enabled: true

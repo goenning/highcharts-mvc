@@ -14,10 +14,8 @@ namespace Highcharts.Mvc.Test
         public void Chart_WithBasicPlotOptions()
         {
             HighchartsChart chart = new HighchartsChart("myChart")
-                                        .Title("This is my chart with a title!")
-                                        .Subtitle("And this is my subtitle!")
                                         .Options(
-                                            PlotOptions.Line.ShowDataLabels().HideInLegend()
+                                            PlotOptions.Line.ShowDataLabels().HideInLegend().Color("#00FF00")
                                         );
 
 
@@ -30,18 +28,49 @@ namespace Highcharts.Mvc.Test
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           },
-                                                          title: {
-                                                            text: 'This is my chart with a title!'
-                                                          },
-                                                          subtitle: {
-                                                            text: 'And this is my subtitle!'
-                                                          },
                                                           plotOptions: {
                                                             line: {
                                                                 dataLabels: {
                                                                     enabled: true
                                                                 },
+                                                                showInLegend: false,
+                                                                color: '#00FF00'
+                                                            }
+                                                          }
+                                                      });
+                                                  });
+                                                  </script>");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Chart_WithTwoPlotOptions()
+        {
+            HighchartsChart chart = new HighchartsChart("myChart")
+                                        .Options(
+                                            PlotOptions.Line.HideInLegend(),
+                                            PlotOptions.Column.ShowDataLabels()
+                                        );
+
+
+            var actual = chart.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
+                                                  <script type=""text/javascript"">
+                                                  var myChart;
+                                                  $(document).ready(function () {
+                                                      myChart = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          plotOptions: {
+                                                            line: {
                                                                 showInLegend: false
+                                                            },
+                                                            column: {
+                                                                dataLabels: {
+                                                                    enabled: true
+                                                                }
                                                             }
                                                           }
                                                       });

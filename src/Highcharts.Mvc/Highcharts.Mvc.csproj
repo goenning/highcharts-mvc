@@ -39,21 +39,28 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurator\AbstractJsonConfigurator.cs" />
     <Compile Include="AjaxConfig.cs" />
-    <Compile Include="AjaxChartDataSource.cs" />
-    <Compile Include="ArrayChartDataSource.cs" />
+    <Compile Include="DataSource\AjaxChartDataSource.cs" />
+    <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
-    <Compile Include="EmptyDataSource.cs" />
-    <Compile Include="ExpressionChartDataSource.cs" />
+    <Compile Include="JsonFunctionObject.cs" />
+    <Compile Include="Series\AreaSerie.cs" />
+    <Compile Include="Series\ColumnSerie.cs" />
+    <Compile Include="DataSource\EmptyDataSource.cs" />
     <Compile Include="HighchartsChart.cs" />
-    <Compile Include="HighchartsChart`1.cs" />
     <Compile Include="HighchartsHtmlHelper.cs" />
+    <Compile Include="Configurator\IJsonConfigurator.cs" />
     <Compile Include="JsonObject.cs" />
-    <Compile Include="LinePlotOptions.cs" />
-    <Compile Include="PlotOptions.cs" />
+    <Compile Include="Configurator\LegendConfigurator.cs" />
+    <Compile Include="PlotOptions\ColumnPlotOptions.cs" />
+    <Compile Include="PlotOptions\LinePlotOptions.cs" />
+    <Compile Include="Series\LineSerie.cs" />
+    <Compile Include="PlotOptions\PlotOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serie.cs" />
-    <Compile Include="ChartDataSource.cs" />
+    <Compile Include="Series\Serie.cs" />
+    <Compile Include="DataSource\ChartDataSource.cs" />
+    <Compile Include="Configurator\TooltipConfigurator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

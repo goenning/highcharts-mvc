@@ -11,9 +11,9 @@
         .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Quantity")
         .Series(
-            new Serie("iPad", 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 800),
-            new Serie("MacBook", 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120),
-            new Serie("iPhone", 10, 45, 75, 100, 421, 546, 753, 785, 967, 135, 765, 245)
+            new Serie("iPad", new int[] { 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 800 }),
+            new Serie("MacBook", new int[] { 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120 }),
+            new Serie("iPhone", new int[] { 10, 45, 75, 100, 421, 546, 753, 785, 967, 135, 765, 245 })
         )
         .ToHtmlString()
 )
@@ -24,11 +24,12 @@
 @(
     Html.Highchart("myAjaxChart")
         .Title("Tickets per month")
-        .WithSerieType(ChartSerieType.Column)
-        .AxisX("Jan", "Feb", "Mar")
+        .WithSerieType(ChartSerieType.Line)
+        .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Quantity")
         .Series(
             AjaxConfig.LoadFrom(Url.Action("LoadData", "Ajax")).Reload(5000)
         )
+        .Tooltip(x => x.Shared().Crosshairs())
         .ToHtmlString()
 )

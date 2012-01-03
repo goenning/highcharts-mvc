@@ -17,9 +17,9 @@ namespace Highcharts.Mvc.Test
         {
             HighchartsChart chart = new HighchartsChart("myChart")
                                     .Series(
-                                        new Serie("Open", 10, 15, 61),
-                                        new Serie("Closed", 461, 473, 985),
-                                        new Serie("Pending", 722, 526, 224)
+                                        new Serie("Open", new int[] { 10, 15, 61 }),
+                                        new Serie("Closed", new int[] { 461, 473, 985 }),
+                                        new Serie("Pending", new int[] { 722, 526, 224 })
                                     );
 
             var actual = chart.ToHtmlString();
@@ -43,14 +43,14 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithExpressionSeries()
+        public void BasicSetup_WithTypedSeries()
         {
-            List<SaleReportItem> items = new List<SaleReportItem>();
-            items.Add(new SaleReportItem("Jack Sparrow", new float[] { 1256.03f, 3521.12f, 6412.61f, 3526.35f, 5413.461f }));
-            items.Add(new SaleReportItem("Luke Skywalker", new float[] { 857f, 2311.64f, 1542.12f, 3451.2f, 3613f }));
-
-            HighchartsChart chart = new HighchartsChart<SaleReportItem>("myChart", items)
-                                        .Series(x => x.Employee, x => x.TotalSalesValue);
+            HighchartsChart chart = new HighchartsChart("myChart")
+                                    .Series(
+                                        new ColumnSerie("Open", new int[] { 10, 15, 61 }),
+                                        new LineSerie("Closed", new int[] { 461, 473, 985 }),
+                                        new LineSerie("Pending", new int[] { 722, 526, 224 })
+                                    );
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -63,8 +63,9 @@ namespace Highcharts.Mvc.Test
                                                         }
                                                     });
 
-                                                    myChart.addSeries({ name: 'Jack Sparrow', data: [ 1256.03, 3521.12, 6412.61, 3526.35, 5413.461 ] });
-                                                    myChart.addSeries({ name: 'Luke Skywalker', data: [ 857, 2311.64, 1542.12, 3451.2, 3613 ] });
+                                                    myChart.addSeries({ name: 'Open', type: 'column', data: [10, 15, 61] });
+                                                    myChart.addSeries({ name: 'Closed', type: 'line' ,data: [461, 473, 985] });
+                                                    myChart.addSeries({ name: 'Pending', type: 'line', data: [722, 526, 224] });
                                                   });
                                                   </script>");
 

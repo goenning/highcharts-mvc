@@ -7,8 +7,8 @@ namespace Highcharts.Mvc
 {
     public class JsonObject
     {
-        private string key;
-        private string value;
+        protected string Key { get; set; }
+        protected string Value { get; set; }
 
         public JsonObject()
             : this(null)
@@ -18,44 +18,47 @@ namespace Highcharts.Mvc
 
         public JsonObject(string key)
         {
-            this.key = key;
+            this.Key = key;
             this.allOptions = new Dictionary<string, JsonObject>();
         }
 
         public JsonObject(string key, bool value)
             : this(key)
         {
-            this.value = value ? "true" : "false";
+            this.Value = value ? "true" : "false";
         }
 
         public JsonObject(string key, int value)
             : this(key)
         {
-            this.value = value.ToString();
+            this.Value = value.ToString();
         }
 
         public JsonObject(string key, float value)
             : this(key)
         {
-            this.value = value.ToString();
+            this.Value = value.ToString();
         }
 
         public JsonObject(string key, decimal value)
             : this(key)
         {
-            this.value = value.ToString();
+            this.Value = value.ToString();
         }
 
         public JsonObject(string key, double value)
             : this(key)
         {
-            this.value = value.ToString();
+            this.Value = value.ToString();
         }
 
         public JsonObject(string key, string value)
             : this(key)
         {
-            this.value = string.Concat("'", value.ToString(), "'");
+            if (value.StartsWith("function("))
+                this.Value = value;
+            else
+                this.Value = string.Concat("'", value.ToString(), "'");
         }
 
         public JsonObject(string key, params string[] values)
@@ -63,41 +66,45 @@ namespace Highcharts.Mvc
         {
             string htmlValues = string.Join("','", values.Select(x => x.ToString()));
             htmlValues = string.Concat("['", htmlValues, "']");
-            this.value = htmlValues;
+            this.Value = htmlValues;
         }
 
-        public JsonObject(string key, params object[] values)
+        public JsonObject(string key, Array values)
             : this(key)
         {
-            string htmlValues = string.Join(",", values.Select(x => x.ToString()));
-            htmlValues = string.Concat("[", htmlValues ,"]");
-            this.value = htmlValues;
+            string[] strValues = new string[values.Length];
+            for (int i = 0; i < values.Length; i++)
+                strValues[i] = values.GetValue(i).ToString();
+
+            string htmlValues = string.Join(",", strValues);
+            htmlValues = string.Concat("[", htmlValues, "]");
+            this.Value = htmlValues;
         }
 
         public JsonObject(string key, params JsonObject[] values)
             : this(key)
         {
             string htmlValues = string.Join(",", values.Select(x => x.ToString()));
-            this.value = string.Concat("{ ", htmlValues, " }");
+            this.Value = string.Concat("{ ", htmlValues, " }");
         }
 
         public override string ToString()
         {
-            if (this.key == null && this.value == null && this.allOptions.Count == 0)
+            if (this.Key == null && this.Value == null && this.allOptions.Count == 0)
                 return string.Empty;
 
-            string outputKey = this.key == null ? string.Empty : string.Concat(this.key, ":");
+            string outputKey = this.Key == null ? string.Empty : string.Concat(this.Key, ":");
             if (this.allOptions.Count > 0)
             {
                 string childValues = string.Join(",", this.allOptions.Select(x => x.Value.ToString()));
-                if (this.key != null)
+                if (this.Key != null)
                     childValues = string.Concat("{ ", childValues, " }");
 
                 return string.Format("{0} {1}", outputKey, childValues);
             }
-            else if (this.value != null)
+            else if (this.Value != null)
             {
-                return string.Format("{0} {1}", outputKey, this.value);
+                return string.Format("{0} {1}", outputKey, this.Value);
             }
             else
             {
@@ -108,10 +115,10 @@ namespace Highcharts.Mvc
         private Dictionary<string, JsonObject> allOptions;
         public void Set(JsonObject obj)
         {
-            if (allOptions.ContainsKey(obj.key))
-                allOptions[obj.key] = obj;
+            if (allOptions.ContainsKey(obj.Key))
+                allOptions[obj.Key] = obj;
             else
-                this.allOptions.Add(obj.key, obj);
+                this.allOptions.Add(obj.Key, obj);
         }
     }
 

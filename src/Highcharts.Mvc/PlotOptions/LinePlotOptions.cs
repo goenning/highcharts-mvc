@@ -32,6 +32,12 @@ namespace Highcharts.Mvc
             this.Set(new JsonObject("showInLegend", false));
             return this;
         }
+
+        public LinePlotOptions Color(string color)
+        {
+            this.Set(new JsonObject("color", color));
+            return this;
+        }
     }
 }
 

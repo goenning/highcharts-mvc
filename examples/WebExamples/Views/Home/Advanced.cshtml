@@ -1,20 +1,37 @@
-﻿@model IEnumerable<TicketsPerMonth>
+﻿@model IEnumerable<Serie>
 @{
     ViewBag.Title = "Advanced";
+}
+
+@section Head {
+    <script type="text/javascript">
+        function showTooltip() { 
+            var crm = this.points[0].y;
+            var erp = this.points[1].y;
+            var total = crm + erp;
+
+            var firstLine = 'The value for <b>' + this.x + '</b> is <b>' + crm + ' (CRM) </b> and <b>' + erp + ' (ERP) </b>';
+            var secondLine = 'Total: <b>' + total + '</b>';
+            return firstLine + '<br />' + secondLine;
+        }
+    </script>
 }
 
 <h2>Advanced Chart</h2>
 
 @(
-    Html.Highchart<TicketsPerMonth>("myChart", this.Model)
-        .Series(x => x.Product, x => x.Tickets)
+
+    Html.Highchart("myChart")
+        .Series(this.Model)
         .Title("Tickets per month")
-        .Subtitle("From Jan to Dec")
+        .Subtitle("From Jan to Dec (randomly generated)")
         .WithSerieType(ChartSerieType.Line)
         .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
         .AxisY("Quantity")
         .Options(
-            PlotOptions.Line.ShowDataLabels().HideInLegend()
+            PlotOptions.Line.ShowDataLabels().Color("00F00F")
         )
+        .Tooltip(x => x.Formatter("showTooltip").Shared().Crosshairs())
+        .Legend(x => x.Top().Left().Floating().X(20).Border("", 5, 0))
         .ToHtmlString()
 )

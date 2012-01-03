@@ -127,6 +127,26 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void NamedFunction()
+        {
+            var formatter = new JsonFunctionObject("formatter", "showFormat");
+            string actual = formatter.ToString();
+            string expected = "formatter: showFormat";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AnonymousFunction()
+        {
+            var formatter = new JsonFunctionObject("formatter", "return 'Hello';");
+            string actual = formatter.ToString();
+            string expected = "formatter: function() { return 'Hello'; }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void EmptyKeyAndValue()
         {
             var chart = new JsonObject();

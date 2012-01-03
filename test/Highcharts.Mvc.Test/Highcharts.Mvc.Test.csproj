@@ -50,14 +50,17 @@
   <ItemGroup>
     <Compile Include="AjaxSeriesChartTest.cs" />
     <Compile Include="ChartPlotOptionsTest.cs" />
-    <Compile Include="ExpressionChartDataSourceTest.cs" />
+    <Compile Include="ConfiguratorTest.cs" />
+    <Compile Include="DataGenerator.cs" />
     <Compile Include="HtmlAssert.cs" />
     <Compile Include="JsonObjectTest.cs" />
+    <Compile Include="LegendChartTest.cs" />
     <Compile Include="LinePlotOptionsTest.cs" />
     <Compile Include="Models\SaleReportItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicChartTest.cs" />
     <Compile Include="ArraySeriesChartTest.cs" />
+    <Compile Include="TooltipChartTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Highcharts.Mvc\Highcharts.Mvc.csproj">
