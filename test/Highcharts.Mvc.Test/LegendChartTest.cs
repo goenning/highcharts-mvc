@@ -36,6 +36,18 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void OverrideLegendAlignSetup()
+        {
+            var actual = this.Configure(x => x.Left().Right().Top().Bottom());
+            var expected = @"legend: {
+                                align: 'right',
+                                verticalAlign: 'bottom'
+                            }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void LegendBorderSetup()
         {
             var actual = this.Configure(x => x.Middle().Border("#FFF", 10, 5));

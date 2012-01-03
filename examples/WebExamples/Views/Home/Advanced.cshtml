@@ -2,10 +2,9 @@
 @{
     ViewBag.Title = "Advanced";
 }
-
 @section Head {
     <script type="text/javascript">
-        function showTooltip() { 
+        function showTooltip() {
             var crm = this.points[0].y;
             var erp = this.points[1].y;
             var total = crm + erp;
@@ -16,22 +15,20 @@
         }
     </script>
 }
-
-<h2>Advanced Chart</h2>
-
+<h2>
+    Advanced Chart</h2>
 @(
-
-    Html.Highchart("myChart")
-        .Series(this.Model)
-        .Title("Tickets per month")
-        .Subtitle("From Jan to Dec (randomly generated)")
-        .WithSerieType(ChartSerieType.Line)
-        .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-        .AxisY("Quantity")
-        .Options(
-            PlotOptions.Line.ShowDataLabels().Color("00F00F")
-        )
-        .Tooltip(x => x.Formatter("showTooltip").Shared().Crosshairs())
-        .Legend(x => x.Top().Left().Floating().X(20).Border("", 5, 0))
-        .ToHtmlString()
+ Html.Highchart("myChart")
+    .Series(this.Model)
+    .Title("Tickets per month")
+    .Subtitle("From Jan to Dec (randomly generated)")
+    .WithSerieType(ChartSerieType.Line)
+    .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+    .AxisY("Quantity")
+    .Options(
+        PlotOptions.Line.ShowDataLabels().Color("00F00F")
+    )
+    .Tooltip(x => x.Formatter("showTooltip").Shared().Crosshairs())
+    .Legend(x => x.Top().Left().Floating().X(20).Border("", 5, 0))
+    .ToHtmlString()
 )
