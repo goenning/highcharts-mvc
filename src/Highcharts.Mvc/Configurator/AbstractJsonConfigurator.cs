@@ -18,6 +18,11 @@ namespace Highcharts.Mvc
             this.jsonConfig.Set(json);
         }
 
+        protected void SetOptions(JsonObject json)
+        {
+            this.jsonConfig.SetOptions(json);
+        }
+
         public JsonObject ToJson()
         {
             return this.jsonConfig;

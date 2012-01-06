@@ -30,7 +30,17 @@
     .Options(
         PlotOptions.Line.ShowDataLabels().Color("00F00F")
     )
-    .Tooltip(x => x.Formatter("showTooltip").Shared().Crosshairs())
-    .Legend(x => x.Top().Left().Floating().X(20).Border("", 5, 0))
+    .Tooltip(
+        x => x.Formatter("showTooltip").Shared().Crosshairs()
+    )
+    .Credits(
+        x => x.Text("Geek Stuff").Url("http://geekstuff.cc")
+              .Position(y => y.Top().Y(40))
+    )
+    .Legend(
+        x => x.Border("", 0, 0)
+              .Floating()
+              .Position(y => y.Top().Left().X(20))
+    )
     .ToHtmlString()
 )

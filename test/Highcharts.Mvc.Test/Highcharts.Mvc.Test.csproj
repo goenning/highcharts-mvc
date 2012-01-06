@@ -51,6 +51,7 @@
     <Compile Include="AjaxSeriesChartTest.cs" />
     <Compile Include="ChartPlotOptionsTest.cs" />
     <Compile Include="ConfiguratorTest.cs" />
+    <Compile Include="CreditsChartTest.cs" />
     <Compile Include="DataGenerator.cs" />
     <Compile Include="HighchartSetUpTest.cs" />
     <Compile Include="HtmlAssert.cs" />

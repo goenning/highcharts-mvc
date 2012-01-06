@@ -132,19 +132,22 @@ namespace Highcharts.Mvc
 
         public HighchartsSetUp Tooltip(Expression<Func<TooltipConfigurator, IJsonConfigurator>> expression)
         {
-            return this.Configure<TooltipConfigurator>(expression);
+            return this.Configure(expression);
         }
 
         public HighchartsSetUp Legend(Expression<Func<LegendConfigurator, IJsonConfigurator>> expression)
         {
-            return this.Configure<LegendConfigurator>(expression);
+            return this.Configure(expression);
+        }
+
+        public HighchartsSetUp Credits(Expression<Func<CreditsConfigurator, IJsonConfigurator>> expression)
+        {
+            return this.Configure(expression);
         }
 
         private HighchartsSetUp Configure<T>(Expression<Func<T, IJsonConfigurator>> expression) where T : new()
         {
-            T configurator = new T();
-            var config = expression.Compile().Invoke(configurator);
-            this.chartConfig.Set(config.ToJson());
+            this.chartConfig.Set(expression.ToJson());
             return this;
         }
     }

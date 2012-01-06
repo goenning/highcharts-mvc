@@ -120,6 +120,12 @@ namespace Highcharts.Mvc
             else
                 this.allOptions.Add(obj.Key, obj);
         }
+
+        public void SetOptions(JsonObject json)
+        {
+            foreach (var opt in json.allOptions)
+                this.allOptions.Add(opt.Key, opt.Value);
+        }
     }
 
 }

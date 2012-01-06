@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="Configurator\AbstractJsonConfigurator.cs" />
     <Compile Include="AjaxConfig.cs" />
+    <Compile Include="Configurator\ConfigurationExpressionExtension.cs" />
+    <Compile Include="Configurator\CreditsConfigurator.cs" />
+    <Compile Include="Configurator\PositionConfigurator.cs" />
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />

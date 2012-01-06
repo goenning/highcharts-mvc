@@ -23,13 +23,13 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void BasicLegendSetUp()
         {
-            var actual = this.Configure(x => x.Left().Top().Floating().X(20).Y(10));
+            var actual = this.Configure(x => x.Position(y => y.Left().Top().X(20).Y(10)).Floating());
             var expected = @"legend: {
                                 align: 'left',
                                 verticalAlign: 'top',
-                                floating: true,
                                 x: 20,
-                                y: 10 
+                                y: 10,
+                                floating: true
                             }";
 
             HtmlAssert.AreEqual(expected, actual);
@@ -38,7 +38,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void OverrideLegendAlignSetUp()
         {
-            var actual = this.Configure(x => x.Left().Right().Top().Bottom());
+            var actual = this.Configure(x => x.Position(y => y.Left().Right().Top().Bottom()));
             var expected = @"legend: {
                                 align: 'right',
                                 verticalAlign: 'bottom'
@@ -50,7 +50,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void LegendBorderSetUp()
         {
-            var actual = this.Configure(x => x.Middle().Border("#FFF", 10, 5));
+            var actual = this.Configure(x => x.Position(y => y.Middle()).Border("#FFF", 10, 5));
             var expected = @"legend: {
                                verticalAlign: 'middle',
                                borderColor: '#FFF',
