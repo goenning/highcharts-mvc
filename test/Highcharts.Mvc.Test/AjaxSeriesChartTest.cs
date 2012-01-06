@@ -11,10 +11,10 @@ namespace Highcharts.Mvc.Test
     public class AjaxSeriesChartTest
     {
         [Test]
-        public void BasicSetup_WithAjaxSource()
+        public void BasicSetUp_WithAjaxSource()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .Series(AjaxConfig.LoadFrom("/Ajax/LoadData"));
+            var chart = new HighchartsChart("myChart")
+                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData"));
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -35,10 +35,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithAjaxSource_AndInternal()
+        public void BasicSetUp_WithAjaxSource_AndInternal()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").Reload(1000));
+            var chart = new HighchartsChart("myChart")
+                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").Reload(1000));
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -59,10 +59,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithAjaxSource_AndGetMethod()
+        public void BasicSetUp_WithAjaxSource_AndGetMethod()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").AsGet());
+            var chart = new HighchartsChart("myChart")
+                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").AsGet());
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>

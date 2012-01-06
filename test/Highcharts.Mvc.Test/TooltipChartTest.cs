@@ -11,7 +11,7 @@ namespace Highcharts.Mvc.Test
     public class TooltipChartTest : ConfiguratorTest<TooltipConfigurator>
     {
         [Test]
-        public void BasicTooltipSetup()
+        public void BasicTooltipSetUp()
         {
             var actual = this.Configure(x => x.Shared().Crosshairs());
             var expected = @"tooltip: {
@@ -23,7 +23,7 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void TooltipAnonymousFormatterSetup()
+        public void TooltipAnonymousFormatterSetUp()
         {
             var actual = this.Configure(x => x.Formatter("return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>';"));
             var expected = @"tooltip: {
@@ -36,7 +36,7 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void TooltipNamedFormatterSetup()
+        public void TooltipNamedFormatterSetUp()
         {
             var actual = this.Configure(x => x.Formatter("myFunction"));
             var expected = @"tooltip: {

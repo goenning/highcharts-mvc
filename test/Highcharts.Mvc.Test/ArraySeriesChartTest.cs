@@ -13,14 +13,14 @@ namespace Highcharts.Mvc.Test
     public class ArraySeriesChartTest
     {
         [Test]
-        public void BasicSetup_WithSeries()
+        public void BasicSetUp_WithSeries()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .Series(
-                                        new Serie("Open", new int[] { 10, 15, 61 }),
-                                        new Serie("Closed", new int[] { 461, 473, 985 }),
-                                        new Serie("Pending", new int[] { 722, 526, 224 })
-                                    );
+            var chart = new HighchartsChart("myChart")
+                            .Series(
+                                new Serie("Open", new int[] { 10, 15, 61 }),
+                                new Serie("Closed", new int[] { 461, 473, 985 }),
+                                new Serie("Pending", new int[] { 722, 526, 224 })
+                            );
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -43,14 +43,14 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithTypedSeries()
+        public void BasicSetUp_WithTypedSeries()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .Series(
-                                        new ColumnSerie("Open", new int[] { 10, 15, 61 }),
-                                        new LineSerie("Closed", new int[] { 461, 473, 985 }),
-                                        new LineSerie("Pending", new int[] { 722, 526, 224 })
-                                    );
+            var chart = new HighchartsChart("myChart")
+                            .Series(
+                                new ColumnSerie("Open", new int[] { 10, 15, 61 }),
+                                new LineSerie("Closed", new int[] { 461, 473, 985 }),
+                                new LineSerie("Pending", new int[] { 722, 526, 224 })
+                            );
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>

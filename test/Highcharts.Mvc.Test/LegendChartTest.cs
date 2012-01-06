@@ -12,7 +12,7 @@ namespace Highcharts.Mvc.Test
     public class LegendChartTest : ConfiguratorTest<LegendConfigurator>
     {
         [Test]
-        public void EmptyLegendSetup()
+        public void EmptyLegendSetUp()
         {
             var actual = this.Configure(x => x);
             var expected = @"legend: { }";
@@ -21,7 +21,7 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicLegendSetup()
+        public void BasicLegendSetUp()
         {
             var actual = this.Configure(x => x.Left().Top().Floating().X(20).Y(10));
             var expected = @"legend: {
@@ -36,7 +36,7 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void OverrideLegendAlignSetup()
+        public void OverrideLegendAlignSetUp()
         {
             var actual = this.Configure(x => x.Left().Right().Top().Bottom());
             var expected = @"legend: {
@@ -48,7 +48,7 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void LegendBorderSetup()
+        public void LegendBorderSetUp()
         {
             var actual = this.Configure(x => x.Middle().Border("#FFF", 10, 5));
             var expected = @"legend: {

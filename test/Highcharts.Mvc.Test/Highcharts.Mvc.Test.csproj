@@ -52,6 +52,7 @@
     <Compile Include="ChartPlotOptionsTest.cs" />
     <Compile Include="ConfiguratorTest.cs" />
     <Compile Include="DataGenerator.cs" />
+    <Compile Include="HighchartSetUpTest.cs" />
     <Compile Include="HtmlAssert.cs" />
     <Compile Include="JsonObjectTest.cs" />
     <Compile Include="LegendChartTest.cs" />

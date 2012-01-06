@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Advanced";
 }
+
 @section Head {
     <script type="text/javascript">
         function showTooltip() {
@@ -15,8 +16,9 @@
         }
     </script>
 }
-<h2>
-    Advanced Chart</h2>
+
+<h2>Advanced Chart</h2>
+
 @(
  Html.Highchart("myChart")
     .Series(this.Model)

@@ -44,6 +44,7 @@
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
+    <Compile Include="HighchartsSetUp.cs" />
     <Compile Include="JsonFunctionObject.cs" />
     <Compile Include="Series\AreaSerie.cs" />
     <Compile Include="Series\ColumnSerie.cs" />

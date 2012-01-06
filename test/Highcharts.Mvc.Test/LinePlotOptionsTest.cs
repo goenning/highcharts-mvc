@@ -19,7 +19,7 @@ namespace Highcharts.Mvc.Test
             HtmlAssert.AreEqual(expected, actual);
         }
         [Test]
-        public void BasicLinePlotOptionsSetup()
+        public void BasicLinePlotOptionsSetUp()
         {
             var actual = this.Configure(x => x.ShowDataLabels().DisableMouseTracking().HideInLegend());
             var expected = @"line: {

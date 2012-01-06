@@ -12,9 +12,9 @@ namespace Highcharts.Mvc.Test
     public class BasicChartTest
     {
         [Test]
-        public void BasicSetup()
+        public void BasicSetUp()
         {
-            HighchartsChart chart = new HighchartsChart("myChart");
+            var chart = new HighchartsChart("myChart");
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
@@ -32,9 +32,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithTitle()
+        public void BasicSetUp_WithTitle()
         {
-            HighchartsChart chart = new HighchartsChart("myChart").Title("This is my chart with a title!");
+            var chart = new HighchartsChart("myChart")
+                            .Title("This is my chart with a title!");
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
@@ -55,11 +56,11 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithTitle_AndSubtitle()
+        public void BasicSetUp_WithTitle_AndSubtitle()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                        .Title("This is my chart with a title!")
-                                        .Subtitle("And this is my subtitle!");
+            var chart = new HighchartsChart("myChart")
+                            .Title("This is my chart with a title!")
+                            .Subtitle("And this is my subtitle!");
 
 
             var actual = chart.ToHtmlString();
@@ -85,10 +86,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithXAxisCategories()
+        public void BasicSetUp_WithXAxisCategories()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+            var chart = new HighchartsChart("myChart")
+                            .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -111,10 +112,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_WithYAxisTitle()
+        public void BasicSetUp_WithYAxisTitle()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                    .AxisY("Tickets");
+            var chart = new HighchartsChart("myChart")
+                            .AxisY("Tickets");
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -138,9 +139,10 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
-        public void BasicSetup_Type()
+        public void BasicSetUp_Type()
         {
-            HighchartsChart chart = new HighchartsChart("myChart").WithSerieType(ChartSerieType.Bar);
+            var chart = new HighchartsChart("myChart")
+                            .WithSerieType(ChartSerieType.Bar);
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>

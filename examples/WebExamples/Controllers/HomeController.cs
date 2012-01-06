@@ -30,5 +30,17 @@ namespace WebExamples.Controllers
 
             return View(series);
         }
+
+        [HttpGet]
+        public ActionResult Cached()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CachedChartSetUp()
+        {
+            return View();
+        }
     }
 }

@@ -13,10 +13,10 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void Chart_WithBasicPlotOptions()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                        .Options(
-                                            PlotOptions.Line.ShowDataLabels().HideInLegend().Color("#00FF00")
-                                        );
+            var chart = new HighchartsChart("myChart")
+                            .Options(
+                                PlotOptions.Line.ShowDataLabels().HideInLegend().Color("#00FF00")
+                            );
 
 
             var actual = chart.ToHtmlString();
@@ -47,11 +47,11 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void Chart_WithTwoPlotOptions()
         {
-            HighchartsChart chart = new HighchartsChart("myChart")
-                                        .Options(
-                                            PlotOptions.Line.HideInLegend(),
-                                            PlotOptions.Column.ShowDataLabels()
-                                        );
+            var chart = new HighchartsChart("myChart")
+                            .Options(
+                                PlotOptions.Line.HideInLegend(),
+                                PlotOptions.Column.ShowDataLabels()
+                            );
 
 
             var actual = chart.ToHtmlString();
