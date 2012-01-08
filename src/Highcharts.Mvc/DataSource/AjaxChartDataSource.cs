@@ -23,9 +23,9 @@ namespace Highcharts.Mvc
             string jsFunctionName = this.Method == FormMethod.Post ? "postChartAjax" : "getChartAjax";
 
             if (milisecondsInterval.HasValue)
-                return string.Format("{0}({1}, '{2}', {3});", jsFunctionName, chartId, this.Url, this.milisecondsInterval.Value);
+                return string.Format("{0}(hCharts['{1}'], '{2}', {3});", jsFunctionName, chartId, this.Url, this.milisecondsInterval.Value);
 
-            return string.Format("{0}({1}, '{2}');", jsFunctionName, chartId, this.Url);
+            return string.Format("{0}(hCharts['{1}'], '{2}');", jsFunctionName, chartId, this.Url);
         }
 
         public AjaxChartDataSource Reload(int miliseconds)

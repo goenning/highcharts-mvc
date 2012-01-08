@@ -25,7 +25,7 @@ namespace Highcharts.Mvc
                     jsonSerie.Set(new JsonObject("type", serie.Type));
                 jsonSerie.Set(new JsonObject("data", serie.Values));
 
-                script.AppendFormat("{0}.addSeries({{ {1} }}); {2}", chartId, jsonSerie.ToString(), Environment.NewLine);
+                script.AppendFormat("hCharts['{0}'].addSeries({{ {1} }}); {2}", chartId, jsonSerie.ToString(), Environment.NewLine);
             }
 
             return script.ToString();

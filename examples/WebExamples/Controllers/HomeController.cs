@@ -22,6 +22,12 @@ namespace WebExamples.Controllers
         }
 
         [HttpGet]
+        public ActionResult Themed()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Advanced()
         {
             IList<Serie> series = new List<Serie>();

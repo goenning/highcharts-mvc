@@ -19,15 +19,14 @@ namespace Highcharts.Mvc.Test
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
-                                                  var myChart;
                                                   $(document).ready(function () {
-                                                        myChart = new Highcharts.Chart({
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                             chart: {
                                                                 renderTo: 'myChart'
                                                             }
                                                         });
                                                         
-                                                        postChartAjax(myChart, '/Ajax/LoadData');
+                                                        postChartAjax(hCharts['myChart'], '/Ajax/LoadData');
                                                   });
                                                   </script>");
 
@@ -43,15 +42,14 @@ namespace Highcharts.Mvc.Test
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
-                                                  var myChart;
                                                   $(document).ready(function () {
-                                                        myChart = new Highcharts.Chart({
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                             chart: {
                                                                 renderTo: 'myChart'
                                                             }
                                                         });
                                                         
-                                                        postChartAjax(myChart, '/Ajax/LoadData', 1000);
+                                                        postChartAjax(hCharts['myChart'], '/Ajax/LoadData', 1000);
                                                   });
                                                   </script>");
 
@@ -67,15 +65,14 @@ namespace Highcharts.Mvc.Test
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
-                                                  var myChart;
                                                   $(document).ready(function () {
-                                                        myChart = new Highcharts.Chart({
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                             chart: {
                                                                 renderTo: 'myChart'
                                                             }
                                                         });
                                                         
-                                                        getChartAjax(myChart, '/Ajax/LoadData');
+                                                        getChartAjax(hCharts['myChart'], '/Ajax/LoadData');
                                                   });
                                                   </script>");
 

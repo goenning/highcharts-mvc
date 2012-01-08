@@ -1,4 +1,6 @@
-﻿function setIntervalAndExecute(func, time) {
+﻿var hCharts = [];
+
+function setIntervalAndExecute(func, time) {
     func();
     return (setInterval(func, time));
 }

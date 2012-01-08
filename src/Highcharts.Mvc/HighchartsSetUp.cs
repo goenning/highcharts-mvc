@@ -32,9 +32,8 @@ namespace Highcharts.Mvc
             string chartSource = dataSource.ToHtmlString(this.Id);
 
             StringBuilder html = new StringBuilder();
-            html.AppendFormat(@"var {0};
-                                $(document).ready(function () {{
-                                    {0} = new Highcharts.Chart({{
+            html.AppendFormat(@"$(document).ready(function () {{
+                                    hCharts['{0}'] = new Highcharts.Chart({{
                                         {1}
                                     }});
 

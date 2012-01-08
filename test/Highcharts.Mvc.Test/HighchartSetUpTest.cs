@@ -15,9 +15,8 @@ namespace Highcharts.Mvc.Test
         {
             HighchartsSetUp setup = new HighchartsSetUp("myChart");
             var actual = setup.ToHtmlString();
-            var expected = MvcHtmlString.Create(@"var myChart;
-                                                  $(document).ready(function () {
-                                                      myChart = new Highcharts.Chart({
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           }

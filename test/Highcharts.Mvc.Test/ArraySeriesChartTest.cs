@@ -25,17 +25,16 @@ namespace Highcharts.Mvc.Test
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
-                                                  var myChart;
                                                   $(document).ready(function () {
-                                                    myChart = new Highcharts.Chart({
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                         chart: {
                                                             renderTo: 'myChart'
                                                         }
                                                     });
 
-                                                    myChart.addSeries({ name: 'Open', data: [10, 15, 61] });
-                                                    myChart.addSeries({ name: 'Closed', data: [461, 473, 985] });
-                                                    myChart.addSeries({ name: 'Pending', data: [722, 526, 224] });
+                                                    hCharts['myChart'].addSeries({ name: 'Open', data: [10, 15, 61] });
+                                                    hCharts['myChart'].addSeries({ name: 'Closed', data: [461, 473, 985] });
+                                                    hCharts['myChart'].addSeries({ name: 'Pending', data: [722, 526, 224] });
                                                   });
                                                   </script>");
 
@@ -55,17 +54,16 @@ namespace Highcharts.Mvc.Test
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
-                                                  var myChart;
                                                   $(document).ready(function () {
-                                                    myChart = new Highcharts.Chart({
+                                                      hCharts['myChart'] = new Highcharts.Chart({
                                                         chart: {
                                                             renderTo: 'myChart'
                                                         }
                                                     });
 
-                                                    myChart.addSeries({ name: 'Open', type: 'column', data: [10, 15, 61] });
-                                                    myChart.addSeries({ name: 'Closed', type: 'line' ,data: [461, 473, 985] });
-                                                    myChart.addSeries({ name: 'Pending', type: 'line', data: [722, 526, 224] });
+                                                    hCharts['myChart'].addSeries({ name: 'Open', type: 'column', data: [10, 15, 61] });
+                                                    hCharts['myChart'].addSeries({ name: 'Closed', type: 'line' ,data: [461, 473, 985] });
+                                                    hCharts['myChart'].addSeries({ name: 'Pending', type: 'line', data: [722, 526, 224] });
                                                   });
                                                   </script>");
 
