@@ -39,6 +39,11 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartAnimation.cs" />
+    <Compile Include="Configurator\AnimationConfigurator.cs" />
+    <Compile Include="ChartCursor.cs" />
+    <Compile Include="ChartDashStyle.cs" />
+    <Compile Include="ChartStacking.cs" />
     <Compile Include="Configurator\AbstractJsonConfigurator.cs" />
     <Compile Include="AjaxConfig.cs" />
     <Compile Include="Configurator\ConfigurationExpressionExtension.cs" />
@@ -49,6 +54,11 @@
     <Compile Include="ChartSerieType.cs" />
     <Compile Include="HighchartsSetUp.cs" />
     <Compile Include="JsonFunctionObject.cs" />
+    <Compile Include="JsonNullObject.cs" />
+    <Compile Include="PlotOptions\PlotOptionsConfiguration.cs" />
+    <Compile Include="PlotOptions\ScatterPlotOptions.cs" />
+    <Compile Include="PlotOptions\SeriesPlotOptions.cs" />
+    <Compile Include="PlotOptions\SplinePlotOptions.cs" />
     <Compile Include="Series\AreaSerie.cs" />
     <Compile Include="Series\ColumnSerie.cs" />
     <Compile Include="DataSource\EmptyDataSource.cs" />

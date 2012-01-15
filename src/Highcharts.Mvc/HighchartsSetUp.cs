@@ -119,7 +119,7 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public HighchartsSetUp Options(params PlotOptions[] options)
+        public HighchartsSetUp Options(params PlotOptionsConfiguration[] options)
         {
             var jsons = options.Select(x => x.ToJson()).ToArray();
             this.chartConfig.Set(

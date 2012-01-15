@@ -55,10 +55,13 @@ namespace Highcharts.Mvc
         public JsonObject(string key, string value)
             : this(key)
         {
-            if (value.StartsWith("function("))
-                this.Value = value;
-            else
-                this.Value = string.Concat("'", value.ToString(), "'");
+            this.Value = string.Concat("'", value.ToString(), "'");
+        }
+
+        public JsonObject(string key, Enum value)
+            : this(key, value.ToString().ToLower())
+        {
+
         }
 
         public JsonObject(string key, params string[] values)

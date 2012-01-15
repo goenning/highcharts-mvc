@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public class ColumnPlotOptions : PlotOptionsConfiguration<ColumnPlotOptions>
+    public class ScatterPlotOptions : PlotOptionsConfiguration<ScatterPlotOptions>
     {
-        public ColumnPlotOptions()
-            : base("column")
+        public ScatterPlotOptions()
+            : base("scatter")
         {
             this.options = this;
         }

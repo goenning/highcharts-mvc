@@ -5,38 +5,17 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public class LinePlotOptions : PlotOptions
+    public class LinePlotOptions : PlotOptionsConfiguration<LinePlotOptions>
     {
         public LinePlotOptions()
             : base("line")
         {
-
+            this.options = this;
         }
 
-        public LinePlotOptions ShowDataLabels()
+        public LinePlotOptions Step()
         {
-            this.Set(new JsonObject("dataLabels",
-                new JsonObject("enabled", true)
-            ));
-            return this;
-        }
-
-        public LinePlotOptions DisableMouseTracking()
-        {
-            this.Set(new JsonObject("enableMouseTracking", false));
-            return this;
-        }
-
-        public LinePlotOptions HideInLegend()
-        {
-            this.Set(new JsonObject("showInLegend", false));
-            return this;
-        }
-
-        public LinePlotOptions Color(string color)
-        {
-            this.Set(new JsonObject("color", color));
-            return this;
+            return this.Set(new JsonObject("step", true));
         }
     }
 }

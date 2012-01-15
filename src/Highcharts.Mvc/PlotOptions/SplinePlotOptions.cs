@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public class ColumnPlotOptions : PlotOptionsConfiguration<ColumnPlotOptions>
+    public class SplinePlotOptions : PlotOptionsConfiguration<SplinePlotOptions>
     {
-        public ColumnPlotOptions()
-            : base("column")
+        public SplinePlotOptions()
+            : base("spline")
         {
             this.options = this;
         }

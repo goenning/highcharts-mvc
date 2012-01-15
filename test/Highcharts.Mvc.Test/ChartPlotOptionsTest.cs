@@ -77,5 +77,42 @@ namespace Highcharts.Mvc.Test
 
             HtmlAssert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Chart_WithThreePlotOptions()
+        {
+            var chart = new HighchartsChart("myChart")
+                            .Options(
+                                PlotOptions.Line.HideInLegend(),
+                                PlotOptions.Series.HideInLegend(),
+                                PlotOptions.Column.HideInLegend()
+                            );
+
+
+            var actual = chart.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
+                                                  <script type=""text/javascript"">
+                                                  $(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          plotOptions: {
+                                                            line: {
+                                                                showInLegend: false
+                                                            },
+                                                            series: {
+                                                                showInLegend: false
+                                                            },
+                                                            column: {
+                                                                showInLegend: false
+                                                            }
+                                                          }
+                                                      });
+                                                  });
+                                                  </script>");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
     }
 }

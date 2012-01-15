@@ -2,7 +2,7 @@
 
 This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a better, easier and cleaner API.
 
-**NOTE:** This project is still a draft, it's only about `15%` of the whole Highcharts API.
+**NOTE:** This project is still a draft, it's only about `30%` of the whole Highcharts API.
 
 Write:
 

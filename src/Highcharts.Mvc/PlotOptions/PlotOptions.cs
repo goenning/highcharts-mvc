@@ -5,17 +5,16 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public abstract class PlotOptions : AbstractJsonConfigurator
+    public static class PlotOptions
     {
-        public PlotOptions(string name)
-            : base(name)
-        {
-            
-        }
-
         public static LinePlotOptions Line
         {
             get { return new LinePlotOptions(); }
+        }
+
+        public static SeriesPlotOptions Series
+        {
+            get { return new SeriesPlotOptions(); }
         }
 
         public static ColumnPlotOptions Column
@@ -23,9 +22,14 @@ namespace Highcharts.Mvc
             get { return new ColumnPlotOptions(); }
         }
 
-        public override string ToString()
+        public static ScatterPlotOptions Scatter
         {
-            return this.ToJson().ToString();
+            get { return new ScatterPlotOptions(); }
+        }
+
+        public static SplinePlotOptions Spline
+        {
+            get { return new SplinePlotOptions(); }
         }
     }
 }

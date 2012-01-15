@@ -137,6 +137,36 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void EnumJsonObject()
+        {
+            var formatter = new JsonObject("cursor", ChartCursor.Pointer);
+            string actual = formatter.ToString();
+            string expected = "cursor: 'pointer'";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void NullValueJsonObject()
+        {
+            var formatter = new JsonNullObject("stacking");
+            string actual = formatter.ToString();
+            string expected = "stacking: null";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FullFunction()
+        {
+            var formatter = new JsonFunctionObject("formatter", "function() { return 'Hello'; }");
+            string actual = formatter.ToString();
+            string expected = "formatter: function() { return 'Hello'; }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void AnonymousFunction()
         {
             var formatter = new JsonFunctionObject("formatter", "return 'Hello';");
