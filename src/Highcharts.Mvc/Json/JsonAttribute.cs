@@ -3,68 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Highcharts.Mvc
+namespace Highcharts.Mvc.Json
 {
-    public class JsonObject
+    public class JsonAttribute
     {
         protected string Key { get; set; }
         protected string Value { get; set; }
 
-        public JsonObject()
+        public JsonAttribute()
             : this(null)
         {
 
         }
 
-        public JsonObject(string key)
+        public JsonAttribute(string key)
         {
             this.Key = key;
-            this.allOptions = new Dictionary<string, JsonObject>();
+            this.allOptions = new Dictionary<string, JsonAttribute>();
         }
 
-        public JsonObject(string key, bool value)
+        public JsonAttribute(string key, bool value)
             : this(key)
         {
             this.Value = value ? "true" : "false";
         }
 
-        public JsonObject(string key, int value)
+        public JsonAttribute(string key, int value)
             : this(key)
         {
             this.Value = value.ToString();
         }
 
-        public JsonObject(string key, float value)
+        public JsonAttribute(string key, float value)
             : this(key)
         {
             this.Value = value.ToString();
         }
 
-        public JsonObject(string key, decimal value)
+        public JsonAttribute(string key, decimal value)
             : this(key)
         {
             this.Value = value.ToString();
         }
 
-        public JsonObject(string key, double value)
+        public JsonAttribute(string key, double value)
             : this(key)
         {
             this.Value = value.ToString();
         }
 
-        public JsonObject(string key, string value)
+        public JsonAttribute(string key, string value)
             : this(key)
         {
             this.Value = string.Concat("'", value.ToString(), "'");
         }
 
-        public JsonObject(string key, Enum value)
+        public JsonAttribute(string key, Enum value)
             : this(key, value.ToString().ToLower())
         {
 
         }
 
-        public JsonObject(string key, params string[] values)
+        public JsonAttribute(string key, params string[] values)
             : this(key)
         {
             string htmlValues = string.Join("','", values.Select(x => x.ToString()));
@@ -72,7 +72,7 @@ namespace Highcharts.Mvc
             this.Value = htmlValues;
         }
 
-        public JsonObject(string key, Array values)
+        public JsonAttribute(string key, Array values)
             : this(key)
         {
             string[] strValues = new string[values.Length];
@@ -84,7 +84,7 @@ namespace Highcharts.Mvc
             this.Value = htmlValues;
         }
 
-        public JsonObject(string key, params JsonObject[] values)
+        public JsonAttribute(string key, params JsonAttribute[] values)
             : this(key)
         {
             string htmlValues = string.Join(",", values.Select(x => x.ToString()));
@@ -115,8 +115,8 @@ namespace Highcharts.Mvc
             }
         }
 
-        private Dictionary<string, JsonObject> allOptions;
-        public void Set(JsonObject obj)
+        private Dictionary<string, JsonAttribute> allOptions;
+        public void Set(JsonAttribute obj)
         {
             if (allOptions.ContainsKey(obj.Key))
                 allOptions[obj.Key] = obj;
@@ -124,7 +124,7 @@ namespace Highcharts.Mvc
                 this.allOptions.Add(obj.Key, obj);
         }
 
-        public void SetOptions(JsonObject json)
+        public void SetOptions(JsonAttribute json)
         {
             foreach (var opt in json.allOptions)
                 this.allOptions.Add(opt.Key, opt.Value);

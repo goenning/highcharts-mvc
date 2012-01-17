@@ -53,8 +53,9 @@
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
     <Compile Include="HighchartsSetUp.cs" />
-    <Compile Include="JsonFunctionObject.cs" />
-    <Compile Include="JsonNullObject.cs" />
+    <Compile Include="Json\JsonFunctionAttribute.cs" />
+    <Compile Include="Json\JsonNullAttribute.cs" />
+    <Compile Include="Json\JsonObject.cs" />
     <Compile Include="PlotOptions\PlotOptionsConfiguration.cs" />
     <Compile Include="PlotOptions\ScatterPlotOptions.cs" />
     <Compile Include="PlotOptions\SeriesPlotOptions.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="HighchartsChart.cs" />
     <Compile Include="HighchartsHtmlHelper.cs" />
     <Compile Include="Configurator\IJsonConfigurator.cs" />
-    <Compile Include="JsonObject.cs" />
+    <Compile Include="Json\JsonAttribute.cs" />
     <Compile Include="Configurator\LegendConfigurator.cs" />
     <Compile Include="PlotOptions\ColumnPlotOptions.cs" />
     <Compile Include="PlotOptions\LinePlotOptions.cs" />

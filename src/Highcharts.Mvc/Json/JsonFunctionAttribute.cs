@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Highcharts.Mvc
+namespace Highcharts.Mvc.Json
 {
-    public class JsonFunctionObject : JsonObject
+    public class JsonFunctionAttribute : JsonAttribute
     {
-        public JsonFunctionObject(string key, string function)
+        public JsonFunctionAttribute(string key, string function)
             : base(key)
         {
             if (function.Contains(" ") && !function.StartsWith("function("))

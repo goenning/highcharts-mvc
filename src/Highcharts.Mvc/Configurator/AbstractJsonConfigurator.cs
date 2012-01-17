@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
     public abstract class AbstractJsonConfigurator : IJsonConfigurator
     {
-        private JsonObject jsonConfig;
+        private JsonAttribute jsonConfig;
         public AbstractJsonConfigurator(string name)
         {
-            this.jsonConfig = new JsonObject(name);
+            this.jsonConfig = new JsonAttribute(name);
         }
 
-        protected void Set(JsonObject json)
+        protected void Set(JsonAttribute json)
         {
             this.jsonConfig.Set(json);
         }
 
-        protected void SetOptions(JsonObject json)
+        protected void SetOptions(JsonAttribute json)
         {
             this.jsonConfig.SetOptions(json);
         }
 
-        public JsonObject ToJson()
+        public JsonAttribute ToJson()
         {
             return this.jsonConfig;
         }

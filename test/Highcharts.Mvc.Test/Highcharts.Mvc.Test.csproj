@@ -56,7 +56,8 @@
     <Compile Include="DataGenerator.cs" />
     <Compile Include="HighchartSetUpTest.cs" />
     <Compile Include="HtmlAssert.cs" />
-    <Compile Include="JsonObjectTest.cs" />
+    <Compile Include="Json\JsonAttributeTest.cs" />
+    <Compile Include="Json\JsonObjectTest.cs" />
     <Compile Include="LegendChartTest.cs" />
     <Compile Include="SeriesPlotOptionsTest.cs" />
     <Compile Include="Models\SaleReportItem.cs" />

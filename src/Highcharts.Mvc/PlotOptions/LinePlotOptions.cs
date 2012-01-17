@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -15,7 +16,7 @@ namespace Highcharts.Mvc
 
         public LinePlotOptions Step()
         {
-            return this.Set(new JsonObject("step", true));
+            return this.Set(new JsonAttribute("step", true));
         }
     }
 }

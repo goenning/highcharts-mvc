@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -16,15 +17,15 @@ namespace Highcharts.Mvc
 
         public LegendConfigurator Floating()
         {
-            this.Set(new JsonObject("floating", true));
+            this.Set(new JsonAttribute("floating", true));
             return this;
         }
 
         public LegendConfigurator Border(string color, int radius, int width)
         {
-            this.Set(new JsonObject("borderColor", color));
-            this.Set(new JsonObject("borderRadius", radius));
-            this.Set(new JsonObject("borderWidth", width));
+            this.Set(new JsonAttribute("borderColor", color));
+            this.Set(new JsonAttribute("borderRadius", radius));
+            this.Set(new JsonAttribute("borderWidth", width));
             return this;
         }
 

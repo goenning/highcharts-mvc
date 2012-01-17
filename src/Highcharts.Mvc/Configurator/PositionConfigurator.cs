@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -51,24 +52,24 @@ namespace Highcharts.Mvc
 
         public PositionConfigurator X(int offset)
         {
-            this.Set(new JsonObject("x", offset));
+            this.Set(new JsonAttribute("x", offset));
             return this;
         }
 
         public PositionConfigurator Y(int offset)
         {
-            this.Set(new JsonObject("y", offset));
+            this.Set(new JsonAttribute("y", offset));
             return this;
         }
 
         private void VerticalAlign(string value)
         {
-            this.Set(new JsonObject("verticalAlign", value));
+            this.Set(new JsonAttribute("verticalAlign", value));
         }
 
         private void HorizontalAlign(string value)
         {
-            this.Set(new JsonObject("align", value));
+            this.Set(new JsonAttribute("align", value));
         }
     }
 }

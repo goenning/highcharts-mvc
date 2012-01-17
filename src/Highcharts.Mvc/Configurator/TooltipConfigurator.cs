@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -16,7 +17,7 @@ namespace Highcharts.Mvc
         public TooltipConfigurator Formatter(string function)
         {
             this.Set(
-                new JsonFunctionObject("formatter", function)
+                new JsonFunctionAttribute("formatter", function)
             );
 
             return this;
@@ -25,7 +26,7 @@ namespace Highcharts.Mvc
         public TooltipConfigurator Shared()
         {
             this.Set(
-                new JsonObject("shared", true)
+                new JsonAttribute("shared", true)
             );
             return this;
         }
@@ -33,7 +34,7 @@ namespace Highcharts.Mvc
         public TooltipConfigurator Crosshairs()
         {
             this.Set(
-                new JsonObject("crosshairs", true)
+                new JsonAttribute("crosshairs", true)
             );
             return this;
         }

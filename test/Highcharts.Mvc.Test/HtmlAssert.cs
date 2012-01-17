@@ -12,16 +12,32 @@ namespace Highcharts.Mvc.Test
     {
         public static void AreEqual(IHtmlString expected, IHtmlString actual)
         {
-            string expectedString = expected.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "").Replace("\t", "");
-            string actualString = actual.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "").Replace("\t", "");
-            Assert.AreEqual(expectedString, actualString);
+            HtmlAssert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+
+        public static void AreNotEqual(IHtmlString expected, IHtmlString actual)
+        {
+            HtmlAssert.AreNotEqual(expected.ToString(), actual.ToString());
         }
 
         public static void AreEqual(string expected, string actual)
         {
-            string expectedString = expected.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "").Replace("\t", "");
-            string actualString = actual.ToString().Replace(" ", "").Replace("\r\n", "").Replace("\n", "").Replace("\t", "");
+            string expectedString = FormatString(expected);
+            string actualString = FormatString(actual);
             Assert.AreEqual(expectedString, actualString);
+        }
+
+        public static void AreNotEqual(string expected, string actual)
+        {
+            string expectedString = FormatString(expected);
+            string actualString = FormatString(actual);
+            Assert.AreNotEqual(expectedString, actualString);
+        }
+
+        private static string FormatString(string value)
+        {
+            return value.Replace(" ", "").Replace("\r\n", "").Replace("\n", "").Replace("\t", "");
         }
     }
 }

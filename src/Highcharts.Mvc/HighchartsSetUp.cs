@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Linq.Expressions;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -12,17 +13,17 @@ namespace Highcharts.Mvc
     {
         protected string Id { get; private set; }
         private ChartDataSource dataSource;
-        private JsonObject chartConfig;
+        private JsonAttribute chartConfig;
 
         public HighchartsSetUp(string id)
         {
             this.Id = id;
             this.dataSource = new EmptyDataSource();
-            this.chartConfig = new JsonObject();
+            this.chartConfig = new JsonAttribute();
 
             this.chartConfig.Set(
-                new JsonObject("chart", 
-                    new JsonObject("renderTo", this.Id)
+                new JsonAttribute("chart", 
+                    new JsonAttribute("renderTo", this.Id)
                 )
             );
         }
@@ -46,8 +47,8 @@ namespace Highcharts.Mvc
         public HighchartsSetUp Title(string title)
         {
             this.chartConfig.Set(
-                new JsonObject("title",
-                    new JsonObject("text", title)
+                new JsonAttribute("title",
+                    new JsonAttribute("text", title)
                 )
             );
 
@@ -57,8 +58,8 @@ namespace Highcharts.Mvc
         public HighchartsSetUp AxisX(params string[] categories)
         {
             this.chartConfig.Set(
-                new JsonObject("xAxis",
-                    new JsonObject("categories", categories)
+                new JsonAttribute("xAxis",
+                    new JsonAttribute("categories", categories)
                 )
             );
 
@@ -68,9 +69,9 @@ namespace Highcharts.Mvc
         public HighchartsSetUp AxisY(string title)
         {
             this.chartConfig.Set(
-                new JsonObject("yAxis",
-                    new JsonObject("title", 
-                        new JsonObject("text", title)
+                new JsonAttribute("yAxis",
+                    new JsonAttribute("title", 
+                        new JsonAttribute("text", title)
                     )
                 )
             );
@@ -99,9 +100,9 @@ namespace Highcharts.Mvc
             string serieTypeName = serieType.ToString().ToLower();
 
             this.chartConfig.Set(
-                new JsonObject("chart",
-                    new JsonObject("renderTo", this.Id),
-                    new JsonObject("type", serieTypeName)
+                new JsonAttribute("chart",
+                    new JsonAttribute("renderTo", this.Id),
+                    new JsonAttribute("type", serieTypeName)
                 )
             );
 
@@ -111,8 +112,8 @@ namespace Highcharts.Mvc
         public HighchartsSetUp Subtitle(string subtitle)
         {
             this.chartConfig.Set(
-                new JsonObject("subtitle",
-                    new JsonObject("text", subtitle)
+                new JsonAttribute("subtitle",
+                    new JsonAttribute("text", subtitle)
                 )
             );
 
@@ -123,7 +124,7 @@ namespace Highcharts.Mvc
         {
             var jsons = options.Select(x => x.ToJson()).ToArray();
             this.chartConfig.Set(
-                new JsonObject("plotOptions", jsons)
+                new JsonAttribute("plotOptions", jsons)
             ); 
 
             return this;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -18,54 +19,54 @@ namespace Highcharts.Mvc
 
         public T Id(string id)
         {
-            return this.Set(new JsonObject("id", id));
+            return this.Set(new JsonAttribute("id", id));
         }
 
         public T HideInLegend()
         {
-            return this.Set(new JsonObject("showInLegend", false));
+            return this.Set(new JsonAttribute("showInLegend", false));
         }
 
         public T ShowDataLabels()
         {
-            return this.Set(new JsonObject("dataLabels",
-                new JsonObject("enabled", true)
+            return this.Set(new JsonAttribute("dataLabels",
+                new JsonAttribute("enabled", true)
             ));
         }
 
         public T ZIndex(int index)
         {
-            return this.Set(new JsonObject("zIndex", index));
+            return this.Set(new JsonAttribute("zIndex", index));
         }
 
         public T HideSeries()
         {
-            return this.Set(new JsonObject("visible", false));
+            return this.Set(new JsonAttribute("visible", false));
         }
 
         public T DisableMouseTracking()
         {
-            return this.Set(new JsonObject("enableMouseTracking", false));
+            return this.Set(new JsonAttribute("enableMouseTracking", false));
         }
 
         public T Color(string color)
         {
-            return this.Set(new JsonObject("color", color));
+            return this.Set(new JsonAttribute("color", color));
         }
 
         public T DisableStickyTracking()
         {
-            return this.Set(new JsonObject("stickyTracking", false));
+            return this.Set(new JsonAttribute("stickyTracking", false));
         }
 
         public T AllowPointSelect()
         {
-            return this.Set(new JsonObject("allowPointSelect", true));
+            return this.Set(new JsonAttribute("allowPointSelect", true));
         }
 
         public T NoAnimation()
         {
-            return this.Set(new JsonObject("animation", false));
+            return this.Set(new JsonAttribute("animation", false));
         }
 
         public T Animation(Expression<Func<AnimationConfigurator, IJsonConfigurator>> expression)
@@ -75,48 +76,48 @@ namespace Highcharts.Mvc
 
         public T ConnectNulls()
         {
-            return this.Set(new JsonObject("connectNulls", true));
+            return this.Set(new JsonAttribute("connectNulls", true));
         }
 
         public T Cursor(ChartCursor cursor)
         {
-            return this.Set(new JsonObject("cursor", cursor));
+            return this.Set(new JsonAttribute("cursor", cursor));
         }
 
         public T DashStyle(ChartDashStyle style)
         {
-            return this.Set(new JsonObject("dashStyle", style));
+            return this.Set(new JsonAttribute("dashStyle", style));
         }
 
         public T LineWidth(int pixel)
         {
-            return this.Set(new JsonObject("lineWidth", pixel));
+            return this.Set(new JsonAttribute("lineWidth", pixel));
         }
         
         public T Selected()
         {
-            return this.Set(new JsonObject("selected", true));
+            return this.Set(new JsonAttribute("selected", true));
         }
 
         public T HideShadow()
         {
-            return this.Set(new JsonObject("shadow", false));
+            return this.Set(new JsonAttribute("shadow", false));
         }
 
         public T ShowCheckbox()
         {
-            return this.Set(new JsonObject("showCheckbox", true));
+            return this.Set(new JsonAttribute("showCheckbox", true));
         }
 
         public T Stacking(ChartStacking stacking)
         {
             if (ChartStacking.Disabled.Equals(stacking))
-                return this.Set(new JsonNullObject("stacking"));
+                return this.Set(new JsonNullAttribute("stacking"));
 
-            return this.Set(new JsonObject("stacking", stacking));
+            return this.Set(new JsonAttribute("stacking", stacking));
         }
 
-        protected new T Set(JsonObject json)
+        protected new T Set(JsonAttribute json)
         {
             base.Set(json);
             return this.options;

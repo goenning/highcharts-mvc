@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Highcharts.Mvc.Json;
 
-namespace Highcharts.Mvc.Test
+namespace Highcharts.Mvc.Test.Json
 {
     [TestFixture]
     public class JsonSerializerTest
@@ -12,7 +13,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void BasicObject()
         {
-            var json = new JsonObject("enabled", "true");
+            var json = new JsonAttribute("enabled", "true");
             string actual = json.ToString();
             string expected = "enabled: 'true'";
             
@@ -22,7 +23,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void BasicWithMoneyValueObject()
         {
-            var json = new JsonObject("total", 125.20);
+            var json = new JsonAttribute("total", 125.20);
             string actual = json.ToString();
             string expected = "total: 125.2";
 
@@ -32,8 +33,8 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void NestedObjectTest()
         {
-            var enabled = new JsonObject("enabled", 2);
-            var dataLabels = new JsonObject("dataLabels", enabled);
+            var enabled = new JsonAttribute("enabled", 2);
+            var dataLabels = new JsonAttribute("dataLabels", enabled);
             string actual = dataLabels.ToString();
             string expected = "dataLabels: { enabled: 2 }";
 
@@ -43,9 +44,9 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void TwoNestedObjectTest()
         {
-            var enabled = new JsonObject("enabled", "true");
-            var color = new JsonObject("color", "red");
-            var dataLabels = new JsonObject("dataLabels", enabled, color);
+            var enabled = new JsonAttribute("enabled", "true");
+            var color = new JsonAttribute("color", "red");
+            var dataLabels = new JsonAttribute("dataLabels", enabled, color);
             string actual = dataLabels.ToString();
             string expected = "dataLabels: { enabled: 'true', color: 'red' }";
 
@@ -55,7 +56,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ObjectWithStringArrayValueTest()
         {
-            var values = new JsonObject("values", new string[] { "Jan", "Feb", "Mar" });
+            var values = new JsonAttribute("values", new string[] { "Jan", "Feb", "Mar" });
             string actual = values.ToString();
             string expected = "values: [ 'Jan', 'Feb', 'Mar' ]";
 
@@ -65,7 +66,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ObjectWithIntegerArrayValueTest()
         {
-            var values = new JsonObject("values", new object[] { 1, 2, 3 });
+            var values = new JsonAttribute("values", new object[] { 1, 2, 3 });
             string actual = values.ToString();
             string expected = "values: [ 1, 2, 3 ]";
 
@@ -75,7 +76,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ObjectWithBooleanValueTest()
         {
-            var values = new JsonObject("enabled", true);
+            var values = new JsonAttribute("enabled", true);
             string actual = values.ToString();
             string expected = "enabled: true";
 
@@ -85,7 +86,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void NoValueTest()
         {
-            var values = new JsonObject("chart");
+            var values = new JsonAttribute("chart");
             string actual = values.ToString();
             string expected = "chart: { }";
 
@@ -95,8 +96,8 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void AddChildTest()
         {
-            var values = new JsonObject("chart");
-            values.Set(new JsonObject("enabled", true));
+            var values = new JsonAttribute("chart");
+            values.Set(new JsonAttribute("enabled", true));
             string actual = values.ToString();
             string expected = "chart: { enabled: true }";
 
@@ -106,8 +107,8 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void AddChildShouldOverrideValue()
         {
-            var values = new JsonObject("options", false);
-            values.Set(new JsonObject("enabled", true));
+            var values = new JsonAttribute("options", false);
+            values.Set(new JsonAttribute("enabled", true));
             string actual = values.ToString();
             string expected = "options: { enabled: true }";
 
@@ -117,9 +118,9 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ShouldUseLastChildWhenDuplicated()
         {
-            var values = new JsonObject("options", false);
-            values.Set(new JsonObject("enabled", true));
-            values.Set(new JsonObject("enabled", false));
+            var values = new JsonAttribute("options", false);
+            values.Set(new JsonAttribute("enabled", true));
+            values.Set(new JsonAttribute("enabled", false));
             string actual = values.ToString();
             string expected = "options: { enabled: false }";
 
@@ -129,7 +130,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void NamedFunction()
         {
-            var formatter = new JsonFunctionObject("formatter", "showFormat");
+            var formatter = new JsonFunctionAttribute("formatter", "showFormat");
             string actual = formatter.ToString();
             string expected = "formatter: showFormat";
 
@@ -139,7 +140,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void EnumJsonObject()
         {
-            var formatter = new JsonObject("cursor", ChartCursor.Pointer);
+            var formatter = new JsonAttribute("cursor", ChartCursor.Pointer);
             string actual = formatter.ToString();
             string expected = "cursor: 'pointer'";
 
@@ -149,7 +150,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void NullValueJsonObject()
         {
-            var formatter = new JsonNullObject("stacking");
+            var formatter = new JsonNullAttribute("stacking");
             string actual = formatter.ToString();
             string expected = "stacking: null";
 
@@ -159,7 +160,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void FullFunction()
         {
-            var formatter = new JsonFunctionObject("formatter", "function() { return 'Hello'; }");
+            var formatter = new JsonFunctionAttribute("formatter", "function() { return 'Hello'; }");
             string actual = formatter.ToString();
             string expected = "formatter: function() { return 'Hello'; }";
 
@@ -169,7 +170,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void AnonymousFunction()
         {
-            var formatter = new JsonFunctionObject("formatter", "return 'Hello';");
+            var formatter = new JsonFunctionAttribute("formatter", "return 'Hello';");
             string actual = formatter.ToString();
             string expected = "formatter: function() { return 'Hello'; }";
 
@@ -179,7 +180,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void EmptyKeyAndValue()
         {
-            var chart = new JsonObject();
+            var chart = new JsonAttribute();
             string actual = chart.ToString();
             string expected = "";
 
@@ -189,8 +190,8 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void EmptyKeyWithChild()
         {
-            var chart = new JsonObject();
-            chart.Set(new JsonObject("renderTo", "container"));
+            var chart = new JsonAttribute();
+            chart.Set(new JsonAttribute("renderTo", "container"));
             string actual = chart.ToString();
             string expected = "renderTo: 'container'";
 
@@ -200,9 +201,9 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void EmptyKeyWithDuplicatedChild()
         {
-            var chart = new JsonObject();
-            chart.Set(new JsonObject("renderTo", "container"));
-            chart.Set(new JsonObject("renderTo", "new-container"));
+            var chart = new JsonAttribute();
+            chart.Set(new JsonAttribute("renderTo", "container"));
+            chart.Set(new JsonAttribute("renderTo", "new-container"));
             string actual = chart.ToString();
             string expected = "renderTo: 'new-container'";
 
@@ -212,11 +213,11 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ComplexJsonObjectGraph()
         {
-            var chart = new JsonObject();
-            var title = new JsonObject("title");
+            var chart = new JsonAttribute();
+            var title = new JsonAttribute("title");
             chart.Set(title);
-            title.Set(new JsonObject("color", "red"));
-            title.Set(new JsonObject("size", "16px"));
+            title.Set(new JsonAttribute("color", "red"));
+            title.Set(new JsonAttribute("size", "16px"));
             string actual = chart.ToString();
             string expected = @"title: {
                                     color: 'red',
@@ -229,16 +230,16 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ComplexJsonObjectGraph_WithTwoMainObjects()
         {
-            var chart = new JsonObject();
+            var chart = new JsonAttribute();
 
-            var title = new JsonObject("title");
+            var title = new JsonAttribute("title");
             chart.Set(title);
-            title.Set(new JsonObject("color", "red"));
-            title.Set(new JsonObject("size", "16px"));
+            title.Set(new JsonAttribute("color", "red"));
+            title.Set(new JsonAttribute("size", "16px"));
 
-            var subtitle = new JsonObject("subtitle");
+            var subtitle = new JsonAttribute("subtitle");
             chart.Set(subtitle);
-            subtitle.Set(new JsonObject("size", "12px"));
+            subtitle.Set(new JsonAttribute("size", "12px"));
 
             string actual = chart.ToString();
             string expected = @"title: {

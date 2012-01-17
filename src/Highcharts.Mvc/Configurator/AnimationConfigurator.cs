@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -15,13 +16,13 @@ namespace Highcharts.Mvc
 
         public AnimationConfigurator Duration(int milliseconds)
         {
-            this.Set(new JsonObject("duration", milliseconds));
+            this.Set(new JsonAttribute("duration", milliseconds));
             return this;
         }
 
         public AnimationConfigurator Easing(ChartAnimation animation)
         {
-            this.Set(new JsonObject("easing", animation));
+            this.Set(new JsonAttribute("easing", animation));
             return this;
         }
     }

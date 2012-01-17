@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -19,11 +20,11 @@ namespace Highcharts.Mvc
             StringBuilder script = new StringBuilder();
             foreach (var serie in this.Series)
             {
-                JsonObject jsonSerie = new JsonObject();
-                jsonSerie.Set(new JsonObject("name", serie.Name));
+                JsonAttribute jsonSerie = new JsonAttribute();
+                jsonSerie.Set(new JsonAttribute("name", serie.Name));
                 if (!string.IsNullOrEmpty(serie.Type))
-                    jsonSerie.Set(new JsonObject("type", serie.Type));
-                jsonSerie.Set(new JsonObject("data", serie.Values));
+                    jsonSerie.Set(new JsonAttribute("type", serie.Type));
+                jsonSerie.Set(new JsonAttribute("data", serie.Values));
 
                 script.AppendFormat("hCharts['{0}'].addSeries({{ {1} }}); {2}", chartId, jsonSerie.ToString(), Environment.NewLine);
             }

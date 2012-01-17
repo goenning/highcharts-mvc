@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Highcharts.Mvc
+namespace Highcharts.Mvc.Json
 {
-    public class JsonNullObject : JsonObject
+    public class JsonNullAttribute : JsonAttribute
     {
-        public JsonNullObject(string key)
+        public JsonNullAttribute(string key)
             : base(key)
         {
             this.Value = null;
