@@ -7,13 +7,16 @@ This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a
 
 ## Usage
 
-### Instaallation
+### 1. Installation
 
 Install it with NuGet (yes, it's prerelease).
 
 `PM> Install-Package Highcharts.Mvc -Pre`
 
 Go to the official highcharts webpage, download it and add it to your project. (I will soon include it in the NuGet package).
+
+
+### 2. Configuration
 
 In your `_Layout.cshtml` (AKA: MasterPage) add a reference to these files:
 
@@ -46,6 +49,8 @@ You will end up with something like this:
 </pages>
 </system.web.webPages.razor>
 ```
+
+### 3. How to use
 
 Now you are ready to start building your charts.
 With Highcharts MVC you write:
