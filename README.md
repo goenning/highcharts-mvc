@@ -1,5 +1,10 @@
 # ASP.NET MVC Helpers for [Highcharts](http://www.highcharts.com/)
 
+## About
+
+> Highcharts is a charting library written in pure JavaScript, offering intuitive, interactive charts to your web site or web application. Highcharts currently supports line, spline, area, areaspline, column, bar, pie and scatter chart types.
+Source: [highcharts](http://www.highcharts.com/)
+
 This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a better, easier and cleaner API.
 
 **NOTE:** This project is still a draft, it's only about `30%` of the whole Highcharts API.
@@ -118,7 +123,7 @@ Do you want to power-up your charts with ajax-enabled highcharts? That's easy bu
 
 ## FAQ
 
-### Does it work with ASP.NET WebForms?
+### 1. Does it work with ASP.NET WebForms?
 
 Even though the name of this project is **Highcharts MVC**, it does work with ASP.NET WebForms. It is not a WebControl (which is preferred), but you
 can you use like this:
