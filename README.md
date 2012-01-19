@@ -4,7 +4,51 @@ This is a open-source Highcharts wrapper for ASP.NET MVC which aims to provide a
 
 **NOTE:** This project is still a draft, it's only about `30%` of the whole Highcharts API.
 
-Write:
+
+## Usage
+
+### Instaallation
+
+Install it with NuGet (yes, it's prerelease).
+
+`PM> Install-Package Highcharts.Mvc -Pre`
+
+Go to the official highcharts webpage, download it and add it to your project. (I will soon include it in the NuGet package).
+
+In your `_Layout.cshtml` (AKA: MasterPage) add a reference to these files:
+
+```
+<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Highcharts/highcharts.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/highcharts-mvc.js")" type="text/javascript"></script>
+```
+
+The next step is not really necessary, but it is recommended in order to keep your views cleaner.
+In the `web.config` inside the Views folder add this to the namespaces:
+
+```
+<add namespace="Highcharts.Mvc"/>
+```
+
+You will end up with something like this:
+
+```
+<system.web.webPages.razor>
+<host factoryType="System.Web.Mvc.MvcWebRazorHostFactory, System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+<pages pageBaseType="System.Web.Mvc.WebViewPage">
+    <namespaces>
+    <add namespace="Highcharts.Mvc"/>
+    <add namespace="System.Web.Mvc" />
+    <add namespace="System.Web.Mvc.Ajax" />
+    <add namespace="System.Web.Mvc.Html" />
+    <add namespace="System.Web.Routing" />
+    </namespaces>
+</pages>
+</system.web.webPages.razor>
+```
+
+Now you are ready to start building your charts.
+With Highcharts MVC you write:
 
 ```
 @(
@@ -51,7 +95,7 @@ Instead of:
 </script>
 ```
 
-Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, check this out:
+Do you want to power-up your charts with ajax-enabled highcharts? That's easy buddy, check this out:
 
 ```
 @(
@@ -67,35 +111,25 @@ Want to power-up your charts with ajax-enabled highcharts? That's easy buddy, ch
 )
 ```
 
+## FAQ
+
+### Does it work with ASP.NET WebForms?
+
+Even though the name of this project is **Highcharts MVC**, it does work with ASP.NET WebForms. It is not a WebControl (which is preferred), but you
+can you use like this:
 
 ```
-var myAjaxChart;
-$(document).ready(function () {
-    myAjaxChart = new Highcharts.Chart({
-        chart: {
-        renderTo: 'myAjaxChart',
-        type: 'column'
-    }, title: {
-            text: 'Tickets per month'
-        }, xAxis: {
-            categories: ['Jan','Feb','Mar']
-        }, yAxis: {
-            title: { 
-                text: 'Quantity'
-            }
-        }
-    });
-
-    setIntervalAndExecute(function(){ 
-        $.getJSON('/Ajax/LoadData', function(data) {
-            myAjaxChart.clearSeries();
-            $.each(data, function (key, value) {
-                myAjaxChart.addSeries({
-                    name: value.Name,
-                    data: value.Values
-                }); ;
-            });
-        });
-    }, 5000);
-});
+<#=
+    new HighchartChart("myChart")
+        .Title("Tickets per month")
+		.WithSerieType(ChartSerieType.Line)
+        .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+        .AxisY("Quantity")
+        .Series(
+            new Serie("iPad", new int[] { 0, 0, 0, 0, 0, 0, 16, 20, 40, 61, 100, 800 }),
+            new Serie("MacBook", new int[] { 616, 713, 641, 543, 145, 641, 134, 673, 467, 859, 456, 120 }),
+            new Serie("iPhone", new int[] { 10, 45, 75, 100, 421, 546, 753, 785, 967, 135, 765, 245 })
+        )
+        .ToHtmlString()
+#>
 ```
