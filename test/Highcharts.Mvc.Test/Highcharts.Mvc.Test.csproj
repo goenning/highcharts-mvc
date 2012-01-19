@@ -48,6 +48,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AjaxSeriesChartTest.cs" />
     <Compile Include="AnimationChartTest.cs" />
     <Compile Include="ChartPlotOptionsTest.cs" />

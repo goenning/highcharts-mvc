@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -39,6 +39,9 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ChartAnimation.cs" />
     <Compile Include="Configurator\AnimationConfigurator.cs" />
     <Compile Include="ChartCursor.cs" />
@@ -76,6 +79,11 @@
     <Compile Include="Series\Serie.cs" />
     <Compile Include="DataSource\ChartDataSource.cs" />
     <Compile Include="Configurator\TooltipConfigurator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="highcharts-mvc.js" />
+    <None Include="highcharts-mvc.min.js" />
+    <None Include="Highcharts.Mvc.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
