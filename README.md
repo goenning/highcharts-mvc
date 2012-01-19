@@ -19,7 +19,7 @@ Install it with NuGet (yes, it's prerelease).
 
 `PM> Install-Package Highcharts.Mvc -Pre`
 
-Go to the official highcharts webpage, download it and add it to your project. (I will soon include it in the NuGet package).
+Go to [highcharts official website](http://www.highcharts.com/), download it and add it to your project. (I will soon include it in the NuGet package).
 
 
 ### 2. Configuration
