@@ -6,6 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
+    <licenseUrl>https://github.com/oenning/highcharts-mvc/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/oenning/highcharts-mvc</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
