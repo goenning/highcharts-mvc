@@ -91,6 +91,13 @@ namespace Highcharts.Mvc.Json
             this.Value = string.Concat("{ ", htmlValues, " }");
         }
 
+        public JsonAttribute(string key, params JsonObject[] objs)
+            : this(key)
+        {
+            string htmlValues = string.Join(",", objs.Select(x => x.ToJson()));
+            this.Value = string.Concat("[ ", htmlValues, " ]");
+        }
+
         public override string ToString()
         {
             if (this.Key == null && this.Value == null && this.allOptions.Count == 0)
@@ -118,6 +125,9 @@ namespace Highcharts.Mvc.Json
         private Dictionary<string, JsonAttribute> allOptions;
         public void Set(JsonAttribute obj)
         {
+            if (string.IsNullOrEmpty(obj.Key))
+                return;
+
             if (allOptions.ContainsKey(obj.Key))
                 allOptions[obj.Key] = obj;
             else

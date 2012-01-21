@@ -3,40 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using System.Web;
+using Highcharts.Mvc.Json;
+using System.Linq.Expressions;
 
 namespace Highcharts.Mvc
 {
     public class AjaxChartDataSource : ChartDataSource
     {
-        public string Url { get; private set; }
-        public FormMethod Method { get; private set; }
-        private int? milisecondsInterval = null;
-
+        private JsonObject jsonConfiguration;
         public AjaxChartDataSource(string url)
         {
-            this.Url = url;
-            this.Method = FormMethod.Post;
+            this.jsonConfiguration = new JsonObject();
+            this.jsonConfiguration.Add(new JsonAttribute("url", url));
         }
 
-        public override string ToHtmlString(string chartId)
+        public override IHtmlString ToHtmlString(string chartId)
         {
-            string jsFunctionName = this.Method == FormMethod.Post ? "postChartAjax" : "getChartAjax";
-
-            if (milisecondsInterval.HasValue)
-                return string.Format("{0}(hCharts['{1}'], '{2}', {3});", jsFunctionName, chartId, this.Url, this.milisecondsInterval.Value);
-
-            return string.Format("{0}(hCharts['{1}'], '{2}');", jsFunctionName, chartId, this.Url);
+            this.jsonConfiguration.Add(new JsonAttribute("chartId", chartId));
+            string js = string.Format("loadChartAjax({0});", this.jsonConfiguration.ToJson());
+            return MvcHtmlString.Create(js);
         }
 
         public AjaxChartDataSource Reload(int miliseconds)
         {
-            this.milisecondsInterval = miliseconds;
+            this.jsonConfiguration.Add(new JsonAttribute("interval", miliseconds));
             return this;
         }
 
         public AjaxChartDataSource AsGet()
         {
-            this.Method = FormMethod.Get;
+            this.jsonConfiguration.Add(new JsonAttribute("method", "GET"));
+            return this;
+        }
+
+        public AjaxChartDataSource NoAnimation()
+        {
+            this.jsonConfiguration.Add(new JsonAttribute("animation", false));
+            return this;
+        }
+
+        public AjaxChartDataSource Animation(Expression<Func<AnimationConfigurator, JsonConfigurator>> expression)
+        {
+            this.jsonConfiguration.Add(expression.ToJson());
             return this;
         }
     }

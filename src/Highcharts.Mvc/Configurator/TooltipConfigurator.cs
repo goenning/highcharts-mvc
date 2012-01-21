@@ -6,7 +6,7 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class TooltipConfigurator : AbstractJsonConfigurator
+    public class TooltipConfigurator : JsonConfigurator
     {
         public TooltipConfigurator()
             : base("tooltip")

@@ -6,10 +6,10 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public abstract class AbstractJsonConfigurator : IJsonConfigurator
+    public abstract class JsonConfigurator
     {
         private JsonAttribute jsonConfig;
-        public AbstractJsonConfigurator(string name)
+        public JsonConfigurator(string name)
         {
             this.jsonConfig = new JsonAttribute(name);
         }
@@ -24,7 +24,7 @@ namespace Highcharts.Mvc
             this.jsonConfig.SetOptions(json);
         }
 
-        public JsonAttribute ToJson()
+        internal JsonAttribute ToJson()
         {
             return this.jsonConfig;
         }

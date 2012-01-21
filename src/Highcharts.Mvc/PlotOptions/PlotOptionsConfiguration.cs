@@ -69,7 +69,7 @@ namespace Highcharts.Mvc
             return this.Set(new JsonAttribute("animation", false));
         }
 
-        public T Animation(Expression<Func<AnimationConfigurator, IJsonConfigurator>> expression)
+        public T Animation(Expression<Func<AnimationConfigurator, JsonConfigurator>> expression)
         {
             return this.Set(expression.ToJson());
         }
@@ -124,7 +124,7 @@ namespace Highcharts.Mvc
         }
     }
 
-    public abstract class PlotOptionsConfiguration : AbstractJsonConfigurator
+    public abstract class PlotOptionsConfiguration : JsonConfigurator
     {
         public PlotOptionsConfiguration(string name)
             : base(name)

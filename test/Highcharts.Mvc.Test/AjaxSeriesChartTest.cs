@@ -11,70 +11,46 @@ namespace Highcharts.Mvc.Test
     public class AjaxSeriesChartTest
     {
         [Test]
-        public void BasicSetUp_WithAjaxSource()
+        public void BasicAjaxSource()
         {
-            var chart = new HighchartsChart("myChart")
-                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData"));
-
-            var actual = chart.ToHtmlString();
-            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
-                                                  <script type=""text/javascript"">
-                                                  $(document).ready(function () {
-                                                      hCharts['myChart'] = new Highcharts.Chart({
-                                                            chart: {
-                                                                renderTo: 'myChart'
-                                                            }
-                                                        });
-                                                        
-                                                        postChartAjax(hCharts['myChart'], '/Ajax/LoadData');
-                                                  });
-                                                  </script>");
+            var actual = AjaxConfig.LoadFrom("/Ajax/LoadData").ToHtmlString("myChart");
+            var expected = MvcHtmlString.Create(@"loadChartAjax({ 
+                                                    url: '/Ajax/LoadData',
+                                                    chartId: 'myChart'
+                                                  });");
 
             HtmlAssert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void BasicSetUp_WithAjaxSource_AndInternal()
+        public void AjaxSourceWithAllOptions()
         {
-            var chart = new HighchartsChart("myChart")
-                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").Reload(1000));
-
-            var actual = chart.ToHtmlString();
-            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
-                                                  <script type=""text/javascript"">
-                                                  $(document).ready(function () {
-                                                      hCharts['myChart'] = new Highcharts.Chart({
-                                                            chart: {
-                                                                renderTo: 'myChart'
-                                                            }
-                                                        });
-                                                        
-                                                        postChartAjax(hCharts['myChart'], '/Ajax/LoadData', 1000);
-                                                  });
-                                                  </script>");
+            var actual = AjaxConfig.LoadFrom("/Ajax/LoadData")
+                                   .AsGet()
+                                   .Animation(x => x.Duration(2000).Easing(ChartAnimation.Swing))
+                                   .ToHtmlString("myChart");
+            var expected = MvcHtmlString.Create(@"loadChartAjax({  
+                                                    url: '/Ajax/LoadData',
+                                                    method: 'GET',
+                                                    animation: {
+                                                        duration: 2000,
+                                                        easing: 'swing'
+                                                    },
+                                                    chartId: 'myChart'
+                                                  });");
 
             HtmlAssert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void BasicSetUp_WithAjaxSource_AndGetMethod()
+        public void AjaxSourceWithoutAnimation()
         {
-            var chart = new HighchartsChart("myChart")
-                            .Series(AjaxConfig.LoadFrom("/Ajax/LoadData").AsGet());
-
-            var actual = chart.ToHtmlString();
-            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
-                                                  <script type=""text/javascript"">
-                                                  $(document).ready(function () {
-                                                      hCharts['myChart'] = new Highcharts.Chart({
-                                                            chart: {
-                                                                renderTo: 'myChart'
-                                                            }
-                                                        });
-                                                        
-                                                        getChartAjax(hCharts['myChart'], '/Ajax/LoadData');
-                                                  });
-                                                  </script>");
+            var actual = AjaxConfig.LoadFrom("/Ajax/LoadData").NoAnimation().ToHtmlString("myChart");
+            var expected = MvcHtmlString.Create(@"loadChartAjax({ 
+                                                    url: '/Ajax/LoadData',
+                                                    animation: false,
+                                                    chartId: 'myChart'
+                                                  });");
 
             HtmlAssert.AreEqual(expected, actual);
         }

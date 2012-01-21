@@ -18,6 +18,11 @@ namespace Highcharts.Mvc.Json
             return string.Format("{{ {0} }}", this.attribute.ToString());
         }
 
+        public string ToJson()
+        {
+            return this.ToString();
+        }
+
         public void Add(JsonAttribute attr)
         {
             this.attribute.Set(attr);

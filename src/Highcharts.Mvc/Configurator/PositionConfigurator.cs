@@ -6,7 +6,7 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class PositionConfigurator : AbstractJsonConfigurator
+    public class PositionConfigurator : JsonConfigurator
     {
         public PositionConfigurator()
             : base("position")

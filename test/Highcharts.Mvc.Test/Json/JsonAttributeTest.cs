@@ -11,7 +11,7 @@ namespace Highcharts.Mvc.Test.Json
     public class JsonSerializerTest
     {
         [Test]
-        public void BasicObject()
+        public void BasicAttribute()
         {
             var json = new JsonAttribute("enabled", "true");
             string actual = json.ToString();
@@ -31,7 +31,7 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void NestedObjectTest()
+        public void NestedAttributeTest()
         {
             var enabled = new JsonAttribute("enabled", 2);
             var dataLabels = new JsonAttribute("dataLabels", enabled);
@@ -42,7 +42,7 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void TwoNestedObjectTest()
+        public void TwoNestedAttributeTest()
         {
             var enabled = new JsonAttribute("enabled", "true");
             var color = new JsonAttribute("color", "red");
@@ -54,7 +54,7 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void ObjectWithStringArrayValueTest()
+        public void AttributeWithStringArrayValueTest()
         {
             var values = new JsonAttribute("values", new string[] { "Jan", "Feb", "Mar" });
             string actual = values.ToString();
@@ -64,7 +64,7 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void ObjectWithIntegerArrayValueTest()
+        public void AttributeWithIntegerArrayValueTest()
         {
             var values = new JsonAttribute("values", new object[] { 1, 2, 3 });
             string actual = values.ToString();
@@ -74,7 +74,7 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void ObjectWithBooleanValueTest()
+        public void AttributeWithBooleanValueTest()
         {
             var values = new JsonAttribute("enabled", true);
             string actual = values.ToString();
@@ -87,6 +87,17 @@ namespace Highcharts.Mvc.Test.Json
         public void NoValueTest()
         {
             var values = new JsonAttribute("chart");
+            string actual = values.ToString();
+            string expected = "chart: { }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void EmptyAttributesShouldBeIgnored()
+        {
+            var values = new JsonAttribute("chart");
+            values.Set(new EmptyJsonAttribute());
             string actual = values.ToString();
             string expected = "chart: { }";
 
@@ -173,6 +184,25 @@ namespace Highcharts.Mvc.Test.Json
             var formatter = new JsonFunctionAttribute("formatter", "return 'Hello';");
             string actual = formatter.ToString();
             string expected = "formatter: function() { return 'Hello'; }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AttributeWithTwoChildObjects()
+        {
+            var firstObj = new JsonObject();
+            firstObj.Add(new JsonAttribute("name", "First Value"));
+
+            var secondObj = new JsonObject();
+            secondObj.Add(new JsonAttribute("name", "Second Value"));
+
+            var chart = new JsonAttribute("series", firstObj, secondObj);
+            string actual = chart.ToString();
+            string expected = @"series: [
+                                    { name: 'First Value'},
+                                    { name: 'Second Value'}
+                                ]";
 
             HtmlAssert.AreEqual(expected, actual);
         }

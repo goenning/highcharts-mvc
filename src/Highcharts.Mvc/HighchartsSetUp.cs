@@ -13,15 +13,15 @@ namespace Highcharts.Mvc
     {
         protected string Id { get; private set; }
         private ChartDataSource dataSource;
-        private JsonAttribute chartConfig;
+        private JsonObject chartConfig;
 
         public HighchartsSetUp(string id)
         {
             this.Id = id;
             this.dataSource = new EmptyDataSource();
-            this.chartConfig = new JsonAttribute();
+            this.chartConfig = new JsonObject();
 
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("chart", 
                     new JsonAttribute("renderTo", this.Id)
                 )
@@ -30,13 +30,12 @@ namespace Highcharts.Mvc
 
         public virtual IHtmlString ToHtmlString()
         {
-            string chartSource = dataSource.ToHtmlString(this.Id);
+            IHtmlString chartSource = this.dataSource.ToHtmlString(this.Id);
+            this.chartConfig.Add(this.dataSource.AsJsonAttribute());
 
             StringBuilder html = new StringBuilder();
             html.AppendFormat(@"$(document).ready(function () {{
-                                    hCharts['{0}'] = new Highcharts.Chart({{
-                                        {1}
-                                    }});
+                                    hCharts['{0}'] = new Highcharts.Chart({1});
 
                                     {2}
                                 }});", this.Id, this.chartConfig.ToString(), chartSource);
@@ -46,7 +45,7 @@ namespace Highcharts.Mvc
 
         public HighchartsSetUp Title(string title)
         {
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("title",
                     new JsonAttribute("text", title)
                 )
@@ -57,7 +56,7 @@ namespace Highcharts.Mvc
 
         public HighchartsSetUp AxisX(params string[] categories)
         {
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("xAxis",
                     new JsonAttribute("categories", categories)
                 )
@@ -68,7 +67,7 @@ namespace Highcharts.Mvc
 
         public HighchartsSetUp AxisY(string title)
         {
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("yAxis",
                     new JsonAttribute("title", 
                         new JsonAttribute("text", title)
@@ -99,7 +98,7 @@ namespace Highcharts.Mvc
         {
             string serieTypeName = serieType.ToString().ToLower();
 
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("chart",
                     new JsonAttribute("renderTo", this.Id),
                     new JsonAttribute("type", serieTypeName)
@@ -111,7 +110,7 @@ namespace Highcharts.Mvc
 
         public HighchartsSetUp Subtitle(string subtitle)
         {
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("subtitle",
                     new JsonAttribute("text", subtitle)
                 )
@@ -123,31 +122,31 @@ namespace Highcharts.Mvc
         public HighchartsSetUp Options(params PlotOptionsConfiguration[] options)
         {
             var jsons = options.Select(x => x.ToJson()).ToArray();
-            this.chartConfig.Set(
+            this.chartConfig.Add(
                 new JsonAttribute("plotOptions", jsons)
             ); 
 
             return this;
         }
 
-        public HighchartsSetUp Tooltip(Expression<Func<TooltipConfigurator, IJsonConfigurator>> expression)
+        public HighchartsSetUp Tooltip(Expression<Func<TooltipConfigurator, JsonConfigurator>> expression)
         {
             return this.Configure(expression);
         }
 
-        public HighchartsSetUp Legend(Expression<Func<LegendConfigurator, IJsonConfigurator>> expression)
+        public HighchartsSetUp Legend(Expression<Func<LegendConfigurator, JsonConfigurator>> expression)
         {
             return this.Configure(expression);
         }
 
-        public HighchartsSetUp Credits(Expression<Func<CreditsConfigurator, IJsonConfigurator>> expression)
+        public HighchartsSetUp Credits(Expression<Func<CreditsConfigurator, JsonConfigurator>> expression)
         {
             return this.Configure(expression);
         }
 
-        private HighchartsSetUp Configure<T>(Expression<Func<T, IJsonConfigurator>> expression) where T : new()
+        private HighchartsSetUp Configure<T>(Expression<Func<T, JsonConfigurator>> expression) where T : new()
         {
-            this.chartConfig.Set(expression.ToJson());
+            this.chartConfig.Add(expression.ToJson());
             return this;
         }
     }

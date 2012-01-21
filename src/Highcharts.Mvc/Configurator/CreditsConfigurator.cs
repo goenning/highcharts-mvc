@@ -7,7 +7,7 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class CreditsConfigurator : AbstractJsonConfigurator
+    public class CreditsConfigurator : JsonConfigurator
     {
         public CreditsConfigurator()
             : base("credits")
@@ -33,7 +33,7 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public CreditsConfigurator Position(Expression<Func<PositionConfigurator, IJsonConfigurator>> expression)
+        public CreditsConfigurator Position(Expression<Func<PositionConfigurator, JsonConfigurator>> expression)
         {
             this.Set(expression.ToJson());
             return this;

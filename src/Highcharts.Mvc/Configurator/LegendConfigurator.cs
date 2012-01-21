@@ -7,7 +7,7 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class LegendConfigurator : AbstractJsonConfigurator
+    public class LegendConfigurator : JsonConfigurator
     {
         public LegendConfigurator()
             : base("legend")
@@ -29,7 +29,7 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public LegendConfigurator Position(Expression<Func<PositionConfigurator, IJsonConfigurator>> expression)
+        public LegendConfigurator Position(Expression<Func<PositionConfigurator, JsonConfigurator>> expression)
         {
             this.SetOptions(expression.ToJson());
             return this;

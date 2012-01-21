@@ -13,13 +13,12 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void Chart_WithBasicPlotOptions()
         {
-            var chart = new HighchartsChart("myChart")
+            var actual = new HighchartsChart("myChart")
                             .Options(
                                 PlotOptions.Line.ShowDataLabels().HideInLegend().Color("#00FF00")
-                            );
+                            ).ToHtmlString();
 
 
-            var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
                                                   $(document).ready(function () {
@@ -46,14 +45,12 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void Chart_WithTwoPlotOptions()
         {
-            var chart = new HighchartsChart("myChart")
+            var actual = new HighchartsChart("myChart")
                             .Options(
                                 PlotOptions.Line.HideInLegend(),
                                 PlotOptions.Column.ShowDataLabels()
-                            );
+                            ).ToHtmlString();
 
-
-            var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
                                                   $(document).ready(function () {
@@ -81,15 +78,14 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void Chart_WithThreePlotOptions()
         {
-            var chart = new HighchartsChart("myChart")
+            var actual = new HighchartsChart("myChart")
                             .Options(
                                 PlotOptions.Line.HideInLegend(),
                                 PlotOptions.Series.HideInLegend(),
                                 PlotOptions.Column.HideInLegend()
-                            );
+                            ).ToHtmlString();
 
 
-            var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
                                                   $(document).ready(function () {

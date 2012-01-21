@@ -6,7 +6,7 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class AnimationConfigurator : AbstractJsonConfigurator
+    public class AnimationConfigurator : JsonConfigurator
     {
         public AnimationConfigurator()
             : base("animation")

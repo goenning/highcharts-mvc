@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using Highcharts.Mvc.Json;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Highcharts.Mvc
 {
@@ -15,21 +17,24 @@ namespace Highcharts.Mvc
             this.Series = series;
         }
 
-        public override string ToHtmlString(string chartId)        
+        public override JsonAttribute AsJsonAttribute()
         {
-            StringBuilder script = new StringBuilder();
-            foreach (var serie in this.Series)
+            JsonObject[] seriesObjects = new JsonObject[this.Series.Count()];
+            
+            for (int i = 0; i < seriesObjects.Length; i++)
             {
-                JsonAttribute jsonSerie = new JsonAttribute();
-                jsonSerie.Set(new JsonAttribute("name", serie.Name));
-                if (!string.IsNullOrEmpty(serie.Type))
-                    jsonSerie.Set(new JsonAttribute("type", serie.Type));
-                jsonSerie.Set(new JsonAttribute("data", serie.Values));
+                Serie serie = this.Series.ElementAt(i);
+                JsonObject serieObj = new JsonObject();
 
-                script.AppendFormat("hCharts['{0}'].addSeries({{ {1} }}); {2}", chartId, jsonSerie.ToString(), Environment.NewLine);
+                serieObj.Add(new JsonAttribute("name", serie.Name));
+                if (!string.IsNullOrEmpty(serie.Type))
+                    serieObj.Add(new JsonAttribute("type", serie.Type));
+                serieObj.Add(new JsonAttribute("data", serie.Values));
+
+			    seriesObjects[i] = serieObj;
             }
 
-            return script.ToString();
+            return new JsonAttribute("series", seriesObjects);
         }
     }
 }

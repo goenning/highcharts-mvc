@@ -1,14 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebExamples", "examples\WebExamples\WebExamples.csproj", "{50DAB959-46B6-462D-A43E-61C1A787263B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highcharts.Mvc", "src\Highcharts.Mvc\Highcharts.Mvc.csproj", "{80ED5CBD-73B5-4DBD-B63F-BF5FE0297774}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highcharts.Mvc.Test", "test\Highcharts.Mvc.Test\Highcharts.Mvc.Test.csproj", "{1D82CA3F-F39C-4B02-A2A8-6ABBB4536E25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A62C71A-466B-4771-A539-AB7ED2E09F25}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -18,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50DAB959-46B6-462D-A43E-61C1A787263B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50DAB959-46B6-462D-A43E-61C1A787263B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50DAB959-46B6-462D-A43E-61C1A787263B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50DAB959-46B6-462D-A43E-61C1A787263B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{80ED5CBD-73B5-4DBD-B63F-BF5FE0297774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80ED5CBD-73B5-4DBD-B63F-BF5FE0297774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80ED5CBD-73B5-4DBD-B63F-BF5FE0297774}.Release|Any CPU.ActiveCfg = Release|Any CPU
