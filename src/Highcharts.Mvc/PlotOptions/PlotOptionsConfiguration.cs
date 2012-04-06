@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using Highcharts.Mvc.Json;
 
@@ -109,6 +106,16 @@ namespace Highcharts.Mvc
             return this.Set(new JsonAttribute("showCheckbox", true));
         }
 
+        public T DataLabels(Expression<Func<DataLabelsConfigurator, JsonConfigurator>> expression)
+        {
+            return this.Set(expression.ToJson());
+        }
+
+        public T Events(Expression<Func<EventsConfigurator, JsonConfigurator>> expression)
+        {
+            return this.Set(expression.ToJson());
+        }
+
         public T Stacking(ChartStacking stacking)
         {
             if (ChartStacking.Disabled.Equals(stacking))
@@ -130,11 +137,6 @@ namespace Highcharts.Mvc
             : base(name)
         {
 
-        }
-
-        public override string ToString()
-        {
-            return this.ToJson().ToString();
         }
     }
 }

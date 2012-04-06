@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Web.Mvc;
 using NUnit.Framework;
-using System.Web.Mvc;
 
 namespace Highcharts.Mvc.Test
 {
@@ -27,11 +23,13 @@ namespace Highcharts.Mvc.Test
         {
             var actual = AjaxConfig.LoadFrom("/Ajax/LoadData")
                                    .AsGet()
+                                   .Reload(100)
                                    .Animation(x => x.Duration(2000).Easing(ChartAnimation.Swing))
                                    .ToHtmlString("myChart");
             var expected = MvcHtmlString.Create(@"loadChartAjax({  
                                                     url: '/Ajax/LoadData',
                                                     method: 'GET',
+                                                    interval: 100,
                                                     animation: {
                                                         duration: 2000,
                                                         easing: 'swing'

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Highcharts.Mvc.Json;
+﻿using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
@@ -12,24 +8,6 @@ namespace Highcharts.Mvc
             : base("position")
         {
 
-        }
-
-        public PositionConfigurator Top()
-        {
-            this.VerticalAlign("top");
-            return this;
-        }
-
-        public PositionConfigurator Bottom()
-        {
-            this.VerticalAlign("bottom");
-            return this;
-        }
-
-        public PositionConfigurator Middle()
-        {
-            this.VerticalAlign("middle");
-            return this;
         }
 
         public PositionConfigurator Left()
@@ -60,11 +38,6 @@ namespace Highcharts.Mvc
         {
             this.Set(new JsonAttribute("y", offset));
             return this;
-        }
-
-        private void VerticalAlign(string value)
-        {
-            this.Set(new JsonAttribute("verticalAlign", value));
         }
 
         private void HorizontalAlign(string value)

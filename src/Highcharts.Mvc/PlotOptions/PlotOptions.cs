@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Highcharts.Mvc
 {
     public static class PlotOptions
@@ -30,6 +26,11 @@ namespace Highcharts.Mvc
         public static SplinePlotOptions Spline
         {
             get { return new SplinePlotOptions(); }
+        }
+
+        public static PiePlotOptions Pie
+        {
+            get { return new PiePlotOptions(); }
         }
     }
 }

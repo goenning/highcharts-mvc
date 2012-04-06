@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using Highcharts.Mvc.Json;
 
@@ -33,7 +30,7 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public CreditsConfigurator Position(Expression<Func<PositionConfigurator, JsonConfigurator>> expression)
+        public CreditsConfigurator Position(Expression<Func<FullPositionConfigurator, JsonConfigurator>> expression)
         {
             this.Set(expression.ToJson());
             return this;

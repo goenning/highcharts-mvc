@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
 using Highcharts.Mvc.Json;
 
@@ -29,9 +26,81 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public LegendConfigurator Position(Expression<Func<PositionConfigurator, JsonConfigurator>> expression)
+        public LegendConfigurator Position(Expression<Func<FullPositionConfigurator, JsonConfigurator>> expression)
         {
             this.SetOptions(expression.ToJson());
+            return this;
+        }
+
+        public LegendConfigurator BackgroundColor(string color)
+        {
+            this.Set(new JsonAttribute("backgroundColor", color));
+            return this;
+        }
+
+        public LegendConfigurator Hide()
+        {
+            this.Set(new JsonAttribute("enabled", false));
+            return this;
+        }
+
+        public LegendConfigurator ItemWidth(int width)
+        {
+            this.Set(new JsonAttribute("itemWidth", width));
+            return this;
+        }
+
+        public LegendConfigurator LineHeight(int height)
+        {
+            this.Set(new JsonAttribute("lineHeight", height));
+            return this;
+        }
+
+        public LegendConfigurator Margin(int margin)
+        {
+            this.Set(new JsonAttribute("margin", margin));
+            return this;
+        }
+
+        public LegendConfigurator Reverse()
+        {
+            this.Set(new JsonAttribute("reversed", true));
+            return this;
+        }
+
+        public LegendConfigurator ShowShadow()
+        {
+            this.Set(new JsonAttribute("shadow", true));
+            return this;
+        }
+
+        public LegendConfigurator SymbolPadding(int padding)
+        {
+            this.Set(new JsonAttribute("symbolPadding", padding));
+            return this;
+        }
+
+        public LegendConfigurator SymbolWidth(int width)
+        {
+            this.Set(new JsonAttribute("symbolWidth", width));
+            return this;
+        }
+
+        public LegendConfigurator Width(int width)
+        {
+            this.Set(new JsonAttribute("width", width));
+            return this;
+        }
+
+        public LegendConfigurator Layout(LegendLayout layout)
+        {
+            this.Set(new JsonAttribute("layout", layout));
+            return this;
+        }
+
+        public LegendConfigurator LabelFormatter(string function)
+        {
+            this.Set(new JsonFunctionAttribute("labelFormatter", function));
             return this;
         }
     }

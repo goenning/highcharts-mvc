@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Highcharts.Mvc.Json
 {
@@ -29,18 +28,6 @@ namespace Highcharts.Mvc.Json
         }
 
         public JsonAttribute(string key, int value)
-            : this(key)
-        {
-            this.Value = value.ToString();
-        }
-
-        public JsonAttribute(string key, float value)
-            : this(key)
-        {
-            this.Value = value.ToString();
-        }
-
-        public JsonAttribute(string key, decimal value)
             : this(key)
         {
             this.Value = value.ToString();

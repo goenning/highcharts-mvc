@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Globalization;
+﻿using System.Web;
 using NUnit.Framework;
 
 namespace Highcharts.Mvc.Test
@@ -15,24 +10,11 @@ namespace Highcharts.Mvc.Test
             HtmlAssert.AreEqual(expected.ToString(), actual.ToString());
         }
 
-
-        public static void AreNotEqual(IHtmlString expected, IHtmlString actual)
-        {
-            HtmlAssert.AreNotEqual(expected.ToString(), actual.ToString());
-        }
-
         public static void AreEqual(string expected, string actual)
         {
             string expectedString = FormatString(expected);
             string actualString = FormatString(actual);
             Assert.AreEqual(expectedString, actualString);
-        }
-
-        public static void AreNotEqual(string expected, string actual)
-        {
-            string expectedString = FormatString(expected);
-            string actualString = FormatString(actual);
-            Assert.AreNotEqual(expectedString, actualString);
         }
 
         private static string FormatString(string value)

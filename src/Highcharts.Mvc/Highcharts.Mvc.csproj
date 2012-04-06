@@ -12,6 +12,7 @@
     <AssemblyName>Highcharts.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +49,9 @@
     <Compile Include="AjaxConfig.cs" />
     <Compile Include="Configurator\ConfigurationExpressionExtension.cs" />
     <Compile Include="Configurator\CreditsConfigurator.cs" />
+    <Compile Include="Configurator\DataLabelsConfigurator.cs" />
+    <Compile Include="Configurator\PlotOptionsEventsConfigurator.cs" />
+    <Compile Include="Configurator\FullPositionConfigurator.cs" />
     <Compile Include="Configurator\PositionConfigurator.cs" />
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
@@ -60,11 +61,15 @@
     <Compile Include="Json\JsonFunctionAttribute.cs" />
     <Compile Include="Json\JsonNullAttribute.cs" />
     <Compile Include="Json\JsonObject.cs" />
+    <Compile Include="LegendLayout.cs" />
+    <Compile Include="PlotOptions\PiePlotOptions.cs" />
     <Compile Include="PlotOptions\PlotOptionsConfiguration.cs" />
     <Compile Include="PlotOptions\ScatterPlotOptions.cs" />
     <Compile Include="PlotOptions\SeriesPlotOptions.cs" />
     <Compile Include="PlotOptions\SplinePlotOptions.cs" />
     <Compile Include="Series\AreaSerie.cs" />
+    <Compile Include="Series\AreaSplineSerie.cs" />
+    <Compile Include="Series\BarSerie.cs" />
     <Compile Include="Series\ColumnSerie.cs" />
     <Compile Include="DataSource\EmptyDataSource.cs" />
     <Compile Include="HighchartsChart.cs" />
@@ -76,9 +81,13 @@
     <Compile Include="Series\LineSerie.cs" />
     <Compile Include="PlotOptions\PlotOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Series\PieData.cs" />
+    <Compile Include="Series\PieSerie.cs" />
+    <Compile Include="Series\ScatterSerie.cs" />
     <Compile Include="Series\Serie.cs" />
     <Compile Include="DataSource\ChartDataSource.cs" />
     <Compile Include="Configurator\TooltipConfigurator.cs" />
+    <Compile Include="Series\SplineSerie.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="highcharts-mvc.js" />

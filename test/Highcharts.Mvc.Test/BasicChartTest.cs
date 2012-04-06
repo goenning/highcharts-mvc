@@ -1,9 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using System.Globalization;
+﻿using System.Web.Mvc;
 using NUnit.Framework;
 
 namespace Highcharts.Mvc.Test
@@ -12,7 +7,7 @@ namespace Highcharts.Mvc.Test
     public class BasicChartTest
     {
         [Test]
-        public void BasicSetUp()
+        public void EmptySetUp()
         {
             var chart = new HighchartsChart("myChart");
             var actual = chart.ToHtmlString();

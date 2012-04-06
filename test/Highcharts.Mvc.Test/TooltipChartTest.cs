@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using System.Web.Mvc;
+﻿using NUnit.Framework;
 
 namespace Highcharts.Mvc.Test
 {

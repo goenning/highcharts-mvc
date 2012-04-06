@@ -1,12 +1,6 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿﻿using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using System.Dynamic;
-using System.Linq.Expressions;
 
 namespace Highcharts.Mvc
 {

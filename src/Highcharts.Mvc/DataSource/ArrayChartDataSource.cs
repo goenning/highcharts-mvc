@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web.Script.Serialization;
 using Highcharts.Mvc.Json;
-using System.Web;
-using System.Web.Mvc;
 
 namespace Highcharts.Mvc
 {
@@ -27,7 +22,7 @@ namespace Highcharts.Mvc
                 JsonObject serieObj = new JsonObject();
 
                 serieObj.Add(new JsonAttribute("name", serie.Name));
-                if (!string.IsNullOrEmpty(serie.Type))
+                if (!serie.Type.Equals(ChartSerieType.Default))
                     serieObj.Add(new JsonAttribute("type", serie.Type));
                 serieObj.Add(new JsonAttribute("data", serie.Values));
 
