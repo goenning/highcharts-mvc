@@ -66,6 +66,19 @@ namespace Highcharts.Mvc
             return this;
         }
 
+        public HighchartsSetUp AxisX(string title, int labelRotation, params string[] categories)
+        {
+            this.chartConfig.Add(
+                new JsonAttribute("xAxis",
+                    new JsonAttribute("title", new JsonAttribute("text", title)),
+                    new JsonAttribute("categories", categories),
+                    new JsonAttribute("labels", new JsonAttribute("rotation", labelRotation))
+                )
+            );
+
+            return this;
+        }
+
         public HighchartsSetUp AxisX(params string[] categories)
         {
             this.chartConfig.Add(

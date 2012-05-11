@@ -62,6 +62,8 @@
     <Compile Include="Json\JsonNullAttribute.cs" />
     <Compile Include="Json\JsonObject.cs" />
     <Compile Include="LegendLayout.cs" />
+    <Compile Include="PlotOptions\AreaPlotOptions.cs" />
+    <Compile Include="PlotOptions\BarPlotOptions.cs" />
     <Compile Include="PlotOptions\PiePlotOptions.cs" />
     <Compile Include="PlotOptions\PlotOptionsConfiguration.cs" />
     <Compile Include="PlotOptions\ScatterPlotOptions.cs" />
