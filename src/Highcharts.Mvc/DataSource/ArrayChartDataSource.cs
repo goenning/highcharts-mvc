@@ -26,6 +26,20 @@ namespace Highcharts.Mvc
                     serieObj.Add(new JsonAttribute("type", serie.Type));
                 serieObj.Add(new JsonAttribute("data", serie.Values));
 
+                if(serie is PieSerie)
+                {
+                    var pieSerie = serie as PieSerie;
+
+                    if(pieSerie.Size.HasValue)
+                    {
+                        serieObj.Add(new JsonAttribute("size", string.Format("{0}%", pieSerie.Size.Value)));
+                    }
+                    if(pieSerie.InnerSize.HasValue)
+                    {
+                        serieObj.Add(new JsonAttribute("innerSize", string.Format("{0}%", pieSerie.InnerSize.Value)));
+                    }
+                }
+
 			    seriesObjects[i] = serieObj;
             }
 

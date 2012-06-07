@@ -12,6 +12,9 @@ namespace Highcharts.Mvc
     public class HighchartsSetUp
     {
         protected string Id { get; private set; }
+        protected bool CreditsEnabled { get; set; }
+        protected bool PrintButtonEnabled { get; set; }
+
         private ChartDataSource dataSource;
         private JsonObject chartConfig;
 
@@ -23,8 +26,11 @@ namespace Highcharts.Mvc
 
             this.chartConfig.Add(
                 new JsonAttribute("chart", 
-                    new JsonAttribute("renderTo", this.Id)
-                )
+                    new JsonAttribute("renderTo", this.Id),
+                    new JsonAttribute("credits", new JsonAttribute("enabled", this.CreditsEnabled),
+                        new JsonAttribute("exporting",new JsonAttribute("printButton", 
+                            new JsonAttribute("enabled", this.PrintButtonEnabled)))
+                ))
             );
         }
 
