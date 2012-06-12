@@ -12,6 +12,7 @@ namespace Highcharts.Mvc
     public class HighchartsSetUp
     {
         protected string Id { get; private set; }
+
         private ChartDataSource dataSource;
         private JsonObject chartConfig;
 
@@ -48,6 +49,31 @@ namespace Highcharts.Mvc
             this.chartConfig.Add(
                 new JsonAttribute("title",
                     new JsonAttribute("text", title)
+                )
+            );
+
+            return this;
+        }
+
+        public HighchartsSetUp AxisX(string title, params string[] categories)
+        {
+            this.chartConfig.Add(
+                new JsonAttribute("xAxis",
+                    new JsonAttribute("title", new JsonAttribute("text", title)),
+                    new JsonAttribute("categories", categories)
+                )
+            );
+
+            return this;
+        }
+
+        public HighchartsSetUp AxisX(string title, int labelRotation, params string[] categories)
+        {
+            this.chartConfig.Add(
+                new JsonAttribute("xAxis",
+                    new JsonAttribute("title", new JsonAttribute("text", title)),
+                    new JsonAttribute("categories", categories),
+                    new JsonAttribute("labels", new JsonAttribute("rotation", labelRotation))
                 )
             );
 
@@ -140,6 +166,11 @@ namespace Highcharts.Mvc
         }
 
         public HighchartsSetUp Credits(Expression<Func<CreditsConfigurator, JsonConfigurator>> expression)
+        {
+            return this.Configure(expression);
+        }
+
+        public HighchartsSetUp Exporting(Expression<Func<ExportingConfigurator, JsonConfigurator>> expression)
         {
             return this.Configure(expression);
         }
