@@ -50,9 +50,13 @@
     <Compile Include="Configurator\ConfigurationExpressionExtension.cs" />
     <Compile Include="Configurator\CreditsConfigurator.cs" />
     <Compile Include="Configurator\DataLabelsConfigurator.cs" />
+    <Compile Include="Configurator\ExportButtonConfigurator.cs" />
+    <Compile Include="Configurator\ExportingButtonsConfigurator.cs" />
+    <Compile Include="Configurator\ExportingConfigurator.cs" />
     <Compile Include="Configurator\PlotOptionsEventsConfigurator.cs" />
     <Compile Include="Configurator\FullPositionConfigurator.cs" />
     <Compile Include="Configurator\PositionConfigurator.cs" />
+    <Compile Include="Configurator\PrintButtonConfigurator.cs" />
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
@@ -62,6 +66,8 @@
     <Compile Include="Json\JsonNullAttribute.cs" />
     <Compile Include="Json\JsonObject.cs" />
     <Compile Include="LegendLayout.cs" />
+    <Compile Include="PlotOptions\AreaPlotOptions.cs" />
+    <Compile Include="PlotOptions\BarPlotOptions.cs" />
     <Compile Include="PlotOptions\PiePlotOptions.cs" />
     <Compile Include="PlotOptions\PlotOptionsConfiguration.cs" />
     <Compile Include="PlotOptions\ScatterPlotOptions.cs" />

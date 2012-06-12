@@ -9,5 +9,11 @@ namespace Highcharts.Mvc
         {
 
         }
+
+        //a % of 100
+        public double? Size { get; set; }
+
+        //a % of 100
+        public double? InnerSize { get; set; }
     }
 }

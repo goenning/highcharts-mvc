@@ -23,6 +23,61 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void PrintDisabled()
+        {
+            var setup = new HighchartsSetUp("myChart").Exporting(ex => ex.Buttons(b => b.PrintButton(pb => pb.Hide())));
+            var actual = setup.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          exporting: { buttons: { printButton: { enabled: false }} }
+                                                      });
+                                                  });");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ExportDisabled()
+        {
+            var setup =
+                new HighchartsSetUp("myChart").Exporting(
+                    ex => ex.Buttons(b => b.ExportButton(eb => eb.Hide())));
+
+            var actual = setup.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          exporting: { buttons: { exportButton: { enabled: false }} }
+                                                      });
+                                                  });");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ExportAndPrintDisabled()
+        {
+            var setup = new HighchartsSetUp("myChart").Exporting(ex => ex.Buttons(b => b.ExportButton(eb => eb.Hide()).PrintButton(pb => pb.Hide())));
+
+            var actual = setup.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          exporting: { buttons: { exportButton: { enabled: false }, printButton: { enabled: false } }}
+                                                      });
+                                                  });");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void FullSetUp()
         {
             HighchartsSetUp setup = new HighchartsSetUp("myChart")
@@ -53,7 +108,7 @@ namespace Highcharts.Mvc.Test
                                                           yAxis: {
                                                             title: { text: 'Months' }
                                                           },
-                                                          xAxis: { categories: [ 'Jan', 'Fev' ] },
+                                                          xAxis: { title: { text: 'Jan' }, categories: [ 'Fev' ] },
                                                           credits: { enabled: false },
                                                           legend: { align: 'center' },
                                                           plotOptions: {
