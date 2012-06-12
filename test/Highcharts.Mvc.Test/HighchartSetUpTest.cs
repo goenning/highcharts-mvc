@@ -70,7 +70,7 @@ namespace Highcharts.Mvc.Test
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           },
-                                                          exporting: { buttons: { exportButton: { enabled: false }, printButton: { enabled: false } }
+                                                          exporting: { buttons: { exportButton: { enabled: false }, printButton: { enabled: false } }}
                                                       });
                                                   });");
 
@@ -108,7 +108,7 @@ namespace Highcharts.Mvc.Test
                                                           yAxis: {
                                                             title: { text: 'Months' }
                                                           },
-                                                          xAxis: { categories: [ 'Jan', 'Fev' ] },
+                                                          xAxis: { title: { text: 'Jan' }, categories: [ 'Fev' ] },
                                                           credits: { enabled: false },
                                                           legend: { align: 'center' },
                                                           plotOptions: {
