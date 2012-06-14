@@ -62,7 +62,13 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void ExportAndPrintDisabled()
         {
-            var setup = new HighchartsSetUp("myChart").Exporting(ex => ex.Buttons(b => b.ExportButton(eb => eb.Hide()).PrintButton(pb => pb.Hide())));
+            var setup = new HighchartsSetUp("myChart")
+                            .Exporting(ex =>
+                                ex.Buttons(b =>
+                                    b.ExportButton(eb => eb.Hide())
+                                     .PrintButton(pb => pb.Hide())
+                                )
+                            );
 
             var actual = setup.ToHtmlString();
             var expected = MvcHtmlString.Create(@"$(document).ready(function () {
@@ -84,15 +90,23 @@ namespace Highcharts.Mvc.Test
                                         .WithSerieType(ChartSerieType.Line)
                                         .Title("The title")
                                         .Subtitle("This is the subtitle")
-                                        .AxisY("Months")
-                                        .AxisX("Jan", "Fev")
+                                        .AxisY(x =>
+                                            x.Title(y =>
+                                                y.Text("Months")
+                                            )
+                                        )
+                                        .AxisX(x =>
+                                            x.Title(y =>
+                                                y.Text("Months").Rotation(180)
+                                            )
+                                        )
                                         .Credits(x => x.Hide())
                                         .Legend(x => x.Position(y => y.Center()))
                                         .Options(
                                             PlotOptions.Series.NoAnimation()
                                         )
                                         .Series(
-                                            new PieSerie("Tickets", new int[] { 2, 5})
+                                            new PieSerie("Tickets", new int[] { 2, 5 })
                                         )
                                         .Tooltip(x => x.Crosshairs());
 
@@ -108,7 +122,12 @@ namespace Highcharts.Mvc.Test
                                                           yAxis: {
                                                             title: { text: 'Months' }
                                                           },
-                                                          xAxis: { title: { text: 'Jan' }, categories: [ 'Fev' ] },
+                                                          xAxis: { 
+                                                            title: { 
+                                                                text: 'Months',
+                                                                rotation: 180
+                                                            }
+                                                          },
                                                           credits: { enabled: false },
                                                           legend: { align: 'center' },
                                                           plotOptions: {

@@ -21,6 +21,103 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
+        public void FunctionObject()
+        {
+            var json = new JsonObject(new JsonFunction("return 'Hello';"));
+            var actual = json.ToString();
+            var expected = "function() { return 'Hello'; }";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ObjectArrayObject()
+        {
+            Array arr = new JsonObject[] { 
+                new JsonObject(), 
+                new JsonObject() 
+            };
+
+            var json = new JsonObject(arr);
+            var actual = json.ToString();
+            var expected = "[{ },{ }]";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringArrayObject()
+        {
+            Array arr = new string[] { "One", "Two" };
+            var json = new JsonObject(arr);
+            var actual = json.ToString();
+            var expected = "['One','Two']";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Int32ArrayObject()
+        {
+            Array arr = new int[] { 1, 2 };
+            var json = new JsonObject(arr);
+            var actual = json.ToString();
+            var expected = "[1,2]";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void DecimalObject()
+        {
+            var json = new JsonObject(24.52);
+            var actual = json.ToString();
+            var expected = "24.52";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringObject()
+        {
+            var json = new JsonObject("Hello World");
+            var actual = json.ToString();
+            var expected = "'Hello World'";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void FalseObject()
+        {
+            var json = new JsonObject(false);
+            var actual = json.ToString();
+            var expected = "false";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TrueObject()
+        {
+            var json = new JsonObject(true);
+            var actual = json.ToString();
+            var expected = "true";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Int32Object()
+        {
+            var json = new JsonObject(2);
+            var actual = json.ToString();
+            var expected = "2";
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void EmptyWithOneAttribute()
         {
             var json = new JsonObject();

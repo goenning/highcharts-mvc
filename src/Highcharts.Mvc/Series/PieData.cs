@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
     public class PieData
     {
-        public string Name { get; private set; }
-        public float Value { get; private set; }
+        private string name;
+        private float value;
 
         public PieData(string name, float value)
         {
-            this.Name = name;
-            this.Value = value;
+            this.name = name;
+            this.value = value;
         }
 
         public override string ToString()
         {
-            return string.Format("['{0}', {1}]", this.Name, this.Value);
+            return new JsonObject(new object[] { this.name, this.value }).ToString();
         }
     }
 }

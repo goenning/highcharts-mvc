@@ -81,7 +81,7 @@ namespace Highcharts.Mvc.Test
         public void BasicSetUp_WithXAxisCategories()
         {
             var chart = new HighchartsChart("myChart")
-                            .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+                        .AxisX(x => x.Categories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"));
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -91,35 +91,7 @@ namespace Highcharts.Mvc.Test
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           },
-                                                          xAxis: { title: { text: 'Jan' },
-                                                             categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                                                                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                                                          }
-                                                      });
-                                                  });
-                                                  </script>");
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void BasicSetUp_WithoutXAxisTitle_Should_Cause_Bug()
-        {
-            //This exposes a bug in the AxisX method - it accepts a string for the title and a params string[] of categories,
-            //but can't differentiate between title and categories, so even if title was not intentially set, it gets set to the
-            //first category.
-            var chart = new HighchartsChart("myChart")
-                .AxisX("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
-
-            var actual = chart.ToHtmlString();
-            var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
-                                                  <script type=""text/javascript"">
-                                                  $(document).ready(function () {
-                                                      hCharts['myChart'] = new Highcharts.Chart({
-                                                          chart: {
-                                                            renderTo: 'myChart'
-                                                          },
-                                                          xAxis:
+                                                          xAxis: {
                                                              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                                                                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                                                           }
@@ -133,8 +105,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void BasicSetUp_WithYAxisTitle()
         {
-            var chart = new HighchartsChart("myChart")
-                            .AxisY("Tickets");
+            var chart = new HighchartsChart("myChart").AxisY(x => x.Title(y => y.Text("Tickets")));
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>

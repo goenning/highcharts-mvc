@@ -7,7 +7,7 @@ namespace Highcharts.Mvc.Json
     public class JsonAttribute
     {
         protected string Key { get; set; }
-        protected string Value { get; set; }
+        protected JsonObject Value { get; set; }
 
         public JsonAttribute()
             : this(null)
@@ -24,25 +24,31 @@ namespace Highcharts.Mvc.Json
         public JsonAttribute(string key, bool value)
             : this(key)
         {
-            this.Value = value ? "true" : "false";
+            this.Value = new JsonObject(value);
         }
 
         public JsonAttribute(string key, int value)
             : this(key)
         {
-            this.Value = value.ToString();
+            this.Value = new JsonObject(value);
         }
 
         public JsonAttribute(string key, double value)
             : this(key)
         {
-            this.Value = value.ToString();
+            this.Value = new JsonObject(value);
+        }
+
+        public JsonAttribute(string key, JsonFunction value)
+            : this(key)
+        {
+            this.Value = new JsonObject(value);
         }
 
         public JsonAttribute(string key, string value)
             : this(key)
         {
-            this.Value = string.Concat("'", value.ToString(), "'");
+            this.Value = new JsonObject(value);
         }
 
         public JsonAttribute(string key, Enum value)
@@ -51,38 +57,26 @@ namespace Highcharts.Mvc.Json
 
         }
 
-        public JsonAttribute(string key, params string[] values)
-            : this(key)
-        {
-            string htmlValues = string.Join("','", values.Select(x => x.ToString()));
-            htmlValues = string.Concat("['", htmlValues, "']");
-            this.Value = htmlValues;
-        }
-
         public JsonAttribute(string key, Array values)
             : this(key)
         {
-            string[] strValues = new string[values.Length];
-            for (int i = 0; i < values.Length; i++)
-                strValues[i] = values.GetValue(i).ToString();
-
-            string htmlValues = string.Join(",", strValues);
-            htmlValues = string.Concat("[", htmlValues, "]");
-            this.Value = htmlValues;
+            this.Value = new JsonObject(values);
         }
 
-        public JsonAttribute(string key, params JsonAttribute[] values)
+        public JsonAttribute(string key, params JsonAttribute[] attrs)
             : this(key)
         {
-            string htmlValues = string.Join(",", values.Select(x => x.ToString()));
-            this.Value = string.Concat("{ ", htmlValues, " }");
+            JsonObject obj = new JsonObject();
+            foreach (JsonAttribute attr in attrs)
+                obj.Add(attr);
+
+            this.Value = obj;
         }
 
         public JsonAttribute(string key, params JsonObject[] objs)
             : this(key)
         {
-            string htmlValues = string.Join(",", objs.Select(x => x.ToJson()));
-            this.Value = string.Concat("[ ", htmlValues, " ]");
+            this.Value = new JsonObject(objs);
         }
 
         public override string ToString()

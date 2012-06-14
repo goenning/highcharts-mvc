@@ -32,7 +32,7 @@ namespace Highcharts.Mvc
 
         public DataLabelsConfigurator Formatter(string function)
         {
-            this.Set(new JsonFunctionAttribute("formatter", function));
+            this.Set(new JsonAttribute("formatter", new JsonFunction(function)));
             return this;
         }
 

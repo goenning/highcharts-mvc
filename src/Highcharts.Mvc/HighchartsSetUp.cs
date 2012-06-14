@@ -55,55 +55,6 @@ namespace Highcharts.Mvc
             return this;
         }
 
-        public HighchartsSetUp AxisX(string title, params string[] categories)
-        {
-            this.chartConfig.Add(
-                new JsonAttribute("xAxis",
-                    new JsonAttribute("title", new JsonAttribute("text", title)),
-                    new JsonAttribute("categories", categories)
-                )
-            );
-
-            return this;
-        }
-
-        public HighchartsSetUp AxisX(string title, int labelRotation, params string[] categories)
-        {
-            this.chartConfig.Add(
-                new JsonAttribute("xAxis",
-                    new JsonAttribute("title", new JsonAttribute("text", title)),
-                    new JsonAttribute("categories", categories),
-                    new JsonAttribute("labels", new JsonAttribute("rotation", labelRotation))
-                )
-            );
-
-            return this;
-        }
-
-        public HighchartsSetUp AxisX(params string[] categories)
-        {
-            this.chartConfig.Add(
-                new JsonAttribute("xAxis",
-                    new JsonAttribute("categories", categories)
-                )
-            );
-
-            return this;
-        }
-
-        public HighchartsSetUp AxisY(string title)
-        {
-            this.chartConfig.Add(
-                new JsonAttribute("yAxis",
-                    new JsonAttribute("title", 
-                        new JsonAttribute("text", title)
-                    )
-                )
-            );
-
-            return this;
-        }
-
         public HighchartsSetUp Series(ChartDataSource datasource)
         {
             this.dataSource = datasource;
@@ -153,6 +104,16 @@ namespace Highcharts.Mvc
             ); 
 
             return this;
+        }
+
+        public HighchartsSetUp AxisY(Expression<Func<AxisYConfigurator, JsonConfigurator>> expression)
+        {
+            return this.Configure(expression);
+        }
+
+        public HighchartsSetUp AxisX(Expression<Func<AxisXConfigurator, JsonConfigurator>> expression)
+        {
+            return this.Configure(expression);
         }
 
         public HighchartsSetUp Tooltip(Expression<Func<TooltipConfigurator, JsonConfigurator>> expression)

@@ -141,7 +141,7 @@ namespace Highcharts.Mvc.Test.Json
         [Test]
         public void NamedFunction()
         {
-            var formatter = new JsonFunctionAttribute("formatter", "showFormat");
+            var formatter = new JsonAttribute("formatter", new JsonFunction("showFormat"));
             string actual = formatter.ToString();
             string expected = "formatter: showFormat";
 
@@ -171,7 +171,7 @@ namespace Highcharts.Mvc.Test.Json
         [Test]
         public void FullFunction()
         {
-            var formatter = new JsonFunctionAttribute("formatter", "function() { return 'Hello'; }");
+            var formatter = new JsonAttribute("formatter", new JsonFunction("function() { return 'Hello'; }"));
             string actual = formatter.ToString();
             string expected = "formatter: function() { return 'Hello'; }";
 
@@ -181,7 +181,7 @@ namespace Highcharts.Mvc.Test.Json
         [Test]
         public void AnonymousFunction()
         {
-            var formatter = new JsonFunctionAttribute("formatter", "return 'Hello';");
+            var formatter = new JsonAttribute("formatter", new JsonFunction("return 'Hello';"));
             string actual = formatter.ToString();
             string expected = "formatter: function() { return 'Hello'; }";
 

@@ -12,43 +12,43 @@ namespace Highcharts.Mvc
 
         public EventsConfigurator OnClick(string function)
         {
-            this.Set(new JsonFunctionAttribute("click", function));
+            this.Set(new JsonAttribute("click", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnCheckboxClick(string function)
         {
-            this.Set(new JsonFunctionAttribute("checkboxClick", function));
+            this.Set(new JsonAttribute("checkboxClick", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnLegendItemClick(string function)
         {
-            this.Set(new JsonFunctionAttribute("legendItemClick", function));
+            this.Set(new JsonAttribute("legendItemClick", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnMouseOver(string function)
         {
-            this.Set(new JsonFunctionAttribute("mouseOver", function));
+            this.Set(new JsonAttribute("mouseOver", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnMouseOut(string function)
         {
-            this.Set(new JsonFunctionAttribute("mouseOut", function));
+            this.Set(new JsonAttribute("mouseOut", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnHide(string function)
         {
-            this.Set(new JsonFunctionAttribute("hide", function));
+            this.Set(new JsonAttribute("hide", new JsonFunction(function)));
             return this;
         }
 
         public EventsConfigurator OnShow(string function)
         {
-            this.Set(new JsonFunctionAttribute("show", function));
+            this.Set(new JsonAttribute("show", new JsonFunction(function)));
             return this;
         }
     }

@@ -4,7 +4,8 @@ namespace Highcharts.Mvc
 {
     public class PrintButtonConfigurator : JsonConfigurator
     {
-        public PrintButtonConfigurator() : base("printButton")
+        public PrintButtonConfigurator() 
+            : base("printButton")
         {
             
         }

@@ -2,6 +2,7 @@
 [Bb]in/
 *.suo
 *.user
+*.ncrunchsolution
 /TestResults
 *.vspscc
 *.vssscc

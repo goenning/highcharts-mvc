@@ -100,7 +100,7 @@ namespace Highcharts.Mvc
 
         public LegendConfigurator LabelFormatter(string function)
         {
-            this.Set(new JsonFunctionAttribute("labelFormatter", function));
+            this.Set(new JsonAttribute("labelFormatter", new JsonFunction(function)));
             return this;
         }
     }

@@ -13,7 +13,7 @@ namespace Highcharts.Mvc
         public TooltipConfigurator Formatter(string function)
         {
             this.Set(
-                new JsonFunctionAttribute("formatter", function)
+                new JsonAttribute("formatter", new JsonFunction(function))
             );
 
             return this;
