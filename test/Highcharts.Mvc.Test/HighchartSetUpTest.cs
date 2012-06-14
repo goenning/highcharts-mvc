@@ -91,13 +91,11 @@ namespace Highcharts.Mvc.Test
                                         .Title("The title")
                                         .Subtitle("This is the subtitle")
                                         .AxisY(x =>
-                                            x.Title(y =>
-                                                y.Text("Months")
-                                            )
+                                            x.Title("Months")
                                         )
                                         .AxisX(x =>
-                                            x.Title(y =>
-                                                y.Text("Months").Rotation(180)
+                                            x.Title("Months", y =>
+                                                y.Rotation(180)
                                             )
                                         )
                                         .Credits(x => x.Hide())
@@ -123,9 +121,9 @@ namespace Highcharts.Mvc.Test
                                                             title: { text: 'Months' }
                                                           },
                                                           xAxis: { 
-                                                            title: { 
-                                                                text: 'Months',
-                                                                rotation: 180
+                                                            title: {
+                                                                rotation: 180,
+                                                                text: 'Months'
                                                             }
                                                           },
                                                           credits: { enabled: false },

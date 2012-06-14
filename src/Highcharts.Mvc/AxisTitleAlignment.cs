@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Highcharts.Mvc
 {
-    public enum TitleAlignment
+    public enum AxisTitleAlignment
     {
         High,
         Middle,

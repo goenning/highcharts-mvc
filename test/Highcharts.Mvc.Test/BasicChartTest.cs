@@ -105,7 +105,7 @@ namespace Highcharts.Mvc.Test
         [Test]
         public void BasicSetUp_WithYAxisTitle()
         {
-            var chart = new HighchartsChart("myChart").AxisY(x => x.Title(y => y.Text("Tickets")));
+            var chart = new HighchartsChart("myChart").AxisY(x => x.Title("Tickets"));
 
             var actual = chart.ToHtmlString();
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>

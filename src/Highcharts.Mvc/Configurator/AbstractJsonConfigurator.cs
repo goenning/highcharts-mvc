@@ -10,12 +10,12 @@ namespace Highcharts.Mvc
             this.jsonConfig = new JsonAttribute(name);
         }
 
-        protected void Set(JsonAttribute json)
+        public void Set(JsonAttribute json)
         {
             this.jsonConfig.Set(json);
         }
 
-        protected void SetOptions(JsonAttribute json)
+        public void SetOptions(JsonAttribute json)
         {
             this.jsonConfig.SetOptions(json);
         }

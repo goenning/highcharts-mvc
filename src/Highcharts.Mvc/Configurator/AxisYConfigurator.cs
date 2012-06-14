@@ -15,10 +15,15 @@ namespace Highcharts.Mvc
 
         }
 
-
-        public AxisYConfigurator Title(Expression<Func<TitleConfigurator, JsonConfigurator>> expression)
+        public AxisYConfigurator Title(string text)
         {
-            this.Set(expression.ToJson());
+            return this.Title(text, x => x);
+        }
+
+        public AxisYConfigurator Title(string text, Expression<Func<AxisTitleConfigurator, JsonConfigurator>> expression)
+        {
+            JsonAttribute titleText = new JsonAttribute("text", text);
+            this.Set(expression.ToJson(titleText));
             return this;
         }
     }

@@ -59,7 +59,7 @@
     <Compile Include="Configurator\FullPositionConfigurator.cs" />
     <Compile Include="Configurator\PositionConfigurator.cs" />
     <Compile Include="Configurator\PrintButtonConfigurator.cs" />
-    <Compile Include="Configurator\TitleConfigurator.cs" />
+    <Compile Include="Configurator\AxisTitleConfigurator.cs" />
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
     <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
@@ -97,7 +97,7 @@
     <Compile Include="DataSource\ChartDataSource.cs" />
     <Compile Include="Configurator\TooltipConfigurator.cs" />
     <Compile Include="Series\SplineSerie.cs" />
-    <Compile Include="TitleAlignment.cs" />
+    <Compile Include="AxisTitleAlignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="highcharts-mvc.js" />

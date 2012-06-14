@@ -136,7 +136,7 @@ namespace Highcharts.Mvc
             return this.Configure(expression);
         }
 
-        private HighchartsSetUp Configure<T>(Expression<Func<T, JsonConfigurator>> expression) where T : new()
+        private HighchartsSetUp Configure<T>(Expression<Func<T, JsonConfigurator>> expression) where T : JsonConfigurator, new()
         {
             this.chartConfig.Add(expression.ToJson());
             return this;

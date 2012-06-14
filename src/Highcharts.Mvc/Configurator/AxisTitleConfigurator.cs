@@ -6,41 +6,35 @@ using Highcharts.Mvc.Json;
 
 namespace Highcharts.Mvc
 {
-    public class TitleConfigurator : JsonConfigurator
+    public class AxisTitleConfigurator : JsonConfigurator
     {
-        public TitleConfigurator()
+        public AxisTitleConfigurator()
             : base("title")
         {
 
         }
 
-        public TitleConfigurator Align(TitleAlignment alignment)
+        public AxisTitleConfigurator Align(AxisTitleAlignment alignment)
         {
             this.Set(new JsonAttribute("align", alignment));
             return this;
         }
 
-        public TitleConfigurator Margin(int margin)
+        public AxisTitleConfigurator Margin(int margin)
         {
             this.Set(new JsonAttribute("margin", margin));
             return this;
         }
 
-        public TitleConfigurator Offset(int offset)
+        public AxisTitleConfigurator Offset(int offset)
         {
             this.Set(new JsonAttribute("offset", offset));
             return this;
         }
 
-        public TitleConfigurator Rotation(int rotation)
+        public AxisTitleConfigurator Rotation(int rotation)
         {
             this.Set(new JsonAttribute("rotation", rotation));
-            return this;
-        }
-
-        public TitleConfigurator Text(string text)
-        {
-            this.Set(new JsonAttribute("text", text));
             return this;
         }
     }
