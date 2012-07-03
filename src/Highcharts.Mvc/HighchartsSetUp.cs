@@ -106,6 +106,12 @@ namespace Highcharts.Mvc
             return this;
         }
 
+        public HighchartsSetUp Colors(params string[] colors)
+        {
+            this.chartConfig.Add(new JsonAttribute("colors", colors));
+            return this;
+        }
+
         public HighchartsSetUp AxisY(Expression<Func<AxisYConfigurator, JsonConfigurator>> expression)
         {
             return this.Configure(expression);

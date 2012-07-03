@@ -13,7 +13,7 @@ namespace Highcharts.Mvc.Test
 
         public static object[] AllSeries = new object[]
         {
-            new object [] { new PieSerie("My Serie", null), ChartSerieType.Pie },
+            new object [] { new PieSerie("My Serie", new int[0]), ChartSerieType.Pie },
             new object [] { new AreaSplineSerie("My Serie", null), ChartSerieType.AreaSpline },
             new object [] { new AreaSerie("My Serie", null), ChartSerieType.Area },
             new object [] { new BarSerie("My Serie", null), ChartSerieType.Bar },

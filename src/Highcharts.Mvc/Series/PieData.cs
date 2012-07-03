@@ -8,8 +8,26 @@ namespace Highcharts.Mvc
 {
     public class PieData
     {
-        private string name;
-        private float value;
+        protected string name;
+        protected object value;
+
+        public PieData(string name, int value)
+        {
+            this.name = name;
+            this.value = value;
+        }
+
+        public PieData(string name, decimal value)
+        {
+            this.name = name;
+            this.value = value;
+        }
+
+        public PieData(string name, double value)
+        {
+            this.name = name;
+            this.value = value;
+        }
 
         public PieData(string name, float value)
         {

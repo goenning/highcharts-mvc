@@ -39,7 +39,7 @@ namespace Highcharts.Mvc.Test
 			                                                  type: 'pie',
 			                                                  data: [
 				                                                  ['Firefox', 45],
-				                                                  ['Chrome', 12.8 ],
+				                                                  ['Chrome', 12.8],
 				                                                  ['IE', 26.8],
 				                                                  ['Safari', 8.5],
 				                                                  ['Opera', 6.2],

@@ -23,6 +23,33 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void ChartColors()
+        {
+            var setup = new HighchartsSetUp("myChart").Colors("#4572A7", "#AA4643", "#89A54E", "#80699B", "#3D96AE", "#DB843D", "#92A8CD", "#A47D7C", "#B5CA92");
+            var actual = setup.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart'
+                                                          },
+                                                          colors: [
+	                                                          '#4572A7', 
+	                                                          '#AA4643', 
+	                                                          '#89A54E', 
+	                                                          '#80699B', 
+	                                                          '#3D96AE', 
+	                                                          '#DB843D', 
+	                                                          '#92A8CD', 
+	                                                          '#A47D7C', 
+	                                                          '#B5CA92'
+                                                          ]
+                                                      });
+                                                  });");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void PrintDisabled()
         {
             var setup = new HighchartsSetUp("myChart").Exporting(ex => ex.Buttons(b => b.PrintButton(pb => pb.Hide())));
