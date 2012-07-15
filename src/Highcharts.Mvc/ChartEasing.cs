@@ -1,7 +1,7 @@
 ﻿
 namespace Highcharts.Mvc
 {
-    public enum ChartAnimation
+    public enum ChartEasing
     {
         Linear,
         Swing

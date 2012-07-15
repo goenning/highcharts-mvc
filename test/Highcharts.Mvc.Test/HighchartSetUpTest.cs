@@ -50,6 +50,25 @@ namespace Highcharts.Mvc.Test
         }
 
         [Test]
+        public void ChartSettingsTest()
+        {
+            var setup = new HighchartsSetUp("myChart")
+                            .Settings(x => x.BackgroundColor("#000"));
+
+            var actual = setup.ToHtmlString();
+            var expected = MvcHtmlString.Create(@"$(document).ready(function () {
+                                                      hCharts['myChart'] = new Highcharts.Chart({
+                                                          chart: {
+                                                            renderTo: 'myChart',
+                                                            backgroundColor: '#000'
+                                                          }
+                                                      });
+                                                  });");
+
+            HtmlAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void PrintDisabled()
         {
             var setup = new HighchartsSetUp("myChart").Exporting(ex => ex.Buttons(b => b.PrintButton(pb => pb.Hide())));
@@ -59,7 +78,13 @@ namespace Highcharts.Mvc.Test
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           },
-                                                          exporting: { buttons: { printButton: { enabled: false }} }
+                                                          exporting: { 
+                                                            buttons: { 
+                                                                printButton: { 
+                                                                    enabled: false 
+                                                                }
+                                                            } 
+                                                          }
                                                       });
                                                   });");
 
@@ -79,7 +104,13 @@ namespace Highcharts.Mvc.Test
                                                           chart: {
                                                             renderTo: 'myChart'
                                                           },
-                                                          exporting: { buttons: { exportButton: { enabled: false }} }
+                                                          exporting: { 
+                                                            buttons: { 
+                                                                exportButton: { 
+                                                                    enabled: false 
+                                                                }
+                                                            } 
+                                                          }
                                                       });
                                                   });");
 
@@ -127,13 +158,16 @@ namespace Highcharts.Mvc.Test
                                         )
                                         .Credits(x => x.Hide())
                                         .Legend(x => x.Position(y => y.Center()))
-                                        .Options(
-                                            PlotOptions.Series.NoAnimation()
-                                        )
+                                        .Options(x => {
+                                            x.Series.NoAnimation();
+                                        })
                                         .Series(
                                             new PieSerie("Tickets", new int[] { 2, 5 })
                                         )
-                                        .Tooltip(x => x.Crosshairs());
+                                        .Tooltip(x => 
+                                            x.Crosshairs()
+                                             .Formatter("return 'Hello'")
+                                        );
 
             var actual = setup.ToHtmlString();
             var expected = MvcHtmlString.Create(@"$(document).ready(function () {
@@ -144,21 +178,24 @@ namespace Highcharts.Mvc.Test
                                                           },
                                                           title: { text: 'The title' },
                                                           subtitle: { text: 'This is the subtitle' },
+                                                          xAxis: { 
+                                                            title: {
+                                                                text: 'Months',
+                                                                rotation: 180
+                                                            }
+                                                          },
                                                           yAxis: {
                                                             title: { text: 'Months' }
                                                           },
-                                                          xAxis: { 
-                                                            title: {
-                                                                rotation: 180,
-                                                                text: 'Months'
-                                                            }
-                                                          },
-                                                          credits: { enabled: false },
-                                                          legend: { align: 'center' },
                                                           plotOptions: {
                                                             series: { animation: false }
                                                           },
-                                                          tooltip: { crosshairs: true },
+                                                          credits: { enabled: false },
+                                                          tooltip: { 
+                                                            formatter: function() { return 'Hello' }, 
+                                                            crosshairs: true 
+                                                          },
+                                                          legend: { align: 'center' },
                                                           series: [
                                                             { name: 'Tickets', type: 'pie', data: [ 2, 5 ] }
                                                           ]

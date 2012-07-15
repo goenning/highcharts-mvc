@@ -6,7 +6,7 @@ namespace Highcharts.Mvc.Test
     public class SerieTypeTest
     {
         [Test, TestCaseSource("AllSeries")]
-        public void CorrectTypeNamePerSerie(Serie serie, ChartSerieType expected)
+        public void CorrectTypeNamePerSerie(Serie serie, ChartSerieType? expected)
         {
             Assert.AreEqual(expected, serie.Type);
         }
@@ -22,7 +22,7 @@ namespace Highcharts.Mvc.Test
             new object [] { new SplineSerie("My Serie", null), ChartSerieType.Spline },
             new object [] { new ScatterSerie("My Serie", null), ChartSerieType.Scatter },
             new object [] { new Serie("My Serie", ChartSerieType.Scatter, null), ChartSerieType.Scatter },
-            new object [] { new Serie("My Serie", null), ChartSerieType.Default }
+            new object [] { new Serie("My Serie", null), null }
         };
     }
 }

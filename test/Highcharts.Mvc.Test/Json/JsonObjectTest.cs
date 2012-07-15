@@ -121,7 +121,7 @@ namespace Highcharts.Mvc.Test.Json
         public void EmptyWithOneAttribute()
         {
             var json = new JsonObject();
-            json.Add(new JsonAttribute("title", "My Object"));
+            json.Set(new JsonAttribute("title", "My Object"));
             var actual = json.ToString();
             var expected = "{ title: 'My Object' }";
 
@@ -132,8 +132,8 @@ namespace Highcharts.Mvc.Test.Json
         public void EmptyWithTwoAttributes()
         {
             var json = new JsonObject();
-            json.Add(new JsonAttribute("title", "My Object"));
-            json.Add(new JsonAttribute("subtitle", "This is the subtitle"));
+            json.Set(new JsonAttribute("title", "My Object"));
+            json.Set(new JsonAttribute("subtitle", "This is the subtitle"));
             var actual = json.ToString();
             var expected = @"{ 
                                 title: 'My Object',  

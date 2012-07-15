@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using Highcharts.Mvc.Json;
 using System.Linq.Expressions;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
     public class AxisYConfigurator : JsonConfigurator
     {
+        private readonly YAxis axis;
+        internal AxisYConfigurator(YAxis axis)
+        {
+            this.axis = axis;
+        }
+
         public AxisYConfigurator()
             : base("yAxis")
         {
@@ -17,13 +24,13 @@ namespace Highcharts.Mvc
 
         public AxisYConfigurator Title(string text)
         {
-            return this.Title(text, x => x);
+            this.axis.Title.Text = text;
+            return this;
         }
 
-        public AxisYConfigurator Title(string text, Expression<Func<AxisTitleConfigurator, JsonConfigurator>> expression)
+        public AxisYConfigurator Title(string text, Action<AxisTitleConfigurator> action)
         {
-            JsonAttribute titleText = new JsonAttribute("text", text);
-            this.Set(expression.ToJson(titleText));
+            action.Invoke(new AxisTitleConfigurator(this.axis.Title));
             return this;
         }
     }

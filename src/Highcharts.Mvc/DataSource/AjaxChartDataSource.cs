@@ -12,38 +12,40 @@ namespace Highcharts.Mvc
         public AjaxChartDataSource(string url)
         {
             this.jsonConfiguration = new JsonObject();
-            this.jsonConfiguration.Add(new JsonAttribute("url", url));
+            this.jsonConfiguration.Set(new JsonAttribute("url", url));
         }
 
         public override IHtmlString ToHtmlString(string chartId)
         {
-            this.jsonConfiguration.Add(new JsonAttribute("chartId", chartId));
+            this.jsonConfiguration.Set(new JsonAttribute("chartId", chartId));
             string js = string.Format("loadChartAjax({0});", this.jsonConfiguration.ToJson());
             return MvcHtmlString.Create(js);
         }
 
         public AjaxChartDataSource Reload(int miliseconds)
         {
-            this.jsonConfiguration.Add(new JsonAttribute("interval", miliseconds));
+            this.jsonConfiguration.Set(new JsonAttribute("interval", miliseconds));
             return this;
         }
 
         public AjaxChartDataSource AsGet()
         {
-            this.jsonConfiguration.Add(new JsonAttribute("method", "GET"));
+            this.jsonConfiguration.Set(new JsonAttribute("method", "GET"));
             return this;
         }
 
         public AjaxChartDataSource NoAnimation()
         {
-            this.jsonConfiguration.Add(new JsonAttribute("animation", false));
+            this.jsonConfiguration.Set(new JsonAttribute("animation", false));
             return this;
         }
-
+        
+        //TODO: add this 
+        /*
         public AjaxChartDataSource Animation(Expression<Func<AnimationConfigurator, JsonConfigurator>> expression)
         {
-            this.jsonConfiguration.Add(expression.ToJson());
+            this.jsonConfiguration.Set(expression.ToJson());
             return this;
-        }
+        }*/
     }
 }

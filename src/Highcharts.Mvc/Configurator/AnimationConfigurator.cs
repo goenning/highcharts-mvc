@@ -1,24 +1,25 @@
 ﻿using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
     public class AnimationConfigurator : JsonConfigurator
     {
-        public AnimationConfigurator()
-            : base("animation")
+        private readonly Animation animation;
+        internal AnimationConfigurator(Animation animation)
         {
-
+            this.animation = animation;
         }
 
         public AnimationConfigurator Duration(int milliseconds)
         {
-            this.Set(new JsonAttribute("duration", milliseconds));
+            this.animation.Duration = milliseconds;
             return this;
         }
 
-        public AnimationConfigurator Easing(ChartAnimation animation)
+        public AnimationConfigurator Easing(ChartEasing easing)
         {
-            this.Set(new JsonAttribute("easing", animation));
+            this.animation.Easing = easing;
             return this;
         }
     }

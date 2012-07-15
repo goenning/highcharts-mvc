@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Highcharts.Mvc.Json
 {
-    public class JsonFunction
+    public class JsonFunction : ICustomJsonConverter
     {
         private string function;
 
         public JsonFunction(string function)
         {
             if (function.Contains(" ") && !function.StartsWith("function("))
-                function = string.Format("function() {{ {0} }}", function);
+                function = string.Format("function(){{{0}}}", function);
 
             this.function = function;
         }
@@ -20,6 +20,16 @@ namespace Highcharts.Mvc.Json
         public override string ToString()
         {
             return this.function;
+        }
+
+        public bool IsConsideredNull()
+        {
+            return false;
+        }
+
+        public string ToJson()
+        {
+            return this.ToString();
         }
     }
 }

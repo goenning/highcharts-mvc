@@ -1,71 +1,62 @@
 ﻿using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
     public class FullPositionConfigurator : JsonConfigurator
     {
-        public FullPositionConfigurator()
-            : base("position")
+        private readonly FullPosition position;
+        internal FullPositionConfigurator(FullPosition position)
         {
-
+            this.position = position;
         }
 
         public FullPositionConfigurator Left()
         {
-            this.HorizontalAlign("left");
+            this.position.Align = HorizontalAlignment.Left;
             return this;
         }
 
         public FullPositionConfigurator Center()
         {
-            this.HorizontalAlign("center");
+            this.position.Align = HorizontalAlignment.Center;
             return this;
         }
 
         public FullPositionConfigurator Right()
         {
-            this.HorizontalAlign("right");
+            this.position.Align = HorizontalAlignment.Right;
             return this;
         }
 
         public FullPositionConfigurator X(int offset)
         {
-            this.Set(new JsonAttribute("x", offset));
+            this.position.X = offset;
             return this;
         }
 
         public FullPositionConfigurator Y(int offset)
         {
-            this.Set(new JsonAttribute("y", offset));
+            this.position.Y = offset;
             return this;
         }
 
         public FullPositionConfigurator Top()
         {
-            this.VerticalAlign("top");
+            this.position.VerticalAlign = VerticalAlignment.Top;
             return this;
         }
 
         public FullPositionConfigurator Bottom()
         {
-            this.VerticalAlign("bottom");
+            this.position.VerticalAlign = VerticalAlignment.Bottom;
             return this;
         }
 
         public FullPositionConfigurator Middle()
         {
-            this.VerticalAlign("middle");
+            this.position.VerticalAlign = VerticalAlignment.Middle;
             return this;
-        }
-
-        private void HorizontalAlign(string value)
-        {
-            this.Set(new JsonAttribute("align", value));
-        }
-
-        private void VerticalAlign(string value)
-        {
-            this.Set(new JsonAttribute("verticalAlign", value));
         }
     }
 }

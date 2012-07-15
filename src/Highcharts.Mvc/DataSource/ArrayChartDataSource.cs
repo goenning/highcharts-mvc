@@ -21,10 +21,10 @@ namespace Highcharts.Mvc
                 Serie serie = this.Series.ElementAt(i);
                 JsonObject serieObj = new JsonObject();
 
-                serieObj.Add(new JsonAttribute("name", serie.Name));
+                serieObj.Set(new JsonAttribute("name", serie.Name));
                 if (!serie.Type.Equals(ChartSerieType.Default))
-                    serieObj.Add(new JsonAttribute("type", serie.Type));
-                serieObj.Add(new JsonAttribute("data", serie.Values));
+                    serieObj.Set(new JsonAttribute("type", serie.Type));
+                serieObj.Set(new JsonAttribute("data", serie.Data));
 
 			    seriesObjects[i] = serieObj;
             }

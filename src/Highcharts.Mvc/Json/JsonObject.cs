@@ -7,12 +7,18 @@ namespace Highcharts.Mvc.Json
     {
         private static CultureInfo enUS = new CultureInfo("en-US");
 
-        private JsonAttribute attribute;
-        protected string result;
+        private JsonAttributeCollection attributes = new JsonAttributeCollection();
+        private string result;
 
         public JsonObject()
         {
-            this.attribute = new JsonAttribute();
+            this.result = "{ }";
+        }
+
+        public JsonObject(JsonAttribute[] attributes)
+        {
+            foreach (var attr in attributes)
+                this.attributes.Set(attr);
         }
 
         public JsonObject(Array values)
@@ -79,9 +85,9 @@ namespace Highcharts.Mvc.Json
             this.result = function.ToString();
         }
 
-        public void Add(JsonAttribute attr)
+        public void Set(JsonAttribute attr)
         {
-            this.attribute.Set(attr);
+            this.attributes.Set(attr);
         }
 
         public override string ToString()
@@ -91,8 +97,8 @@ namespace Highcharts.Mvc.Json
 
         public virtual string ToJson()
         {
-            if (this.attribute != null)
-                return string.Format("{{ {0} }}", this.attribute.ToString());
+            if (this.attributes.Count > 0)
+                return string.Format("{{ {0} }}", this.attributes.ToString());
 
             return result;
         }

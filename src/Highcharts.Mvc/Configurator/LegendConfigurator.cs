@@ -1,106 +1,107 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
     public class LegendConfigurator : JsonConfigurator
     {
-        public LegendConfigurator()
-            : base("legend")
+        private readonly Legend legend;
+        internal LegendConfigurator(Legend legend)
         {
-
+            this.legend = legend;
         }
 
         public LegendConfigurator Floating()
         {
-            this.Set(new JsonAttribute("floating", true));
+            this.legend.Floating = true;
             return this;
         }
 
         public LegendConfigurator Border(string color, int radius, int width)
         {
-            this.Set(new JsonAttribute("borderColor", color));
-            this.Set(new JsonAttribute("borderRadius", radius));
-            this.Set(new JsonAttribute("borderWidth", width));
+            this.legend.BorderColor = color;
+            this.legend.BorderRadius = radius;
+            this.legend.BorderWidth = width;
             return this;
         }
 
-        public LegendConfigurator Position(Expression<Func<FullPositionConfigurator, JsonConfigurator>> expression)
+        public LegendConfigurator Position(Action<FullPositionConfigurator> action)
         {
-            this.SetOptions(expression.ToJson());
+            action.Invoke(new FullPositionConfigurator(this.legend.Position));
             return this;
         }
 
         public LegendConfigurator BackgroundColor(string color)
         {
-            this.Set(new JsonAttribute("backgroundColor", color));
+            this.legend.BackgroundColor = color;
             return this;
         }
 
         public LegendConfigurator Hide()
         {
-            this.Set(new JsonAttribute("enabled", false));
+            this.legend.Enabled = false;
             return this;
         }
 
         public LegendConfigurator ItemWidth(int width)
         {
-            this.Set(new JsonAttribute("itemWidth", width));
+            this.legend.ItemWidth = width;
             return this;
         }
 
         public LegendConfigurator LineHeight(int height)
         {
-            this.Set(new JsonAttribute("lineHeight", height));
+            this.legend.LineHeight = height;
             return this;
         }
 
         public LegendConfigurator Margin(int margin)
         {
-            this.Set(new JsonAttribute("margin", margin));
+            this.legend.Margin = margin;
             return this;
         }
 
         public LegendConfigurator Reverse()
         {
-            this.Set(new JsonAttribute("reversed", true));
+            this.legend.Reversed = true;
             return this;
         }
 
         public LegendConfigurator ShowShadow()
         {
-            this.Set(new JsonAttribute("shadow", true));
+            this.legend.Shadow = true;
             return this;
         }
 
         public LegendConfigurator SymbolPadding(int padding)
         {
-            this.Set(new JsonAttribute("symbolPadding", padding));
+            this.legend.SymbolPadding = padding;
             return this;
         }
 
         public LegendConfigurator SymbolWidth(int width)
         {
-            this.Set(new JsonAttribute("symbolWidth", width));
+            this.legend.SymbolWidth = width;
             return this;
         }
 
         public LegendConfigurator Width(int width)
         {
-            this.Set(new JsonAttribute("width", width));
+            this.legend.Width = width;
             return this;
         }
 
         public LegendConfigurator Layout(LegendLayout layout)
         {
-            this.Set(new JsonAttribute("layout", layout));
+            this.legend.Layout = layout;
             return this;
         }
 
         public LegendConfigurator LabelFormatter(string function)
         {
-            this.Set(new JsonAttribute("labelFormatter", new JsonFunction(function)));
+            this.legend.LabelFormatter = new JsonFunction(function);
             return this;
         }
     }

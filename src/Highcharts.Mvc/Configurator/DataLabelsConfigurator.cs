@@ -14,7 +14,7 @@ namespace Highcharts.Mvc
 
         public DataLabelsConfigurator Position(Expression<Func<PositionConfigurator, JsonConfigurator>> expression)
         {
-            this.SetOptions(expression.ToJson());
+            this.Set(expression.ToAttributes());
             return this;
         }
 

@@ -1,38 +1,39 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
     public class CreditsConfigurator : JsonConfigurator
     {
-        public CreditsConfigurator()
-            : base("credits")
+        private readonly Credits credits;
+        internal CreditsConfigurator(Credits credits)
         {
-
+            this.credits = credits;
         }
 
         public CreditsConfigurator Hide()
         {
-            this.Set(new JsonAttribute("enabled", false));
+            this.credits.Enabled = false;
             return this;
         }
 
         public CreditsConfigurator Text(string text)
         {
-            this.Set(new JsonAttribute("text", text));
+            this.credits.Text = text;
             return this;
         }
 
         public CreditsConfigurator Url(string url)
         {
-            this.Set(new JsonAttribute("href", url));
+            this.credits.Href = url;
             return this;
         }
 
-        public CreditsConfigurator Position(Expression<Func<FullPositionConfigurator, JsonConfigurator>> expression)
+        //TODO: Fix this
+        public CreditsConfigurator Position(Action<FullPositionConfigurator> expression)
         {
-            this.Set(expression.ToJson());
             return this;
         }
     }

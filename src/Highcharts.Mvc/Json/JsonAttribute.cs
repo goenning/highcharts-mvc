@@ -4,21 +4,21 @@ using System.Linq;
 
 namespace Highcharts.Mvc.Json
 {
-    public class JsonAttribute
+    public class JsonAttribute : IEquatable<JsonAttribute>
     {
-        protected string Key { get; set; }
-        protected JsonObject Value { get; set; }
+        public string Key { get; protected set; }
+        public JsonObject Value { get; protected set; }
 
         public JsonAttribute()
-            : this(null)
         {
-
+            this.Key = null;
+            this.Value = new JsonObject();
         }
 
         public JsonAttribute(string key)
         {
             this.Key = key;
-            this.allOptions = new Dictionary<string, JsonAttribute>();
+            this.Value = new JsonObject();
         }
 
         public JsonAttribute(string key, bool value)
@@ -66,11 +66,7 @@ namespace Highcharts.Mvc.Json
         public JsonAttribute(string key, params JsonAttribute[] attrs)
             : this(key)
         {
-            JsonObject obj = new JsonObject();
-            foreach (JsonAttribute attr in attrs)
-                obj.Add(attr);
-
-            this.Value = obj;
+            this.Value = new JsonObject(attrs);
         }
 
         public JsonAttribute(string key, params JsonObject[] objs)
@@ -81,19 +77,11 @@ namespace Highcharts.Mvc.Json
 
         public override string ToString()
         {
-            if (this.Key == null && this.Value == null && this.allOptions.Count == 0)
+            if (this.Key == null && this.Value.ToString() == "{ }")
                 return string.Empty;
 
             string outputKey = this.Key == null ? string.Empty : string.Concat(this.Key, ":");
-            if (this.allOptions.Count > 0)
-            {
-                string childValues = string.Join(",", this.allOptions.Select(x => x.Value.ToString()));
-                if (this.Key != null)
-                    childValues = string.Concat("{ ", childValues, " }");
-
-                return string.Format("{0} {1}", outputKey, childValues);
-            }
-            else if (this.Value != null)
+            if (this.Value != null)
             {
                 return string.Format("{0} {1}", outputKey, this.Value);
             }
@@ -103,22 +91,20 @@ namespace Highcharts.Mvc.Json
             }
         }
 
-        private Dictionary<string, JsonAttribute> allOptions;
-        public void Set(JsonAttribute obj)
+        public void Set(JsonAttribute attr)
         {
-            if (string.IsNullOrEmpty(obj.Key))
-                return;
-
-            if (allOptions.ContainsKey(obj.Key))
-                allOptions[obj.Key] = obj;
-            else
-                this.allOptions.Add(obj.Key, obj);
+            this.Value.Set(attr);
         }
 
-        public void SetOptions(JsonAttribute json)
+        public void Set(JsonAttributeCollection attributes)
         {
-            foreach (var opt in json.allOptions)
-                this.allOptions.Add(opt.Key, opt.Value);
+            foreach (JsonAttribute attr in attributes)
+                this.Value.Set(attr);
+        }
+
+        public bool Equals(JsonAttribute other)
+        {
+            return other.Key == this.Key;
         }
     }
 

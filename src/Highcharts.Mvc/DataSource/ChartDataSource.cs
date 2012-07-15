@@ -13,7 +13,7 @@ namespace Highcharts.Mvc
 
         public virtual JsonAttribute AsJsonAttribute()
         {
-            return new EmptyJsonAttribute();
+            return null;
         }
     }
 }

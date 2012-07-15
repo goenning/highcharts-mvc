@@ -22,5 +22,12 @@ namespace Highcharts.Mvc
 
             return config.ToJson();
         }
+
+        public static JsonAttributeCollection ToAttributes<T>(this Expression<Func<T, JsonConfigurator>> expression) where T : JsonConfigurator, new()
+        {
+            T configurator = new T();
+            var config = expression.Compile().Invoke(configurator);
+            return config.ToAttributes();
+        }
     }
 }

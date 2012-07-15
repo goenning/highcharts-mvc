@@ -10,9 +10,9 @@ namespace Highcharts.Mvc.Test
         public void Chart_WithBasicPlotOptions()
         {
             var actual = new HighchartsChart("myChart")
-                            .Options(
-                                PlotOptions.Line.ShowDataLabels().HideInLegend().Color("#00FF00")
-                            ).ToHtmlString();
+                            .Options(x => {
+                                x.Line.ShowDataLabels().HideInLegend().Color("#00FF00");
+                            }).ToHtmlString();
 
 
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -24,10 +24,10 @@ namespace Highcharts.Mvc.Test
                                                           },
                                                           plotOptions: {
                                                             line: {
+                                                                showInLegend: false,
                                                                 dataLabels: {
                                                                     enabled: true
                                                                 },
-                                                                showInLegend: false,
                                                                 color: '#00FF00'
                                                             }
                                                           }
@@ -42,10 +42,10 @@ namespace Highcharts.Mvc.Test
         public void Chart_WithTwoPlotOptions()
         {
             var actual = new HighchartsChart("myChart")
-                            .Options(
-                                PlotOptions.Line.HideInLegend(),
-                                PlotOptions.Column.ShowDataLabels()
-                            ).ToHtmlString();
+                            .Options(x => {
+                                x.Line.HideInLegend();
+                                x.Column.ShowDataLabels();
+                            }).ToHtmlString();
 
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
                                                   <script type=""text/javascript"">
@@ -75,11 +75,11 @@ namespace Highcharts.Mvc.Test
         public void Chart_WithThreePlotOptions()
         {
             var actual = new HighchartsChart("myChart")
-                            .Options(
-                                PlotOptions.Line.HideInLegend(),
-                                PlotOptions.Series.HideInLegend(),
-                                PlotOptions.Column.HideInLegend()
-                            ).ToHtmlString();
+                            .Options(x => {
+                                x.Line.HideInLegend();
+                                x.Series.HideInLegend();
+                                x.Column.HideInLegend();
+                            }).ToHtmlString();
 
 
             var expected = MvcHtmlString.Create(@"<div id=""myChart""></div>
@@ -93,10 +93,10 @@ namespace Highcharts.Mvc.Test
                                                             line: {
                                                                 showInLegend: false
                                                             },
-                                                            series: {
+                                                            column: {
                                                                 showInLegend: false
                                                             },
-                                                            column: {
+                                                            series: {
                                                                 showInLegend: false
                                                             }
                                                           }

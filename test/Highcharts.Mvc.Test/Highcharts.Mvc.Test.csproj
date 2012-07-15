@@ -50,25 +50,28 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AjaxSeriesChartTest.cs" />
-    <Compile Include="AnimationChartTest.cs" />
     <Compile Include="ChartPlotOptionsTest.cs" />
     <Compile Include="ConfiguratorTest.cs" />
-    <Compile Include="CreditsChartTest.cs" />
     <Compile Include="DataLabelsChartTest.cs" />
+    <Compile Include="Json\JsonAttributeCollectionTest.cs" />
+    <Compile Include="Json\JsonConverterTest.cs" />
+    <Compile Include="Json\Models\Dog.cs" />
+    <Compile Include="Json\Models\Person.cs" />
+    <Compile Include="Json\Models\Shape.cs" />
+    <Compile Include="Json\Models\ShapeStyle.cs" />
+    <Compile Include="Json\Models\Customer.cs" />
+    <Compile Include="Json\Models\CustomerType.cs" />
     <Compile Include="PieChartTest.cs" />
     <Compile Include="PlotOptionsEventsChartTest.cs" />
     <Compile Include="HighchartSetUpTest.cs" />
     <Compile Include="HtmlAssert.cs" />
     <Compile Include="Json\JsonAttributeTest.cs" />
     <Compile Include="Json\JsonObjectTest.cs" />
-    <Compile Include="LegendChartTest.cs" />
     <Compile Include="PositionChartTest.cs" />
-    <Compile Include="SeriesPlotOptionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicChartTest.cs" />
     <Compile Include="ArraySeriesChartTest.cs" />
     <Compile Include="SerieTypeTest.cs" />
-    <Compile Include="TooltipChartTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Highcharts.Mvc\Highcharts.Mvc.csproj">

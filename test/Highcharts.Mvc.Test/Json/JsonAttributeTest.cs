@@ -94,17 +94,6 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void EmptyAttributesShouldBeIgnored()
-        {
-            var values = new JsonAttribute("chart");
-            values.Set(new EmptyJsonAttribute());
-            string actual = values.ToString();
-            string expected = "chart: { }";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
         public void AddChildTest()
         {
             var values = new JsonAttribute("chart");
@@ -159,16 +148,6 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void NullValueJsonObject()
-        {
-            var formatter = new JsonNullAttribute("stacking");
-            string actual = formatter.ToString();
-            string expected = "stacking: null";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
         public void FullFunction()
         {
             var formatter = new JsonAttribute("formatter", new JsonFunction("function() { return 'Hello'; }"));
@@ -192,10 +171,10 @@ namespace Highcharts.Mvc.Test.Json
         public void AttributeWithTwoChildObjects()
         {
             var firstObj = new JsonObject();
-            firstObj.Add(new JsonAttribute("name", "First Value"));
+            firstObj.Set(new JsonAttribute("name", "First Value"));
 
             var secondObj = new JsonObject();
-            secondObj.Add(new JsonAttribute("name", "Second Value"));
+            secondObj.Set(new JsonAttribute("name", "Second Value"));
 
             var chart = new JsonAttribute("series", firstObj, secondObj);
             string actual = chart.ToString();
@@ -218,40 +197,21 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
-        public void EmptyKeyWithChild()
-        {
-            var chart = new JsonAttribute();
-            chart.Set(new JsonAttribute("renderTo", "container"));
-            string actual = chart.ToString();
-            string expected = "renderTo: 'container'";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void EmptyKeyWithDuplicatedChild()
-        {
-            var chart = new JsonAttribute();
-            chart.Set(new JsonAttribute("renderTo", "container"));
-            chart.Set(new JsonAttribute("renderTo", "new-container"));
-            string actual = chart.ToString();
-            string expected = "renderTo: 'new-container'";
-
-            HtmlAssert.AreEqual(expected, actual);
-        }
-
-        [Test]
         public void ComplexJsonObjectGraph()
         {
-            var chart = new JsonAttribute();
+            var chart = new JsonObject();
+
             var title = new JsonAttribute("title");
             chart.Set(title);
             title.Set(new JsonAttribute("color", "red"));
             title.Set(new JsonAttribute("size", "16px"));
+
             string actual = chart.ToString();
-            string expected = @"title: {
-                                    color: 'red',
-                                    size: '16px'
+            string expected = @"{
+                                    title: {
+                                        color: 'red',
+                                        size: '16px'
+                                    }
                                 }";
 
             HtmlAssert.AreEqual(expected, actual);
@@ -260,7 +220,7 @@ namespace Highcharts.Mvc.Test.Json
         [Test]
         public void ComplexJsonObjectGraph_WithTwoMainObjects()
         {
-            var chart = new JsonAttribute();
+            var chart = new JsonObject();
 
             var title = new JsonAttribute("title");
             chart.Set(title);
@@ -272,12 +232,14 @@ namespace Highcharts.Mvc.Test.Json
             subtitle.Set(new JsonAttribute("size", "12px"));
 
             string actual = chart.ToString();
-            string expected = @"title: {
-                                    color: 'red',
-                                    size: '16px'
-                                }, 
-                                subtitle: {
-                                    size: '12px'
+            string expected = @"{
+                                    title: {
+                                        color: 'red',
+                                        size: '16px'
+                                    }, 
+                                    subtitle: {
+                                        size: '12px'
+                                    }
                                 }";
 
             HtmlAssert.AreEqual(expected, actual);
