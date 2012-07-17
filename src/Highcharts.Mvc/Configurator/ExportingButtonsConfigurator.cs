@@ -4,7 +4,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class ExportingButtonsConfigurator : JsonConfigurator
+    public class ExportingButtonsConfigurator
     {
         private readonly ExportingButtons exportingButtons;
         internal ExportingButtonsConfigurator(ExportingButtons exportingButtons)

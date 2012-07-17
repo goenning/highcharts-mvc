@@ -5,7 +5,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class CreditsConfigurator : JsonConfigurator
+    public class CreditsConfigurator
     {
         private readonly Credits credits;
         internal CreditsConfigurator(Credits credits)

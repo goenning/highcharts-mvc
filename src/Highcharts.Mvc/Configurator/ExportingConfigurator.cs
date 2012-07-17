@@ -8,7 +8,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class ExportingConfigurator : JsonConfigurator
+    public class ExportingConfigurator
     {
         private readonly Exporting exporting;
         internal ExportingConfigurator(Exporting exporting)

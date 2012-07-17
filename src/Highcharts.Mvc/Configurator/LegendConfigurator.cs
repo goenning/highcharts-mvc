@@ -5,7 +5,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class LegendConfigurator : JsonConfigurator
+    public class LegendConfigurator
     {
         private readonly Legend legend;
         internal LegendConfigurator(Legend legend)

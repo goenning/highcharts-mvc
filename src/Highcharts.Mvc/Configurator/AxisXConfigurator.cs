@@ -5,18 +5,12 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class AxisXConfigurator : JsonConfigurator
+    public class AxisXConfigurator
     {
         private readonly XAxis axis;
         internal AxisXConfigurator(XAxis axis)
         {
             this.axis = axis;
-        }
-
-        public AxisXConfigurator()
-            : base("xAxis")
-        {
-
         }
 
         public AxisXConfigurator Categories(params string[] categories)

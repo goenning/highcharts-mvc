@@ -3,7 +3,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class FullPositionConfigurator : JsonConfigurator
+    public class FullPositionConfigurator
     {
         private readonly FullPosition position;
         internal FullPositionConfigurator(FullPosition position)

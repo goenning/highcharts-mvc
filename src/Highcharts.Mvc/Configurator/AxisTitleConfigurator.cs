@@ -7,7 +7,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class AxisTitleConfigurator : JsonConfigurator
+    public class AxisTitleConfigurator
     {
         private readonly AxisTitle title;
         internal AxisTitleConfigurator(AxisTitle title)

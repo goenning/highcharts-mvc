@@ -10,10 +10,5 @@ namespace Highcharts.Mvc
         {
             return MvcHtmlString.Empty;
         }
-
-        public virtual JsonAttribute AsJsonAttribute()
-        {
-            return null;
-        }
     }
 }

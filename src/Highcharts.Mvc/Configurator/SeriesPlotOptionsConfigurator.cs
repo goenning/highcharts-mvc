@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Highcharts.Mvc.Models;
 
-namespace Highcharts.Mvc.Configurator.PlotOptions
+namespace Highcharts.Mvc
 {
     public class SeriesPlotOptionsConfigurator : CommonPlotOptionsConfigurator<SeriesPlotOptionsConfigurator>
     {

@@ -3,7 +3,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class TooltipConfigurator : JsonConfigurator
+    public class TooltipConfigurator
     {
         private readonly Tooltip tooltip;
         internal TooltipConfigurator(Tooltip tooltip)

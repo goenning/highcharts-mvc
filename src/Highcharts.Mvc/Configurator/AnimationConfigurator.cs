@@ -3,7 +3,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class AnimationConfigurator : JsonConfigurator
+    public class AnimationConfigurator
     {
         private readonly Animation animation;
         internal AnimationConfigurator(Animation animation)

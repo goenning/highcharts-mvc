@@ -3,7 +3,7 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class ButtonConfigurator : JsonConfigurator
+    public class ButtonConfigurator
     {
         private readonly Button button;
         internal ButtonConfigurator(Button button)

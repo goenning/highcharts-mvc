@@ -45,59 +45,94 @@
     <Compile Include="ChartCursor.cs" />
     <Compile Include="ChartDashStyle.cs" />
     <Compile Include="ChartStacking.cs" />
-    <Compile Include="Configurator\AbstractJsonConfigurator.cs" />
     <Compile Include="AjaxConfig.cs" />
     <Compile Include="Configurator\AxisXConfigurator.cs" />
     <Compile Include="Configurator\AxisYConfigurator.cs" />
     <Compile Include="Configurator\ChartSettingsConfigurator.cs" />
-    <Compile Include="Configurator\ConfigurationExpressionExtension.cs" />
     <Compile Include="Configurator\CreditsConfigurator.cs" />
     <Compile Include="Configurator\DataLabelsConfigurator.cs" />
-    <Compile Include="Configurator\ExportButtonConfigurator.cs" />
     <Compile Include="Configurator\ExportingButtonsConfigurator.cs" />
     <Compile Include="Configurator\ExportingConfigurator.cs" />
-    <Compile Include="Configurator\PlotOptions\ColumnPlotOptionsConfigurator.cs" />
-    <Compile Include="Configurator\PlotOptions\CommonPlotOptionsConfigurator.cs" />
-    <Compile Include="Configurator\PlotOptions\PlotOptionsConfigurator.cs" />
+    <Compile Include="Configurator\ColumnPlotOptionsConfigurator.cs" />
+    <Compile Include="Configurator\CommonPlotOptionsConfigurator.cs" />
+    <Compile Include="Configurator\PlotOptionsConfigurator.cs" />
     <Compile Include="Configurator\PlotOptionsEventsConfigurator.cs" />
     <Compile Include="Configurator\FullPositionConfigurator.cs" />
-    <Compile Include="Configurator\PlotOptions\LinePlotOptionsConfigurator.cs" />
-    <Compile Include="Configurator\PlotOptions\SeriesPlotOptionsConfigurator.cs" />
+    <Compile Include="Configurator\LinePlotOptionsConfigurator.cs" />
+    <Compile Include="Configurator\SeriesPlotOptionsConfigurator.cs" />
     <Compile Include="Configurator\PositionConfigurator.cs" />
     <Compile Include="Configurator\ButtonConfigurator.cs" />
     <Compile Include="Configurator\AxisTitleConfigurator.cs" />
     <Compile Include="DataSource\AjaxChartDataSource.cs" />
-    <Compile Include="DataSource\ArrayChartDataSource.cs" />
     <Compile Include="ChartSerieType.cs" />
     <Compile Include="HighchartsSetUp.cs" />
     <Compile Include="HorizontalAlignment.cs" />
     <Compile Include="Json\ICustomJsonConverter.cs" />
-    <Compile Include="Json\JsonAttributeCollection.cs" />
     <Compile Include="Json\JsonConverter.cs" />
     <Compile Include="Json\JsonFunction.cs" />
-    <Compile Include="Json\JsonObject.cs" />
     <Compile Include="Json\MergePropertiesAttribute.cs" />
     <Compile Include="Json\StringUtils.cs" />
     <Compile Include="LegendLayout.cs" />
-    <Compile Include="Models\Animation.cs" />
-    <Compile Include="Models\ColumnPlotOptions.cs" />
-    <Compile Include="Models\Credits.cs" />
-    <Compile Include="Models\DataLabels.cs" />
-    <Compile Include="Models\Exporting.cs" />
-    <Compile Include="Models\Button.cs" />
-    <Compile Include="Models\ExportingButtons.cs" />
-    <Compile Include="Models\FullPosition.cs" />
-    <Compile Include="Models\Legend.cs" />
-    <Compile Include="Models\LinePlotOptions.cs" />
-    <Compile Include="Models\PlotOptions.cs" />
-    <Compile Include="Models\SeriesPlotOptions.cs" />
-    <Compile Include="Models\Tooltip.cs" />
-    <Compile Include="Models\XAxis.cs" />
-    <Compile Include="Models\Chart.cs" />
-    <Compile Include="Models\ChartTitle.cs" />
-    <Compile Include="Models\Highchart.cs" />
-    <Compile Include="Models\YAxis.cs" />
-    <Compile Include="Models\AxisTitle.cs" />
+    <Compile Include="Models\AjaxOptions.cs" />
+    <Compile Include="Models\Animation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\AxisTitle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Button.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Chart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ChartTitle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ColumnPlotOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Credits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\DataLabels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Exporting.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ExportingButtons.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\FullPosition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Highchart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Legend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\LinePlotOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\PlotOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\PlotOptionsEvents.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\SeriesPlotOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Tooltip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\XAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\YAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Series\AreaSerie.cs" />
     <Compile Include="Series\AreaSplineSerie.cs" />
     <Compile Include="Series\BarSerie.cs" />
@@ -105,7 +140,6 @@
     <Compile Include="DataSource\EmptyDataSource.cs" />
     <Compile Include="HighchartsChart.cs" />
     <Compile Include="HighchartsHtmlHelper.cs" />
-    <Compile Include="Json\JsonAttribute.cs" />
     <Compile Include="Configurator\LegendConfigurator.cs" />
     <Compile Include="Series\LineSerie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,48 +1,44 @@
 ﻿using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class PositionConfigurator : JsonConfigurator
+    public class PositionConfigurator
     {
-        public PositionConfigurator()
-            : base("position")
+        private readonly Position position;
+        internal PositionConfigurator(Position position)
         {
-
+            this.position = position;
         }
 
         public PositionConfigurator Left()
         {
-            this.HorizontalAlign("left");
+            this.position.Align = HorizontalAlignment.Left;
             return this;
         }
 
         public PositionConfigurator Center()
         {
-            this.HorizontalAlign("center");
+            this.position.Align = HorizontalAlignment.Center;
             return this;
         }
 
         public PositionConfigurator Right()
         {
-            this.HorizontalAlign("right");
+            this.position.Align = HorizontalAlignment.Right;
             return this;
         }
 
         public PositionConfigurator X(int offset)
         {
-            this.Set(new JsonAttribute("x", offset));
+            this.position.X = offset;
             return this;
         }
 
         public PositionConfigurator Y(int offset)
         {
-            this.Set(new JsonAttribute("y", offset));
+            this.position.Y = offset;
             return this;
-        }
-
-        private void HorizontalAlign(string value)
-        {
-            this.Set(new JsonAttribute("align", value));
         }
     }
 }

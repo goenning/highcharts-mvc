@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Highcharts.Mvc
 {
@@ -29,9 +30,9 @@ namespace Highcharts.Mvc
         }
 
         public PieSerie(string name, params PieData[] values)
-            : base(name, ChartSerieType.Pie, values)
+            : base(name, ChartSerieType.Pie, null)
         {
-
+            this.Data = values.Select(x => new object[] { x.Name, x.Value }).ToArray();
         }
     }
 }

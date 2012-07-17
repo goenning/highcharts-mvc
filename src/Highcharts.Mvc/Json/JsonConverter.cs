@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Highcharts.Mvc.Models;
+using System.Globalization;
 
 namespace Highcharts.Mvc.Json
 {
@@ -32,7 +33,7 @@ namespace Highcharts.Mvc.Json
             if (!value.GetType().IsValueType)
                 return SerializeComplexType(value);
 
-            return value.ToString();
+            return Convert.ToString(value, CultureInfo.InvariantCulture);
         }
 
         private static string SerializeCollection(IEnumerable values)
@@ -55,7 +56,7 @@ namespace Highcharts.Mvc.Json
             return json.ToString();
         }
 
-        private static string SerializeComplexType(object value)
+        public static string SerializeComplexType(object value)
         {
             StringBuilder json = new StringBuilder();
             json.Append("{");

@@ -15,21 +15,12 @@ namespace Highcharts.Mvc
         protected string Id { get; private set; }
 
         private ChartDataSource dataSource;
-        private JsonObject chartConfig;
-        private JsonAttribute chartAttribute;
         private Highchart obj;
 
         public HighchartsSetUp(string id)
         {
             this.Id = id;
             this.dataSource = new EmptyDataSource();
-            this.chartConfig = new JsonObject();
-
-            this.chartAttribute = new JsonAttribute("chart",
-                new JsonAttribute("renderTo", this.Id)
-            );
-
-            this.chartConfig.Set(this.chartAttribute);
 
             this.obj = new Highchart();
             this.obj.Chart.RenderTo = this.Id;
@@ -38,7 +29,6 @@ namespace Highcharts.Mvc
         public virtual IHtmlString ToHtmlString()
         {
             IHtmlString chartSource = this.dataSource.ToHtmlString(this.Id);
-            this.chartConfig.Set(this.dataSource.AsJsonAttribute());
 
             string json = JsonConverter.SerializeObject(this.obj);
 
@@ -137,12 +127,6 @@ namespace Highcharts.Mvc
         public HighchartsSetUp Exporting(Action<ExportingConfigurator> expression)
         {
             expression.Invoke(new ExportingConfigurator(this.obj.Exporting));
-            return this;
-        }
-
-        private HighchartsSetUp Configure<T>(Expression<Func<T, JsonConfigurator>> expression) where T : JsonConfigurator, new()
-        {
-            this.chartConfig.Set(expression.ToJson());
             return this;
         }
     }

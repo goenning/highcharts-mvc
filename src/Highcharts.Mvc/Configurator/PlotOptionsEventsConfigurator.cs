@@ -1,54 +1,55 @@
 ﻿using Highcharts.Mvc.Json;
+using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class EventsConfigurator : JsonConfigurator
+    public class PlotOptionsEventsConfigurator
     {
-        public EventsConfigurator()
-            : base("events")
+        private readonly PlotOptionsEvents events;
+        internal PlotOptionsEventsConfigurator(PlotOptionsEvents events)
         {
-
+            this.events = events;
         }
 
-        public EventsConfigurator OnClick(string function)
+        public PlotOptionsEventsConfigurator OnClick(string function)
         {
-            this.Set(new JsonAttribute("click", new JsonFunction(function)));
+            this.events.Click = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnCheckboxClick(string function)
+        public PlotOptionsEventsConfigurator OnCheckboxClick(string function)
         {
-            this.Set(new JsonAttribute("checkboxClick", new JsonFunction(function)));
+            this.events.CheckboxClick = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnLegendItemClick(string function)
+        public PlotOptionsEventsConfigurator OnLegendItemClick(string function)
         {
-            this.Set(new JsonAttribute("legendItemClick", new JsonFunction(function)));
+            this.events.LegendItemClick = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnMouseOver(string function)
+        public PlotOptionsEventsConfigurator OnMouseOver(string function)
         {
-            this.Set(new JsonAttribute("mouseOver", new JsonFunction(function)));
+            this.events.MouseOver = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnMouseOut(string function)
+        public PlotOptionsEventsConfigurator OnMouseOut(string function)
         {
-            this.Set(new JsonAttribute("mouseOut", new JsonFunction(function)));
+            this.events.MouseOut = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnHide(string function)
+        public PlotOptionsEventsConfigurator OnHide(string function)
         {
-            this.Set(new JsonAttribute("hide", new JsonFunction(function)));
+            this.events.Hide = new JsonFunction(function);
             return this;
         }
 
-        public EventsConfigurator OnShow(string function)
+        public PlotOptionsEventsConfigurator OnShow(string function)
         {
-            this.Set(new JsonAttribute("show", new JsonFunction(function)));
+            this.events.Show = new JsonFunction(function);
             return this;
         }
     }

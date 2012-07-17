@@ -8,18 +8,12 @@ using Highcharts.Mvc.Models;
 
 namespace Highcharts.Mvc
 {
-    public class AxisYConfigurator : JsonConfigurator
+    public class AxisYConfigurator
     {
         private readonly YAxis axis;
         internal AxisYConfigurator(YAxis axis)
         {
             this.axis = axis;
-        }
-
-        public AxisYConfigurator()
-            : base("yAxis")
-        {
-
         }
 
         public AxisYConfigurator Title(string text)
@@ -30,6 +24,7 @@ namespace Highcharts.Mvc
 
         public AxisYConfigurator Title(string text, Action<AxisTitleConfigurator> action)
         {
+            this.axis.Title.Text = text;
             action.Invoke(new AxisTitleConfigurator(this.axis.Title));
             return this;
         }

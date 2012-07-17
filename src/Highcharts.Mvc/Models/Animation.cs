@@ -20,10 +20,9 @@ namespace Highcharts.Mvc.Models
 
         public string ToJson()
         {
-            if (this.disabled)
-                return JsonConverter.SerializeObject(false);
-                
-            return JsonConverter.SerializeObject(this);
+            return disabled
+                ? JsonConverter.SerializeObject(false)
+                : JsonConverter.SerializeComplexType(this);
         }
 
         public bool IsConsideredNull()

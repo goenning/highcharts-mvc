@@ -5,7 +5,7 @@ using System.Text;
 using Highcharts.Mvc.Models;
 using System.Linq.Expressions;
 
-namespace Highcharts.Mvc.Configurator.PlotOptions
+namespace Highcharts.Mvc
 {
     public abstract class CommonPlotOptionsConfigurator { }
 

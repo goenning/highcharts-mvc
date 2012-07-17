@@ -23,6 +23,13 @@ namespace Highcharts.Mvc.Test.Json
         }
 
         [Test]
+        public void DecimalTest()
+        {
+            string json = JsonConverter.SerializeObject(10.12m);
+            Assert.AreEqual("10.12", json);
+        }
+
+        [Test]
         public void StringTest()
         {
             string json = JsonConverter.SerializeObject("Hello World");

@@ -8,36 +8,31 @@ namespace Highcharts.Mvc
 {
     public class PieData
     {
-        protected string name;
-        protected object value;
+        public string Name { get; private set; }
+        public object Value { get; private set; }
 
         public PieData(string name, int value)
         {
-            this.name = name;
-            this.value = value;
+            this.Name = name;
+            this.Value = value;
         }
 
         public PieData(string name, decimal value)
         {
-            this.name = name;
-            this.value = value;
+            this.Name = name;
+            this.Value = value;
         }
 
         public PieData(string name, double value)
         {
-            this.name = name;
-            this.value = value;
+            this.Name = name;
+            this.Value = value;
         }
 
         public PieData(string name, float value)
         {
-            this.name = name;
-            this.value = value;
-        }
-
-        public override string ToString()
-        {
-            return new JsonObject(new object[] { this.name, this.value }).ToString();
+            this.Name = name;
+            this.Value = value;
         }
     }
 }
